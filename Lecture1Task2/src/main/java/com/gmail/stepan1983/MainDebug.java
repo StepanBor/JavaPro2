@@ -7,7 +7,7 @@ public class MainDebug {
     public static void main(String[] args) {
         FileModel fm=new FileModel();
 
-        File filFolder=new File("d:\\");
+        File filFolder=new File("e:\\");
 
         List<File> lf=fm.getFileList(filFolder);
         System.out.println(fm.getFileList(filFolder));

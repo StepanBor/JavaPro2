@@ -10,7 +10,21 @@ public class FileComparator implements Comparator<File> {
         String name1=o1.getName().substring(o1.getName().lastIndexOf("\\"));
         String name2=o2.getName().substring(o1.getName().lastIndexOf("\\"));
 
+        if(o1.isDirectory()&o2.isDirectory()){
+            return name1.compareToIgnoreCase(name2);
+        }
 
+        if(o1.isDirectory()){
+            return 1;
+        }
+
+        if(o2.isDirectory()){
+            return -1;
+        }
+
+        if(o1.isFile()&o2.isFile()){
+            return name1.compareToIgnoreCase(name2);
+        }
         return 0;
     }
 }
