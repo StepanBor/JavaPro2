@@ -16,6 +16,7 @@ public class FileModel {
         for (File file:files) {
             fileList.add(file);
         }
+        fileList.sort(new FileComparator());
         return fileList;
     }
 

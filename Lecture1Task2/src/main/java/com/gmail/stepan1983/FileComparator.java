@@ -7,8 +7,8 @@ public class FileComparator implements Comparator<File> {
 
     public int compare(File o1, File o2) {
 
-        String name1=o1.getName().substring(o1.getName().lastIndexOf("\\"));
-        String name2=o2.getName().substring(o1.getName().lastIndexOf("\\"));
+        String name1=o1.getName().substring(o1.getName().lastIndexOf("\\")+1);
+        String name2=o2.getName().substring(o1.getName().lastIndexOf("\\")+1);
 
         if(o1.isDirectory()&o2.isDirectory()){
             return name1.compareToIgnoreCase(name2);
