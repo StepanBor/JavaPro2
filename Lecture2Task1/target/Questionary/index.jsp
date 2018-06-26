@@ -6,16 +6,16 @@
 </head>
 <body>
 <h1>Create account</h1>
-<form action="/Qeustionary" method="post">
+<form action="http://localhost:8080/Qeustionary" method="post">
 
     <label for="UserName">Name</label><br>
     <input id="UserName" name="UserName"><br>
     <label for="LastName">Lastname</label><br>
     <input id="Lastname" name="LastName"><br>
-    <label for="Age">Age</label><br>
-    <input id="Age" name="Age"><br>
+
     <label for="Password">Password</label><br>
     <input id="Password" name="Password"><br>
+    <input type="hidden" name="newUser" value="newUser">
     <input type="submit" value="Create account"><br>
 
 </form>
@@ -27,6 +27,7 @@
 
     <label for="UserPassword">User Password</label><br>
     <input id="UserPassword" name="Password"><br>
+    <input type="hidden" name="signIn" value="signIn">
     <input type="submit" value="Login">
 
 </form>

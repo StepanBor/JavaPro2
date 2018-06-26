@@ -6,13 +6,13 @@ public class User implements Serializable {
 
     private String name;
     private String lastName;
-    private int age;
+
     private String password;
 
-    public User(String name, String lastName, int age, String password) {
+    public User(String name, String lastName,  String password) {
         this.name = name;
         this.lastName = lastName;
-        this.age = age;
+
         this.password = password;
     }
 
@@ -35,13 +35,7 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getPassword() {
         return password;

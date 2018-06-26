@@ -4,5 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>QuestionaryController</servlet-name>
+    <servlet-class>com.gmail.stepan1983.QuestionaryController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuestionaryController</servlet-name>
+    <url-pattern>/Qeustionary</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>
