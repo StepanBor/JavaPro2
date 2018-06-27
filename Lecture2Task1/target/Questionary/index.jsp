@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Create account</h1>
-<form action="http://localhost:8080/Qeustionary" method="post">
+<form action="/QeustionaryController" method="post">
 
     <label for="UserName">Name</label><br>
     <input id="UserName" name="UserName"><br>
@@ -20,7 +20,7 @@
 
 </form>
 <h2>Login</h2>
-<form action="/Qeustionary" method="post">
+<form action="/QeustionaryController" method="post">
 
     <label for="UserLogin">User Name</label><br>
     <input id="UserLogin" name="UserName"><br>

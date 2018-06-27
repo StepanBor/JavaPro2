@@ -10,7 +10,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>QuestionaryController</servlet-name>
-    <url-pattern>/Qeustionary</url-pattern>
+    <url-pattern>/QeustionaryController</url-pattern>
   </servlet-mapping>
 
 

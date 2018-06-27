@@ -28,20 +28,31 @@ public class Model implements DataModel, Serializable {
 //        String[] answ=new String[3];
 //        answ=answers.toArray(new String[3]);
         int temp = 0;
-        for (int i = 0; i < 2; i++) {
+        TreeMap<String, Integer> tempMap=new TreeMap<>();
+        Character chTemp='A';
+        for (int i = 0; i < 3; i++) {
+            String stTemp="";
+            tempMap.put(stTemp+(char)(chTemp+i),0);
+        }
+        for (int i = 0; i < 3; i++) {
             if (!statsQuestion.containsKey(i)) {
-                statsQuestion.put(i, new TreeMap<String, Integer>());
+                statsQuestion.put(i, new TreeMap<>(tempMap));
             }
-            for (int j = 0; j < answers.size() - 1; j++) {
-                int temp2;
-                if (!statsQuestion.get(i).containsKey(answers.get(j))) {
-                    statsQuestion.get(i).put(answers.get(j), 0);
-                } else {
+//            for (int j = 0; j < answers.size(); j++) {
+//                int temp2;
+            for (int j=0; j<answers.size();j++) {
+                if (statsQuestion.get(i).containsKey(answers.get(j))) {
+//                    statsQuestion.get(i).put(answers.get(j), 1);
+                    statsQuestion.get(i).put(answers.get(j), (statsQuestion.get(i).get(answers.get(j)) + 1));
+                    answers.remove(j);
+                    break;
 
-                    statsQuestion.get(i).put(answers.get(j), (statsQuestion.get(i).get(j) + 1));
+
                 }
-
             }
+
+
+//            }
 
         }
 
