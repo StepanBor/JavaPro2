@@ -9,7 +9,7 @@ public interface DataModel {
     public  void addUserToDataBase(User us);
     public  void addUserStatsToDataBase(User us, ArrayList<String> answers);
 
-    public Map<User,List<String>> getGeneralUserStats();
+    public Map<User,ArrayList<String>> getGeneralUserStats();
     public List<String> getUserStats(User us);
     public Map<Integer, Map<String,Integer>> getGeneralQuestionStats();
 

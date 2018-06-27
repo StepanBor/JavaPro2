@@ -37,7 +37,7 @@
     <p><b>Which of the following are Java keywords? </b></p>
     <p><input name="question3" type="radio" value="A"> (A) throw.</p>
     <p><input name="question3" type="radio" value="B" checked> (B) HelloWorld.</p>
-    <p><input name="question3" type="radio" value="C"> (D) All of the above.</p>
+    <p><input name="question3" type="radio" value="C"> (C) All of the above.</p>
 
     <input type="hidden" name="answers" value="answers">
     <p><input type="submit" value="Send answers"></p>

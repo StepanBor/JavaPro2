@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Model implements DataModel, Serializable {
 
-    private Map<User, List<String>> stats = new TreeMap<>((User us1, User us2) -> us1.getName().compareToIgnoreCase(us2.getName()));
+    private Map<User, ArrayList<String>> stats = new TreeMap<>((User us1, User us2) -> us1.getName().compareToIgnoreCase(us2.getName()));
     private Map<Integer, Map<String, Integer>> statsQuestion = new TreeMap<>();
 
 //    private Map<String, Integer> questioun1Stats = new TreeMap<>();
@@ -59,7 +59,7 @@ public class Model implements DataModel, Serializable {
     }
 
     @Override
-    public Map<User, List<String>> getGeneralUserStats() {
+    public Map<User, ArrayList<String>> getGeneralUserStats() {
         return stats;
     }
 
