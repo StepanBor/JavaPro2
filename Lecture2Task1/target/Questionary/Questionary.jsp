@@ -104,7 +104,7 @@
 
 </table>
 
-<br>Click this link to <a href="/QeustionaryController">logout</a>
+<br>Click this link to <a href="/QeustionaryController?a=exit">logout</a>
 
 </body>
 </html>

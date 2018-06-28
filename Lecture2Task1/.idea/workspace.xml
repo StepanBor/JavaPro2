@@ -59,7 +59,7 @@
       <file leaf-file-name="QuestionaryController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/QuestionaryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
+            <state relative-caret-position="396">
               <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
             </state>
           </provider>
@@ -69,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/Questionary.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="106" column="66" selection-start-line="106" selection-start-column="66" selection-end-line="106" selection-end-column="66" />
+              <caret line="106" column="73" selection-start-line="106" selection-start-column="73" selection-end-line="106" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -424,12 +424,12 @@
       <workItem from="1530035121318" duration="10316000" />
       <workItem from="1530078423557" duration="5530000" />
       <workItem from="1530086181279" duration="18815000" />
-      <workItem from="1530177457596" duration="20980000" />
+      <workItem from="1530177457596" duration="21230000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69516000" />
+    <option name="totallyTimeSpent" value="69766000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -838,7 +838,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/QuestionaryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
+        <state relative-caret-position="396">
           <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
         </state>
       </provider>
@@ -846,7 +846,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/Questionary.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="106" column="66" selection-start-line="106" selection-start-column="66" selection-end-line="106" selection-end-column="66" />
+          <caret line="106" column="73" selection-start-line="106" selection-start-column="73" selection-end-line="106" selection-end-column="73" />
         </state>
       </provider>
     </entry>
