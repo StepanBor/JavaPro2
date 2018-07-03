@@ -6,11 +6,11 @@ import java.util.Map;
 
 public interface DataModel {
 
-    public  void addUserToDataBase(User us);
-    public  void addUserStatsToDataBase(User us, ArrayList<String> answers);
+      void addUserToDataBase(User us);
+      void addUserStatsToDataBase(User us, ArrayList<String> answers);
 
-    public Map<User,ArrayList<String>> getGeneralUserStats();
-    public List<String> getUserStats(User us);
-    public Map<Integer, Map<String,Integer>> getGeneralQuestionStats();
+     Map<User,ArrayList<String>> getGeneralUserStats();
+     List<String> getUserStats(User us);
+     Map<Integer, Map<String,Integer>> getGeneralQuestionStats();
 
 }
