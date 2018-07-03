@@ -420,12 +420,12 @@
       <workItem from="1529993926990" duration="13875000" />
       <workItem from="1530035121318" duration="10316000" />
       <workItem from="1530078423557" duration="5530000" />
-      <workItem from="1530086181279" duration="18815000" />
+      <workItem from="1530086181279" duration="18874000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48536000" />
+    <option name="totallyTimeSpent" value="48595000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -459,11 +459,11 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" weight="0.32972974" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28618065" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28618065" />
       <window_info anchor="right" id="Coverage" sideWeight="0.5015244" side_tool="true" weight="0.32995737" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32972974" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.83384144" visible="true" weight="0.25479743" />
-      <window_info id="Web" order="2" sideWeight="0.16615854" side_tool="true" visible="true" weight="0.25479743" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.83460283" visible="true" weight="0.25479743" />
+      <window_info id="Web" order="2" sideWeight="0.16539717" side_tool="true" visible="true" weight="0.25479743" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32995737" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
