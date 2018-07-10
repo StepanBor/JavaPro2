@@ -58,7 +58,7 @@ public class Serializator {
     public static <T> T deserialize(T obj, File file) throws FileNotFoundException {
 
         if (!file.exists()) {
-            System.out.println("hhhhhhhh");
+//            System.out.println("hhhhhhhh");
             throw new FileNotFoundException();
         }
 

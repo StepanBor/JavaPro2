@@ -29,7 +29,7 @@ public class Model implements DataModel, Serializable {
         Character chTemp='A';
         for (int i = 0; i < 3; i++) {
             String stTemp="";
-            tempMap.put(stTemp+(char)(chTemp+i)+" ",0);
+            tempMap.put(stTemp+(char)(chTemp+i)+"",0);
         }
         for (int i = 0; i < 3; i++) {
             if (!statsQuestion.containsKey(i)) {

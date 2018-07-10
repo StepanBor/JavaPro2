@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="86.0">com.gmail.stepan1983.TextContainer</node>
+    <node x="175.0" y="167.0">com.gmail.stepan1983.Saver</node>
+    <node x="0.0" y="167.0">com.gmail.stepan1983.MainSaver</node>
+    <node x="22.0" y="0.0">com.gmail.stepan1983.SaveTo</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gmail.stepan1983.TextContainer" target="com.gmail.stepan1983.SaveTo">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="120.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

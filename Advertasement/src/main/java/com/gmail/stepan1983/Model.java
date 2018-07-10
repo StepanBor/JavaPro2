@@ -17,6 +17,7 @@ public class Model {
 
     public static void addUserToDatabase(User us) {
 
+//        C3p0 pull
 
         try (Connection con = DriverManager.getConnection(url, user, password); Statement st = con.createStatement()) {
             st.executeUpdate("create table if not exists users(id SERIAL, userName VARCHAR (100)," +
