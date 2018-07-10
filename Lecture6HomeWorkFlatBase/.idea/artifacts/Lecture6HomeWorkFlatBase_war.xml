@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Lecture6HomeWorkFlatBase:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="Lecture6HomeWorkFlatBase.war">
+      <element id="artifact" artifact-name="Lecture6HomeWorkFlatBase:war exploded" />
+    </root>
+  </artifact>
+</component>
