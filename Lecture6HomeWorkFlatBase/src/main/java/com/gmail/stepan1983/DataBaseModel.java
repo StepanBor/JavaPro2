@@ -10,8 +10,7 @@ public interface DataBaseModel {
 
     List<Apartment> getAppartment(String param, String paramName);
 
-    List<Apartment> getAppartment(int parametr,String paramName);
+    List<Apartment> getAppartment(int parametr,String paramName, String operator);
 
-    List<Apartment> getAppartment(double parametr, String paramName);
 
 }

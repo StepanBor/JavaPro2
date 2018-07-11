@@ -11,7 +11,8 @@ public class MainDebug {
 
 //        dm.addAppartment(ap2);
 
-        System.out.println(dm.getAppartment(1, "roomNum"));
+        System.out.println(dm.getAppartment(6000, "price","<="));
+        System.out.println(dm.getAppartment("aa","adres"));
         System.out.println(dm.getAppartment());
 
     }
