@@ -18,8 +18,6 @@ public class DataModel implements DataBaseModel {
             st.executeUpdate("CREATE TABLE IF NOT EXISTS Apartments (id SERIAL, adres VARCHAR(200), district VARCHAR(200)," +
                     "area DOUBLE, roomNum INT, price DOUBLE)");
 
-
-
             prep.setString(1,app.getAddress());
             prep.setString(2,app.getDistrict());
             prep.setDouble(3,app.getArea());
@@ -28,18 +26,17 @@ public class DataModel implements DataBaseModel {
 
             prep.executeUpdate();
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public List<Apartment> getAppartment(int queryParam, String paramName){
+    public List<Apartment> getAppartment(int queryParam, String paramName, String operator){
 
         List<Apartment> result=new ArrayList<>();
         try(Connection con=DriverManager.getConnection(url,user,password); Statement st=con.createStatement();
-            PreparedStatement prep=con.prepareStatement("SELECT * FROM apartments WHERE "+paramName+" >= ?") ) {
+            PreparedStatement prep=con.prepareStatement("SELECT * FROM apartments WHERE "+paramName+operator+" ?") ) {
 
 //            prep.setString(1,paramName);
             prep.setInt(1,queryParam);
@@ -73,40 +70,9 @@ public class DataModel implements DataBaseModel {
         List<Apartment> result=new ArrayList<>();
         try(Connection con=DriverManager.getConnection(url,user,password); Statement st=con.createStatement();
 
-            PreparedStatement prep=con.prepareStatement("SELECT * FROM Apartments WHERE ? >= ?") ) {
+            PreparedStatement prep=con.prepareStatement("SELECT * FROM Apartments WHERE "+paramName+" LIKE ?") ) {
 
-            prep.setString(1,paramName);
-            prep.setString(2,param);
-
-            ResultSet res=prep.executeQuery();
-
-            while (res.next()){
-
-                String adres=res.getString("adres");
-                String district=res.getString("district");
-                Double area=res.getDouble("area");
-                int roomNum=res.getInt("roomNum");
-                Double prise=res.getDouble("price");
-
-                Apartment tempApp=new Apartment(adres,district,area,roomNum,prise);
-                result.add(tempApp);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
-    @Override
-    public List<Apartment> getAppartment(double parametr, String paramName) {
-        List<Apartment> result=new ArrayList<>();
-        try(Connection con=DriverManager.getConnection(url,user,password); Statement st=con.createStatement();
-            PreparedStatement prep=con.prepareStatement("SELECT * FROM Apartments WHERE ? >= ?") ) {
-
-            prep.setString(1,paramName);
-            prep.setDouble(2,parametr);
+            prep.setString(1,"%"+param+"%");
 
             ResultSet res=prep.executeQuery();
 
@@ -128,6 +94,35 @@ public class DataModel implements DataBaseModel {
 
         return result;
     }
+
+//    @Override
+//    public List<Apartment> getAppartment(double parametr, String paramName, String operator) {
+//        List<Apartment> result=new ArrayList<>();
+//        try(Connection con=DriverManager.getConnection(url,user,password); Statement st=con.createStatement();
+//            PreparedStatement prep=con.prepareStatement("SELECT * FROM Apartments WHERE"+paramName+operator+" ?") ) {
+//
+//            prep.setDouble(1,parametr);
+//
+//            ResultSet res=prep.executeQuery();
+//
+//            while (res.next()){
+//
+//                String adres=res.getString("adres");
+//                String district=res.getString("district");
+//                Double area=res.getDouble("area");
+//                int roomNum=res.getInt("roomNum");
+//                Double prise=res.getDouble("price");
+//
+//                Apartment tempApp=new Apartment(adres,district,area,roomNum,prise);
+//                result.add(tempApp);
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return result;
+//    }
 
     @Override
     public List<Apartment> getAppartment() {
