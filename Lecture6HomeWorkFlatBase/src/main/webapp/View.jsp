@@ -24,14 +24,19 @@
         <th>Room number</th>
         <th>Price</th>
     </tr>
+    <c:if test="${requestScope.Appartments!=null}">
     <c:forEach var="app" items="${requestScope.Appartments}">
         
         <tr>
-            <td><c:out value="${app.getAddress()}"></c:out></td>
+            <td><c:out value="${app.getAddress()}"/></td>
+            <td><c:out value="${app.getDistrict}"/></td>
+            <td><c:out value="${app.getArea}"/></td>
+            <td><c:out value="${app.getRoomNum}"/></td>
+            <td><c:out value="${app.getPrice}"/></td>
         </tr>
         
     </c:forEach>
-
+    </c:if>
 
 </table>
 
