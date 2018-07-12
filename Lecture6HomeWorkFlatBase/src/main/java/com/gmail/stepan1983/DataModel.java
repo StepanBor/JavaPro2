@@ -10,8 +10,10 @@ public class DataModel implements DataBaseModel {
     private String user = "root";
     private String password = "1979";
 
+
     @Override
     public void addAppartment(Apartment app) {
+
         try(Connection con=DriverManager.getConnection(url,user,password); Statement st=con.createStatement();
             PreparedStatement prep=con.prepareStatement("INSERT INTO Apartments VALUES (id,?,?,?,?,?)")) {
 
@@ -38,7 +40,6 @@ public class DataModel implements DataBaseModel {
         try(Connection con=DriverManager.getConnection(url,user,password); Statement st=con.createStatement();
             PreparedStatement prep=con.prepareStatement("SELECT * FROM apartments WHERE "+paramName+operator+" ?") ) {
 
-//            prep.setString(1,paramName);
             prep.setInt(1,queryParam);
 
             ResultSet res=prep.executeQuery();
@@ -94,35 +95,6 @@ public class DataModel implements DataBaseModel {
 
         return result;
     }
-
-//    @Override
-//    public List<Apartment> getAppartment(double parametr, String paramName, String operator) {
-//        List<Apartment> result=new ArrayList<>();
-//        try(Connection con=DriverManager.getConnection(url,user,password); Statement st=con.createStatement();
-//            PreparedStatement prep=con.prepareStatement("SELECT * FROM Apartments WHERE"+paramName+operator+" ?") ) {
-//
-//            prep.setDouble(1,parametr);
-//
-//            ResultSet res=prep.executeQuery();
-//
-//            while (res.next()){
-//
-//                String adres=res.getString("adres");
-//                String district=res.getString("district");
-//                Double area=res.getDouble("area");
-//                int roomNum=res.getInt("roomNum");
-//                Double prise=res.getDouble("price");
-//
-//                Apartment tempApp=new Apartment(adres,district,area,roomNum,prise);
-//                result.add(tempApp);
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return result;
-//    }
 
     @Override
     public List<Apartment> getAppartment() {

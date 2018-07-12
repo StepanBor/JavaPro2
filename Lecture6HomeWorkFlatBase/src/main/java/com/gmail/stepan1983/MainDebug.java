@@ -7,9 +7,9 @@ public class MainDebug {
         DataModel dm=new DataModel();
 
         Apartment ap=new Apartment("hhh", "hghdf",  4542D, 526, 5625);
-        Apartment ap2=new Apartment("hhhaasa", "hghdsasss",  454223D, 326, 56325);
+        Apartment ap2=new Apartment("hhhaasagggggg", "hghdsasss",  454223D, 326, 56325);
 
-//        dm.addAppartment(ap2);
+      dm.addAppartment(ap2);
 
         System.out.println(dm.getAppartment(6000, "price","<="));
         System.out.println(dm.getAppartment("aa","adres"));
