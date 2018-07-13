@@ -51,9 +51,8 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Apartment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="35" />
+              <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
               <folding>
-                <element signature="method#Apartment#0;class#Apartment#0" />
                 <element signature="method#Apartment#1;class#Apartment#0" />
                 <element signature="method#toString#0;class#Apartment#0" />
               </folding>
@@ -73,8 +72,8 @@
       <file leaf-file-name="Controler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="45" column="50" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
+            <state relative-caret-position="-132">
+              <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,7 +93,7 @@
       <file leaf-file-name="DataModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DataModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
+            <state relative-caret-position="21">
               <caret line="20" column="51" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -104,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="View.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/View.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
+            <state relative-caret-position="701">
+              <caret line="111" column="25" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -131,7 +130,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apartments" pinned="false" current-in-tab="false">
+      <file leaf-file-name="apartments" pinned="false" current-in-tab="true">
         <entry file="das://0739a9ec-f489-4282-b89b-fce86404727b/schema/apartment/table/apartments">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -161,15 +160,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Apartment.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DataBaseModel.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/MainDebug.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DataModel.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Apartment.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/View.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controler.java" />
       </list>
     </option>
   </component>
@@ -207,7 +206,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -218,9 +217,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,6 +271,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,7 +279,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JavaProClassWork/JavaEE2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lecture2Task1" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -449,11 +448,12 @@
       <workItem from="1531333500320" duration="1418000" />
       <workItem from="1531374863274" duration="9303000" />
       <workItem from="1531399563171" duration="4927000" />
+      <workItem from="1531490734915" duration="3058000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33376000" />
+    <option name="totallyTimeSpent" value="36434000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -465,7 +465,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
@@ -475,7 +475,7 @@
       <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="0" />
-      <window_info anchor="right" id="Database" order="2" weight="0.1988273" />
+      <window_info active="true" anchor="right" id="Database" order="2" visible="true" weight="0.1988273" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info id="UI Designer" order="1" />
@@ -489,14 +489,14 @@
       <window_info anchor="bottom" id="Run" order="10" weight="0.3297062" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.3297062" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.19402985" />
+      <window_info anchor="bottom" id="Database Console" order="1" weight="0.3297062" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.19616205" />
       <window_info id="Web" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="1" weight="0.3297062" />
-      <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
@@ -550,7 +550,6 @@
         <state relative-caret-position="408">
           <caret line="29" column="25" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="30" />
           <folding>
-            <element signature="method#Apartment#0;class#Apartment#0" />
             <element signature="method#Apartment#1;class#Apartment#0" />
             <element signature="method#toString#0;class#Apartment#0" />
           </folding>
@@ -618,7 +617,6 @@
         <state relative-caret-position="660">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
           <folding>
-            <element signature="method#Apartment#0;class#Apartment#0" />
             <element signature="method#Apartment#1;class#Apartment#0" />
             <element signature="method#toString#0;class#Apartment#0" />
           </folding>
@@ -676,7 +674,6 @@
         <state relative-caret-position="660">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
           <folding>
-            <element signature="method#Apartment#0;class#Apartment#0" />
             <element signature="method#Apartment#1;class#Apartment#0" />
             <element signature="method#toString#0;class#Apartment#0" />
           </folding>
@@ -734,7 +731,6 @@
         <state relative-caret-position="660">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
           <folding>
-            <element signature="method#Apartment#0;class#Apartment#0" />
             <element signature="method#Apartment#1;class#Apartment#0" />
             <element signature="method#toString#0;class#Apartment#0" />
           </folding>
@@ -792,7 +788,6 @@
         <state relative-caret-position="660">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
           <folding>
-            <element signature="method#Apartment#0;class#Apartment#0" />
             <element signature="method#Apartment#1;class#Apartment#0" />
             <element signature="method#toString#0;class#Apartment#0" />
           </folding>
@@ -860,10 +855,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://0739a9ec-f489-4282-b89b-fce86404727b/schema/apartment/table/apartments">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -874,13 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DataBaseModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -888,21 +876,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Apartment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="method#Apartment#0;class#Apartment#0" />
-            <element signature="method#Apartment#1;class#Apartment#0" />
-            <element signature="method#toString#0;class#Apartment#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DataModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
+        <state relative-caret-position="21">
           <caret line="20" column="51" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -911,20 +887,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Apartment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="45" column="50" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
+        <state relative-caret-position="170">
+          <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#Apartment#1;class#Apartment#0" />
+            <element signature="method#toString#0;class#Apartment#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/View.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
+        <state relative-caret-position="701">
+          <caret line="111" column="25" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132">
+          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0739a9ec-f489-4282-b89b-fce86404727b/schema/apartment/table/apartments">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>

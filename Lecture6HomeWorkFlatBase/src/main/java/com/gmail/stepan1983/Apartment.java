@@ -4,11 +4,11 @@ public class Apartment {
 
     private String address;
     private String district;
-    private Double area;
+    private double area;
     private int roomNum;
     private double price;
 
-    public Apartment(String address, String district, Double area, int roomNum, double price) {
+    public Apartment(String address, String district, double area, int roomNum, double price) {
         this.address = address;
         this.district = district;
         this.area = area;
@@ -35,11 +35,11 @@ public class Apartment {
         this.district = district;
     }
 
-    public Double getArea() {
+    public double getArea() {
         return area;
     }
 
-    public void setArea(Double area) {
+    public void setArea(double area) {
         this.area = area;
     }
 

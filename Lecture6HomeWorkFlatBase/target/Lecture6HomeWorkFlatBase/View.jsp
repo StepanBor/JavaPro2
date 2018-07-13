@@ -48,10 +48,6 @@
         <caption>Input query</caption>
 
         <th>
-            <input name="intParametr" type="text" value="Numerical perametr">
-        </th>
-
-        <th>
 
             <select name="parametrName">
                 <option disabled>Choose parametr name</option>
@@ -61,6 +57,11 @@
             </select>
 
         </th>
+
+        <th>
+            <input name="intParametr" type="text" value="0" pattern="^[ 0-9]+$">
+        </th>
+
         <th>
             <select name="operator">
                 <option disabled>Choose operator</option>
@@ -94,6 +95,21 @@
 <form action="/Controller">
     <input type="hidden"  value="notNull" name="getAll">
     <input type="submit" value="Get all appartments">
+</form>
+
+<form action="/Controller" method="post">
+    <table border="1">
+        <caption>Create new apartment</caption>
+        <tr>
+            <th><input name="adres" type="text" placeholder="adress"></th>
+            <th><input name="district" type="text" placeholder="district"></th>
+            <th><input name="area" type="text" placeholder="area" pattern="^[ 0-9]+$"></th>
+            <th><input name="roomNum" type="text" placeholder="room number" pattern="^[ 0-9]+$"></th>
+            <th><input name="price" type="text" placeholder="price" pattern="^[ 0-9]+$"></th>
+
+        </tr>
+    </table>
+    <input type="submit">
 </form>
 </body>
 </html>

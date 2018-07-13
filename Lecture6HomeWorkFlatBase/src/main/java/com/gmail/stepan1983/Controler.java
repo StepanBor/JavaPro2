@@ -19,10 +19,10 @@ public class Controler extends javax.servlet.http.HttpServlet {
         }
         super.init();
         Apartment ap1=new Apartment("adres 1", "Obolon", 60.6, 4, 80.59);
-        Apartment ap2=new Apartment("adres 2", "Solomenskiy", 60.6, 4, 70.1);
+        Apartment ap2=new Apartment("adres 2", "Solomenskiy", 33.3, 2, 55);
         Apartment ap3=new Apartment("adres 3", "Solomenskiy", 30.1, 2, 50.2);
         Apartment ap4=new Apartment("adres 4", "Obolon", 30.1, 2, 65.2);
-        Apartment ap5=new Apartment("adres 4", "Obolon", 60.1, 3, 80.2);
+        Apartment ap5=new Apartment("adres 4", "Obolon", 55.2, 2, 80.2);
 
         Apartment[] ap={ap1,ap2,ap3,ap4,ap5};
 
@@ -34,7 +34,21 @@ public class Controler extends javax.servlet.http.HttpServlet {
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
+        String adres=request.getParameter("adres");
+        String district=request.getParameter("district");
+        String areaString=request.getParameter("area");
+        String roomNumString=request.getParameter("roomNum");
+        String priceString=request.getParameter("price");
 
+        double area=Double.parseDouble(areaString);
+        int roomNum=Integer.parseInt(roomNumString);
+        double price=Double.parseDouble(priceString);
+
+        dm.addAppartment(new Apartment(adres,district,area,roomNum,price));
+
+        RequestDispatcher rd=request.getRequestDispatcher("View.jsp");
+
+        rd.forward(request,response);
 
     }
 
