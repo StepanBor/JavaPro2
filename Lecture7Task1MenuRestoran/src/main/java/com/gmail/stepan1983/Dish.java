@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Menu")
+@Table(name = "menu1")
 public class Dish {
 
     private String name;
@@ -15,7 +15,7 @@ public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     public Dish(String name, double weight, double price, double discount) {
         this.name = name;
@@ -59,7 +59,7 @@ public class Dish {
         this.discount = discount;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
