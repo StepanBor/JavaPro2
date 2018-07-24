@@ -70,9 +70,9 @@
         <caption>Add new menu item</caption>
         <tr>
             <th><input type="text" name="dishName" placeholder="name"></th>
-            <th><input type="text" name="dishPrice" placeholder="price"></th>
-            <th><input type="text" name="dishWeight" placeholder="weight"></th>
-            <th><input type="text" name="dishDiscount" placeholder="dishDiscount"></th>
+            <th><input type="text" name="dishPrice" placeholder="price" pattern="^[ 0-9]+$"></th>
+            <th><input type="text" name="dishWeight" placeholder="weight" pattern="^[ 0-9]+$"></th>
+            <th><input type="text" name="dishDiscount" placeholder="dishDiscount" pattern="^[ 0-9]+$"></th>
         </tr>
     </table>
     <input type="submit" value="Create new dish">
