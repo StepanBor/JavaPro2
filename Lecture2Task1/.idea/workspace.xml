@@ -162,8 +162,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,13 +208,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../JavaProClassWork/JPAWebDemo2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lecture7Task1MenuRestoran" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -379,11 +379,12 @@
       <workItem from="1531894974969" duration="1278000" />
       <workItem from="1532115062018" duration="1836000" />
       <workItem from="1532268589288" duration="1275000" />
+      <workItem from="1532361480397" duration="693000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67403000" />
+    <option name="totallyTimeSpent" value="68096000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -412,7 +413,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32972974" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6383981" visible="true" weight="0.21052632" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6383981" visible="true" weight="0.21374866" />
       <window_info id="Web" order="2" sideWeight="0.3616019" side_tool="true" weight="0.26638025" />
       <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
