@@ -12,6 +12,8 @@ public class MainDebug {
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("Bank");
         EntityManager em=emf.createEntityManager();
 
+        DatabaseModel dbm=new DatabaseModel();
+
 
 
 

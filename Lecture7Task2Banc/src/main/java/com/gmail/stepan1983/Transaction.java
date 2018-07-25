@@ -19,7 +19,7 @@ public class Transaction {
 
     private double put;
 
-    public Transaction(Accaunt fromAcc, double withdraw, Accaunt toAcc, double put) {
+    public Transaction(Accaunt fromAcc, double withdraw, double put) {
         this.fromAcc = fromAcc;
         this.withdraw = withdraw;
         this.put = put;
