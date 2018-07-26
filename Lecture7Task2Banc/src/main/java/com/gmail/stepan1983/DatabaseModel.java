@@ -2,6 +2,7 @@ package com.gmail.stepan1983;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseModel {
@@ -85,5 +86,54 @@ public class DatabaseModel {
         }
         return result;
     }
+
+    public List<Accaunt> getAccaunts(EntityManager em) {
+
+        Query query = em.createQuery("SELECT a FROM Accaunt a");
+
+        List<Accaunt> resultList;
+
+        resultList = (List<Accaunt>) query.getResultList();
+
+        return resultList;
+
+    }
+
+    public List<Transaction> getTransactions(EntityManager em) {
+
+        Query query = em.createQuery("SELECT t FROM Transaction t");
+
+        List<Transaction> resultList;
+
+        resultList = (List<Transaction>) query.getResultList();
+
+        return resultList;
+
+    }
+
+    public List<User> getUsers(EntityManager em) {
+
+        Query query = em.createQuery("SELECT u FROM User u");
+
+        List<User> resultList;
+
+        resultList = (List<User>) query.getResultList();
+
+        return resultList;
+
+    }
+
+    public List<Currency> getCurency(EntityManager em) {
+
+        Query query = em.createQuery("SELECT c FROM Currency c");
+
+        List<Currency> resultList;
+
+        resultList = (List<Currency>) query.getResultList();
+
+        return resultList;
+
+    }
+
 
 }

@@ -7,7 +7,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 
-@WebListener()
+//@WebListener()
 public class MyListener implements ServletContextListener{
 
     // Public constructor is required by servlet spec
@@ -29,7 +29,7 @@ public class MyListener implements ServletContextListener{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("MenuUnit");
+        EntityManagerFactory emf=Persistence.createEntityManagerFactory("Bank");
         System.out.println(emf+"!!!!!!!!!!!!!!!!!");
         sce.getServletContext().setAttribute("emf",emf);
     }
