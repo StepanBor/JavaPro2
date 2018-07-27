@@ -49,7 +49,7 @@ public class Controller extends HttpServlet {
 
         if (request.getParameter("addUser") != null) {
             String userName = request.getParameter("userName");
-            User user = new User("userName");
+            User user = new User(userName);
 
             em.getTransaction().begin();
 
@@ -65,8 +65,9 @@ public class Controller extends HttpServlet {
             String userId = request.getParameter("userId");
             String currencyId = request.getParameter("currencyId");
             String amauntString = request.getParameter("amaunt");
+
             double ammaunt = Double.parseDouble(amauntString);
-            Accaunt accaunt = new Accaunt(ammaunt, em.find(Currency.class, currencyId), em.find(User.class, userId));
+            Accaunt accaunt = new Accaunt(ammaunt, em.find(Currency.class, Long.parseLong(currencyId)), em.find(User.class,Long.parseLong(userId)));
 
             em.getTransaction().begin();
 
@@ -114,15 +115,17 @@ public class Controller extends HttpServlet {
             String sumString = request.getParameter("sum");
             String currId = request.getParameter("curId");
 
-            Currency currency = em.find(Currency.class, Integer.parseInt(currId));
+            System.out.println("");
+
+            Currency currency = em.find(Currency.class, Long.parseLong(currId));
 
             dbm.transferMoney(em, Integer.parseInt(fromAccId), Integer.parseInt(toAccId), Double.parseDouble(sumString), currency);
 
         } else if (request.getParameter("getUserMoney") != null) {
 
             String userId = request.getParameter("userId");
-
-            Double userMoney = dbm.getUserMoney(em, Integer.parseInt("userId"));
+            Double userMoney = dbm.getUserMoney(em, Integer.parseInt(userId));
+            request.setAttribute("userMoney",userMoney);
 
         }
 

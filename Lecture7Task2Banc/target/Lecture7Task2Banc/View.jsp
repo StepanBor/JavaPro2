@@ -34,7 +34,8 @@
             </tr>
         </c:forEach>
     </c:if>
-</table><br>
+</table>
+<br>
 
 <h2>Accounts</h2>
 <table border="1">
@@ -49,13 +50,14 @@
         <c:forEach var="accaunt" items="${requestScope.accaunts}">
             <tr>
                 <td><c:out value="${accaunt.getId()}"/></td>
-                <td><c:out value="${accaunt.getUser()}"/></td>
-                <td><c:out value="${accaunt.getCurrency()}"/></td>
+                <td><c:out value="${accaunt.getUser().getId()}"/></td>
+                <td><c:out value="${accaunt.getCurrency().getCurrencyName()}"/></td>
                 <td><c:out value="${accaunt.getAmmaunt()}"/></td>
             </tr>
         </c:forEach>
     </c:if>
-</table><br>
+</table>
+<br>
 
 <h2>Transactions</h2>
 <table border="1">
@@ -67,7 +69,7 @@
         <th>Put</th>
     </tr>
     <c:if test="${requestScope.transactions!=null}">
-        <c:forEach var="accaunt" items="${requestScope.transactions}">
+        <c:forEach var="transactions" items="${requestScope.transactions}">
             <tr>
                 <td><c:out value="${transactions.getId()}"/></td>
                 <td><c:out value="${transactions.getFromAcc()}"/></td>
@@ -76,7 +78,8 @@
             </tr>
         </c:forEach>
     </c:if>
-</table><br>
+</table>
+<br>
 
 <h2>Currency</h2>
 <table border="1">
@@ -95,27 +98,150 @@
             </tr>
         </c:forEach>
     </c:if>
-</table><br>
+</table>
+<br>
 
 <h2>Add new user</h2>
-<form action="/Controller">
-<table border="1">
-    <caption>new user</caption>
-    <input type="hidden"  value="notNull" name="addUser">
+<form action="/Controller" method="post">
+    <input type="hidden" value="notNull" name="addUser">
     <input type="text" name="userName" placeholder="user name">
     <input type="submit" value="Add new user">
-</table>
-</form><br>
+</form>
+<br>
 
-<h2>Add new user</h2>
+<h2>Add new account</h2>
+<form action="/Controller" method="post">
+    <table border="1">
+        <caption>new account</caption>
+        <c:if test="${requestScope.users!=null}">
+            <tr>
+                <td>
+                    <select name="userId">
+                        <option disabled>choose user id</option>
+                        <c:forEach var="user" items="${requestScope.users}">
+                            <option value="<c:out value="${user.getId()}"/>">
+                                <c:out value="${user.getId()}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                </td>
+                <td>
+                    <select name="currencyId">
+                        <option disabled>choose currency id</option>
+                        <c:forEach var="currency" items="${requestScope.currency}">
+                            <option value="<c:out value="${currency.getId()}"/>">
+                                <c:out value="${currency.getId()}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="amaunt" placeholder="monney" pattern="^[ 0-9]+$">
+                </td>
+            </tr>
+        </c:if>
+    </table>
+    <input type="hidden" value="notNull" name="addAccaunt">
+    <input type="submit" value="Add new account">
+</form>
+<br>
+
+<h2>Put money to account</h2>
+<form action="/Controller" method="post">
+    <table border="1">
+        <caption>put money</caption>
+        <tr>
+            <td>
+                <select name="accId">
+                    <option disabled>choose acc id</option>
+                    <c:forEach var="acc" items="${requestScope.accaunts}">
+                        <option value="<c:out value="${acc.getId()}"/>">
+                            <c:out value="${acc.getId()}"/>
+                        </option>
+                    </c:forEach>
+                </select>
+            </td>
+            <td>
+                <input type="text" name="sum" placeholder="money">
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" value="notNull" name="putMoney">
+    <input type="submit" value="Put money">
+</form>
+<br>
+
+<h2>Transfer money</h2>
 <form action="/Controller">
     <table border="1">
-        <caption>new user</caption>
-        <input type="hidden"  value="notNull" name="addUser">
-        <input type="text" name="userName" placeholder="user name">
-        <input type="submit" value="Add new user">
+        <caption>transfer money</caption>
+        <c:if test="${requestScope.users!=null}">
+            <tr>
+                <td>
+                    <select name="fromAccId">
+                        <option disabled>from account id</option>
+                        <c:forEach var="acc" items="${requestScope.accaunts}">
+                            <option value="<c:out value="${acc.getId()}"/>">
+                                <c:out value="${acc.getId()}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                </td>
+                <td>
+                    <select name="toAccId">
+                        <option disabled>to account id</option>
+                        <c:forEach var="acc" items="${requestScope.accaunts}">
+                            <option value="<c:out value="${acc.getId()}"/>">
+                                <c:out value="${acc.getId()}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                </td>
+                <td>
+                    <select name="curId">
+                        <option disabled>choose currency id</option>
+                        <c:forEach var="currency" items="${requestScope.currency}">
+                            <option value="<c:out value="${currency.getId()}"/>">
+                                <c:out value="${currency.getId()}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="sum" placeholder="monney" pattern="^[ 0-9]+$">
+                </td>
+            </tr>
+        </c:if>
     </table>
-</form><br>
+    <input type="hidden" value="notNull" name="transferMoney">
+    <input type="submit" value="Transfer money">
+</form>
+<br>
 
+<h2>Get user money</h2>
+<form action="/Controller">
+    <c:if test="${requestScope.users!=null}">
+        <tr>
+            <td>
+                <select name="userId">
+                    <option disabled>choose user id</option>
+                    <c:forEach var="user" items="${requestScope.users}">
+                        <option value="<c:out value="${user.getId()}"/>">
+                            <c:out value="${user.getId()}"/>
+                        </option>
+                    </c:forEach>
+                </select>
+            </td>
+            <td>
+                <c:if test="${requestScope.userMoney!=null}">
+                    <c:out value="${requestScope.userMoney}"/>UAH
+                </c:if>
+            </td>
+        </tr>
+    </c:if>
+    <input type="hidden" value="notNull" name="getUserMoney">
+    <input type="submit" value="get user money">
+</form>
+<br>
 </body>
 </html>

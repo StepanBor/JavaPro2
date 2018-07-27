@@ -62,4 +62,14 @@ public class Accaunt {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Accaunt{" +
+                "ammaunt=" + ammaunt +
+                ", id=" + id +
+                ", currency=" + currency.getCurrencyName() +
+                ", user=" + user +
+                '}';
+    }
 }

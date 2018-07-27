@@ -5,12 +5,12 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseModel {
+public class DatabaseModel implements DataBaseInterface {
 
     public void putMoney(EntityManager em, int accId, double amount) {
 
         em.getTransaction().begin();
-        Accaunt accaunt = em.find(Accaunt.class, accId);
+        Accaunt accaunt = em.find(Accaunt.class,(long) accId);
         if (accaunt == null) {
             System.out.println("there is no such account");
             return;
@@ -32,7 +32,7 @@ public class DatabaseModel {
     public void withdrawMoney(EntityManager em, int accId, double amount) {
 
         em.getTransaction().begin();
-        Accaunt accaunt = em.find(Accaunt.class, accId);
+        Accaunt accaunt = em.find(Accaunt.class,(long) accId);
         if (accaunt == null) {
             System.out.println("there is no such account");
             return;
@@ -53,9 +53,9 @@ public class DatabaseModel {
 
     public void transferMoney(EntityManager em, int fromAccId, int toAccId, double amount, Currency currency) {
 
-        em.getTransaction().begin();
-        Accaunt fromAcc = em.find(Accaunt.class, fromAccId);
-        Accaunt toAcc = em.find(Accaunt.class, toAccId);
+
+        Accaunt fromAcc = em.find(Accaunt.class,(long) fromAccId);
+        Accaunt toAcc = em.find(Accaunt.class,(long) toAccId);
         if (fromAcc == null || toAcc == null) {
             System.out.println("there is no such accaunt");
             return;
@@ -70,15 +70,15 @@ public class DatabaseModel {
 
     public double getUserMoney(EntityManager em, int userId) {
 
-        User user = em.find(User.class, userId);
+        User user = em.find(User.class,(long) userId);
         double result = 0.0;
         if (user == null) {
             System.out.println("there is no such user");
             return 0.0;
         }
 
-        Query query = em.createQuery("SELECT a FROM Accaunt a WHERE a.user=:userId");
-        query.setParameter("userId", userId);
+        Query query = em.createQuery("SELECT a FROM Accaunt a WHERE a.user.id=:userId");
+        query.setParameter("userId",(long) userId);
 
         List<Accaunt> userAcc = query.getResultList();
         for (Accaunt accaunt : userAcc) {

@@ -113,7 +113,6 @@
                     </select>
                 </c:if>
             </th>
-
             <th>
                 <c:if test="${requestScope.products!=null}">
                     <select name="productId">
