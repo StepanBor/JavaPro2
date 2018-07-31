@@ -100,6 +100,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -154,11 +158,14 @@
         </subPane>
       </pane>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="AndroidView" />
       <pane id="Scope" />
 =======
       <pane id="Scope" />
       <pane id="PackagesPane" />
+=======
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
       <pane id="AndroidView" />
 >>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
     </panes>
@@ -166,7 +173,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../JavaProClassWork/Lecture9ClassWorkMVC2" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -245,11 +252,16 @@
       <workItem from="1533045028486" duration="605000" />
 =======
       <workItem from="1532967059766" duration="1182000" />
+<<<<<<< HEAD
 >>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
+=======
+      <workItem from="1533060064415" duration="620000" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="5421000" />
   </component>
@@ -262,6 +274,12 @@
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
 >>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
     <editor active="true" />
+=======
+    <option name="totallyTimeSpent" value="5353000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -284,10 +302,14 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18550107" />
 =======
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25349087" />
 >>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25725028" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -378,21 +400,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="85">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="imports" expanded="true" />
+=======
+        <state relative-caret-position="154">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#955#956#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1428">
+=======
+        <state relative-caret-position="1848">
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
           <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -400,6 +436,13 @@
           <folding>
             <element signature="imports" expanded="true" />
 =======
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/AppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
         <state relative-caret-position="110">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
