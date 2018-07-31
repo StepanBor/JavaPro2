@@ -12,30 +12,51 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1428">
+=======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="713">
               <caret line="68" column="17" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
+=======
+            <state relative-caret-position="1848">
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
+              <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="AppConfig.java" pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
+=======
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/AppConfig.java">
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
               <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
+<<<<<<< HEAD
+=======
                 <element signature="e#955#956#0" expanded="true" />
                 <element signature="e#1008#1009#0" expanded="true" />
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Webinitializer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/Webinitializer.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -95,8 +116,15 @@
         </entry>
       </file>
       <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+=======
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
         <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="6" lean-forward="true" selection-end-line="5" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -150,7 +178,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -161,7 +189,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
       <pane id="Scope" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -242,7 +273,17 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="AndroidView" />
+      <pane id="Scope" />
+=======
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+=======
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
+      <pane id="AndroidView" />
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,18 +367,52 @@
       <option name="presentableId" value="Default" />
       <updated>1532948732489</updated>
       <workItem from="1532948733708" duration="3551000" />
+<<<<<<< HEAD
+      <workItem from="1533036458512" duration="666000" />
+      <workItem from="1533040239697" duration="599000" />
+      <workItem from="1533045028486" duration="605000" />
+=======
       <workItem from="1532967059766" duration="1182000" />
+<<<<<<< HEAD
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
+=======
       <workItem from="1533060064415" duration="620000" />
+<<<<<<< HEAD
       <workItem from="1533062306845" duration="4352000" />
+=======
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="9705000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="5421000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+=======
+    <option name="totallyTimeSpent" value="4733000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
+    <editor active="true" />
+=======
+    <option name="totallyTimeSpent" value="5353000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32979977" />
@@ -356,18 +431,56 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
+<<<<<<< HEAD
+=======
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+=======
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3297062" />
       <window_info anchor="bottom" id="Terminal" order="7" />
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26100966" />
+=======
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18550107" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25349087" />
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25725028" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3297062" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+=======
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3297062" />
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -382,7 +495,11 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="1428">
+=======
         <state relative-caret-position="1848">
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
           <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
         </state>
       </provider>
@@ -390,21 +507,40 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+<<<<<<< HEAD
+        <state relative-caret-position="85">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#955#956#0" expanded="true" />
-            <element signature="e#1008#1009#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
+        <state relative-caret-position="1428">
+          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/AppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
           <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
         </state>
       </provider>
@@ -414,8 +550,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="85">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+=======
         <state relative-caret-position="154">
           <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#955#956#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="1428">
+=======
+        <state relative-caret-position="1848">
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
+          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/AppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+=======
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="154">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+=======
+>>>>>>> 572354fcebab908a3192591c2c861ef62e77cf4b
+        <state relative-caret-position="110">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#955#956#0" expanded="true" />
@@ -464,10 +648,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#955#956#0" expanded="true" />
             <element signature="e#1008#1009#0" expanded="true" />
+>>>>>>> 9194e203b20dda274efaaa3d4cbdc103933d59d3
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/Webinitializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -515,6 +701,12 @@
             <element signature="e#326#327#0" expanded="true" />
             <element signature="e#353#354#0" expanded="true" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="6" lean-forward="true" selection-end-line="5" />
+>>>>>>> 35305ad3672e921aee58866a15f3a6fb27c8f23f
         </state>
       </provider>
     </entry>
