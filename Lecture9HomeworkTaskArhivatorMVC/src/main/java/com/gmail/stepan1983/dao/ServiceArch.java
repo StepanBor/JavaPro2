@@ -15,11 +15,13 @@ public class ServiceArch {
 
     @Transactional
     public void addArch(Archive arch){
+        System.out.println(arch+"from service");
         archDAO.add(arch);
     }
 
     @Transactional
     public void remuveArch(Long[] ids){
+        System.out.println(ids+"from service");
         archDAO.delete(ids);
     }
 

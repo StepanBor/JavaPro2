@@ -53,7 +53,7 @@ public class ControllerArchive {
         }
         System.out.println(temp.getName());
         Archive arch=new Archive(temp);
-
+        System.out.println(arch+"from controller");
         serviceArch.addArch(arch);
 
         List<Archive> arcnList=serviceArch.getArchList();
@@ -62,8 +62,9 @@ public class ControllerArchive {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deleteArch(Model model, @RequestParam Long[] id){
+    public String deleteArch(Model model, @RequestParam("delete[]") Long[] id){
 
+        System.out.println(id+"from controller");
         serviceArch.remuveArch(id);
 
         List<Archive> arcnList=serviceArch.getArchList();
@@ -73,7 +74,8 @@ public class ControllerArchive {
     }
 
     @RequestMapping(value = "/getArch")
-    public ResponseEntity<byte[]> getArchById(@RequestParam Long id){
+    public ResponseEntity<byte[]> getArchById(@RequestParam("id") Long id){
+
 
         byte[] bytes=null;
         File arch=serviceArch.getArch(id);
@@ -84,9 +86,17 @@ public class ControllerArchive {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        MediaType mediaType=new MediaType("application/zip");
-        headers.setContentType(mediaType);
-        return new ResponseEntity<byte[]>(bytes,headers,HttpStatus.OK);
+
+//        headers.set(HttpHeaders.CONTENT_TYPE, "application/zip");
+//        headers.set(HttpHeaders.CONTENT_DISPOSITION,
+//                "attachment; filename=" + arch.getName());
+//        MediaType mediaType=new MediaType();
+//
+        headers.setContentType(MediaType.parseMediaType("application/zip"));
+        headers.set(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=" + arch.getName());
+        ResponseEntity<byte[]> responseEntity= new ResponseEntity<byte[]>(bytes,headers,HttpStatus.OK);
+        return responseEntity;
     }
 
 }

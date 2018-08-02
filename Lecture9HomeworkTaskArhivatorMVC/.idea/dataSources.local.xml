@@ -7,8 +7,8 @@
       <first-sync>true</first-sync>
       <user-name>root</user-name>
     </data-source>
-    <data-source name="achivator@localhost" uuid="db0e4b9f-6ff1-4c7d-b7a3-a749aae61b6a">
-      <database-info product="MySQL" version="8.0.11" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.45 ( Revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2 )">
+    <data-source name="achivator@localhost [2]" uuid="90d1aaf6-028e-4d8b-ba04-ee54df17bced">
+      <database-info product="MySQL" version="8.0.11" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>

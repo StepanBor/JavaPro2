@@ -17,6 +17,7 @@ public class ArchiveDAOImpl implements ArchiveDAO {
 
     @Override
     public void add(Archive arch) {
+        System.out.println(arch+"from DAO");
         em.persist(arch);
     }
 
