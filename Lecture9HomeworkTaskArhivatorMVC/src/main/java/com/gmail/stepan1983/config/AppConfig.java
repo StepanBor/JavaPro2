@@ -38,7 +38,7 @@ public class AppConfig {
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactory.setJpaProperties(jpaProp);
-        entityManagerFactory.setPackagesToScan("ua.kiev.prog");
+        entityManagerFactory.setPackagesToScan("com.gmail.stepan1983");
 
         return entityManagerFactory;
     }
@@ -57,7 +57,7 @@ public class AppConfig {
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/archivator?serverTimezone=UTC&amp;useSSL=false");
+        ds.setUrl("jdbc:mysql://localhost:3306/achivator?serverTimezone=UTC&useSSL=false");
 
         ds.setUsername("root");
         ds.setPassword("1979");
@@ -80,4 +80,6 @@ public class AppConfig {
     public CommonsMultipartResolver multipartResolver() {
         return new CommonsMultipartResolver();
     }
+
+
 }

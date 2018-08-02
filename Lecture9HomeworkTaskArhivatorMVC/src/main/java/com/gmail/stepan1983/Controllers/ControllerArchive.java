@@ -4,6 +4,10 @@ package com.gmail.stepan1983.Controllers;
 import com.gmail.stepan1983.dao.ServiceArch;
 import com.gmail.stepan1983.model.Archive;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 @Controller
@@ -35,7 +40,7 @@ public class ControllerArchive {
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public  String addArch(Model model, @RequestParam MultipartFile fileToAdd){
 
-        File temp=new File(fileToAdd.getName());
+        File temp=new File(fileToAdd.getOriginalFilename());
 
         try(FileOutputStream fos=new FileOutputStream(temp)){
 
@@ -46,7 +51,7 @@ public class ControllerArchive {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        System.out.println(temp.getName());
         Archive arch=new Archive(temp);
 
         serviceArch.addArch(arch);
@@ -67,6 +72,21 @@ public class ControllerArchive {
 
     }
 
+    @RequestMapping(value = "/getArch")
+    public ResponseEntity<byte[]> getArchById(@RequestParam Long id){
 
+        byte[] bytes=null;
+        File arch=serviceArch.getArch(id);
+        try {
+           bytes=Files.readAllBytes(arch.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType=new MediaType("application/zip");
+        headers.setContentType(mediaType);
+        return new ResponseEntity<byte[]>(bytes,headers,HttpStatus.OK);
+    }
 
 }

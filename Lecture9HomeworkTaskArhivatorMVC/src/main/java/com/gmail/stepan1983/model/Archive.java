@@ -5,9 +5,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.jar.JarFile;
 import java.util.jar.Pack200;
 import java.util.zip.GZIPOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @Entity
 @Table(name = "Archives")
@@ -31,11 +35,20 @@ public class Archive {
 
     public File packFile(File file) {
 
-        File archive=new File("file.getName()"+".zip");
+        String archName=file.getName().substring(0,file.getName().lastIndexOf("."))+"zip";
+        System.out.println(archName+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        File archive=new File(archName);
+
+        Path path = file.toPath();
+
+
+        ZipEntry zipEntry=new ZipEntry(file.getName());
         try(FileOutputStream fos = new FileOutputStream(archive);
-            GZIPOutputStream gz = new GZIPOutputStream(fos);
-            ObjectOutputStream oos = new ObjectOutputStream(gz)) {
-            oos.writeObject(file);
+            ZipOutputStream zOut = new ZipOutputStream(fos)) {
+            zOut.putNextEntry(zipEntry);
+            byte[] data = Files.readAllBytes(path);
+
+            zOut.write(data,0,data.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
