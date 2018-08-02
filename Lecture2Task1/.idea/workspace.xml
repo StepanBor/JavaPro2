@@ -41,8 +41,8 @@
       <file leaf-file-name="Questionary.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/Questionary.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="37" column="46" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="102" />
+            <state relative-caret-position="462">
+              <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -151,7 +151,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -162,9 +162,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -209,12 +206,15 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lecture9HomeworkTaskArhivatorMVC" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../JavaProClassWork/Lecture10SpringMVCDemo" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -384,11 +384,12 @@
       <workItem from="1532966766532" duration="729000" />
       <workItem from="1533060022637" duration="640000" />
       <workItem from="1533060812127" duration="1868000" />
+      <workItem from="1533138906756" duration="625000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72554000" />
+    <option name="totallyTimeSpent" value="73179000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -400,7 +401,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972974" />
@@ -417,7 +418,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32972974" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6383981" visible="true" weight="0.22663802" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6383981" visible="true" weight="0.16433942" />
       <window_info id="Web" order="2" sideWeight="0.3616019" side_tool="true" weight="0.26638025" />
       <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -795,8 +796,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/Questionary.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="37" column="46" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="102" />
+        <state relative-caret-position="462">
+          <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
         </state>
       </provider>
     </entry>
