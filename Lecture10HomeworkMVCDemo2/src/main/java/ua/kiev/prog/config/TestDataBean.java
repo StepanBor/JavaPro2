@@ -1,5 +1,6 @@
 package ua.kiev.prog.config;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.kiev.prog.model.Contact;
@@ -18,7 +19,7 @@ public class TestDataBean {
     public void fillData() {
         Group group = new Group("Test");
         Contact contact;
-
+        System.out.println(group+"fhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         contactService.addGroup(group);
 
         for (int i = 0; i < 25; i++) {

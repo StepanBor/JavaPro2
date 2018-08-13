@@ -25,6 +25,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableWebMvc
 public class AppConfig extends WebMvcConfigurerAdapter {
+
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
@@ -50,8 +51,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(true);
         adapter.setGenerateDdl(true);
-        adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
-
+//        adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
         return adapter;
     }
 
@@ -59,7 +60,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/prog?serverTimezone=UTC");
+        ds.setUrl("jdbc:mysql://localhost:3306/contacts?serverTimezone=UTC&useSSL=false");
         ds.setUsername("root");
         ds.setPassword("1979");
 
