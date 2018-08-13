@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import ua.kiev.prog.model.Contact;
 import ua.kiev.prog.model.Group;
 import ua.kiev.prog.services.ContactService;
@@ -17,6 +18,9 @@ import static ua.kiev.prog.controllers.GroupController.DEFAULT_GROUP_ID;
 @Controller
 public class ContactController {
     private static final int ITEMS_PER_PAGE = 6;
+
+    @Autowired
+    AnnotationConfigWebApplicationContext ctx
 
     @Autowired
     private ContactService contactService;
