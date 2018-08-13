@@ -9,11 +9,13 @@ public class MainDebug {
 
     public static void main(String[] args) {
 
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("Bank");
-        EntityManager em=emf.createEntityManager();
-
-        DatabaseModel dbm=new DatabaseModel();
-
+        Double d=127d;
+        Float f=5f;
+        Long i=-128l;
+        Long b=-128l;
+        Double c=127d;
+        System.out.println(d==c);
+        System.out.println(i==b);
 
 
 

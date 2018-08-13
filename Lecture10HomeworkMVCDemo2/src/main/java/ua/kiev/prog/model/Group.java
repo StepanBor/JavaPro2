@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="Groups")
+@Table(name="Groups1")
 public class Group {
     @Id
     @GeneratedValue

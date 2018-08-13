@@ -3,7 +3,7 @@ package ua.kiev.prog.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Contacts")
+@Table(name="Contacts1")
 public class Contact {
     @Id
     @GeneratedValue
