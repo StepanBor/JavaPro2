@@ -1,14 +1,14 @@
-package ua.kiev.prog.services;
+package com.gmail.stepan1983.Services;
 
+import com.gmail.stepan1983.DAO.ContactDAO;
+import com.gmail.stepan1983.DAO.GroupDAO;
+import com.gmail.stepan1983.model.Contact;
+import com.gmail.stepan1983.model.GroupContact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.kiev.prog.model.Contact;
-import ua.kiev.prog.model.Group;
-import ua.kiev.prog.dao.ContactDAO;
-import ua.kiev.prog.dao.GroupDAO;
-
 import java.util.List;
+
 
 @Service
 public class ContactServiceImpl implements ContactService {
@@ -20,32 +20,32 @@ public class ContactServiceImpl implements ContactService {
 
     @Transactional
     public void addContact(Contact contact) {
-        contactDAO.add(contact);
+        contactDAO.addContact(contact);
     }
 
     @Transactional
-    public void addGroup(Group group) {
-        groupDAO.add(group);
+    public void addGroup(GroupContact group) {
+        groupDAO.addGroup(group);
     }
 
     @Transactional
     public void deleteContact(long[] ids) {
-        contactDAO.delete(ids);
+        contactDAO.deleteContact(ids);
     }
 
     @Transactional(readOnly=true)
-    public List<Group> listGroups() {
-        return groupDAO.list();
+    public List<GroupContact> listGroups() {
+        return groupDAO.getGroups();
     }
 
     @Transactional(readOnly=true)
-    public List<Contact> listContacts(Group group, int start, int count) {
-        return contactDAO.list(group, start, count);
+    public List<Contact> listContacts(GroupContact group, int start, int count) {
+        return contactDAO.getContactList(group, start, count);
     }
 
     @Transactional(readOnly=true)
-    public List<Contact> listContacts(Group group) {
-        return contactDAO.list(group, 0, 0);
+    public List<Contact> listContacts(GroupContact group) {
+        return contactDAO.getContactList(group, 0, 0);
     }
 
     @Transactional(readOnly = true)
@@ -54,12 +54,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Transactional(readOnly=true)
-    public Group findGroup(long id) {
-        return groupDAO.findOne(id);
+    public GroupContact findGroup(long id) {
+        return groupDAO.getGroupById(id);
     }
 
     @Transactional(readOnly=true)
     public List<Contact> searchContacts(String pattern) {
-        return contactDAO.list(pattern);
+        return contactDAO.getContactList(pattern);
     }
 }
