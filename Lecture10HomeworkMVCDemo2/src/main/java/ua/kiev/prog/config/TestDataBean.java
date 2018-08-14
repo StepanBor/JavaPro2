@@ -19,7 +19,7 @@ public class TestDataBean {
     public void fillData() {
         Group group = new Group("Test");
         Contact contact;
-        System.out.println(group+"fhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+//        System.out.println(group+"fhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         contactService.addGroup(group);
 
         for (int i = 0; i < 25; i++) {

@@ -23,6 +23,7 @@ public class ContactController {
 
     @RequestMapping("/")
     public String index(Model model, @RequestParam(required = false, defaultValue = "0") Integer page) {
+
         if (page < 0) page = 0;
 
         long totalCount = contactService.count();
