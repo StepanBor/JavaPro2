@@ -31,6 +31,7 @@ public class AppConfig implements WebMvcConfigurer {
     LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactory.setPersistenceXmlLocation("META-INF/persistence.xml");
         entityManagerFactory.setPackagesToScan("com.gmail.stepan1983");
 
 

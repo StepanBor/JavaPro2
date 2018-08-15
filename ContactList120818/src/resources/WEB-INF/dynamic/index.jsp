@@ -1,10 +1,5 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%@ page isELIgnored="false" %>
-
 <html>
     <head>
         <title>Prog.kiev.ua</title>
@@ -15,7 +10,7 @@
 
     <body>
         <div class="container">
-           <h3><img height="50" width="55" src="<c:out value="/src/main/webapp/WEB-INF/static/logo.png"/>"/><a href="/">Contacts List</a></h3>
+           <h3><img height="50" width="55" src="<c:url value="/static/logo.png"/>"/><a href="/">Contacts List</a></h3>
 
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -75,13 +70,35 @@
                 </c:forEach>
             </table>
 
-            <%--<nav aria-label="Page navigation">--%>
-                <%--<ul class="pagination">--%>
-                    <%--<c:forEach var="i" begin="1" end="${pages}">--%>
-                        <%--<li><a href="/?page=<c:out value=" , data, function(data, status) {--%>
-                               <%--window.location.reload();--%>
-                               <%--});--%>
-                               <%--});--%>
-        <%--</script>--%>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <c:forEach var="i" begin="1" end="${pages}">
+                        <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+                    </c:forEach>
+                </ul>
+            </nav>
+        </div>
+
+        <script>
+            $('.dropdown-toggle').dropdown();
+
+            $('#add_contact').click(function(){
+                window.location.href='/contact_add_page';
+            });
+
+            $('#add_group').click(function(){
+                window.location.href='/group_add_page';
+            });
+
+            $('#delete_contact').click(function(){
+                var data = { 'toDelete[]' : []};
+                $(":checked").each(function() {
+                    data['toDelete[]'].push($(this).val());
+                });
+                $.post("/contact/delete", data, function(data, status) {
+                    window.location.reload();
+                });
+            });
+        </script>
     </body>
 </html>
