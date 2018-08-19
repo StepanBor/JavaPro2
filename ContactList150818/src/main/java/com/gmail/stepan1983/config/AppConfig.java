@@ -44,11 +44,8 @@ public class AppConfig implements WebMvcConfigurer {
 
             jpaProp.load(is);
 
-            System.out.println(jpaProp.getProperty("hibernate.format_sql")+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println(jpaProp.getProperty("hibernate.hbm2ddl.auto")+"!!!!!!!!!!!!!!!!!!!!!!!");
-//            System.out.println(jpaProp.getProperty("FU")+"KUUUUUUUUUUUUU");
+
         } catch (FileNotFoundException e) {
-            System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
         } catch (IOException e) {
             e.printStackTrace();
         }
