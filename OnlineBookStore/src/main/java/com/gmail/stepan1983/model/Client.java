@@ -24,19 +24,23 @@ public class Client {
 
     private String lastname;
 
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
     @OneToOne
     private ClientGroup clientGroup;
 
     public Client(String login, String password, String email,
-                  String phone, ClientGroup clientGroup, String adress, String name, String lastname) {
+                  String phone, String adress, String name, String lastname, UserRole role, ClientGroup clientGroup) {
         this.login = login;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.clientGroup = clientGroup;
         this.adress = adress;
         this.name = name;
         this.lastname = lastname;
+        this.role = role;
+        this.clientGroup = clientGroup;
     }
 
     public Client() {
@@ -112,5 +116,29 @@ public class Client {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", adress='" + adress + '\'' +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", role=" + role +
+                ", clientGroup=" + clientGroup +
+                '}';
     }
 }

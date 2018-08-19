@@ -28,7 +28,7 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("com.gmail.stepan1983")
-//@EnableJpaRepositories("com.gmail.stepan1983")
+@EnableJpaRepositories("com.gmail.stepan1983")
 public class AppConfig implements WebMvcConfigurer {
 
     @Bean
@@ -73,19 +73,19 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-        resolver.setPrefix("/WEB-INF/dynamic/");
+        resolver.setPrefix("/jsp/");
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
         resolver.setOrder(1);
         return resolver;
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry
-//                .addResourceHandler("WEB-INF/static/**")
-//                .addResourceLocations("WEB-INF/static/");
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("WEB-INF/static/**")
+                .addResourceLocations("WEB-INF/static/");
+    }
 
 
 }
