@@ -83,8 +83,9 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("WEB-INF/static/**")
-                .addResourceLocations("WEB-INF/static/");
+                .addResourceHandler("/static/**/*")
+                .addResourceLocations("/static/",
+                        "/static/vendor/bootstrap/css/","/static/vendor/metisMenu/","/static/dist/css/");
     }
 
 

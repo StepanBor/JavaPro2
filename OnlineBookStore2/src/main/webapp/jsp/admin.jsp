@@ -99,19 +99,38 @@
 </div>
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <c:forEach var="i" begin="1" end="${pages}">
-            <li><a href="><c:out value="${i}"/></a></li>
-            <li class="page-item"><a class="page-link" href="/?page=<c:out value="${i - 1}"/>">1</a></li>
-        </c:forEach>
+        <c:choose>
+            <c:when test="${requestScope.page > 0}">
+                <li class="page-item">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page - 1}"/>">Previous</a>
+                </li>
+            </c:when>
 
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
+            <c:otherwise>
+                <li class="page-item disabled">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page - 1}"/>">Previous</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+
+        <c:forEach var="i" begin="1" end="${requestScope.clientsPagesNum}">
+            <%--<li><a href="></a></li>--%>
+            <li class="page-item"><a class="page-link" href="/admin?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+        </c:forEach>
+        <c:choose>
+            <c:when test="${requestScope.page < requestScope.clientsPagesNum-1}">
+                <li class="page-item">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page + 1}"/>">Next</a>
+                </li>
+            </c:when>
+
+            <c:otherwise>
+                <li class="page-item disabled">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page + 1}"/>">Next</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+
     </ul>
 </nav>
 <h1>Admin</h1>

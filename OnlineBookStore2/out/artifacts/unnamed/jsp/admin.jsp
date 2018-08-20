@@ -99,15 +99,38 @@
 </div>
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
+        <c:choose>
+            <c:when test="${requestScope.page > 0}">
+                <li class="page-item">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page - 1}"/>">Previous</a>
+                </li>
+            </c:when>
+
+            <c:otherwise>
+                <li class="page-item disabled">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page - 1}"/>">Previous</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+
+        <c:forEach var="i" begin="1" end="${requestScope.clientsPagesNum}">
+            <%--<li><a href="></a></li>--%>
+            <li class="page-item"><a class="page-link" href="/admin?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+        </c:forEach>
+        <c:choose>
+            <c:when test="${requestScope.page < requestScope.clientsPagesNum-1}">
+                <li class="page-item">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page + 1}"/>">Next</a>
+                </li>
+            </c:when>
+
+            <c:otherwise>
+                <li class="page-item disabled">
+                    <a class="page-link" href="/admin?page=<c:out value="${requestScope.page + 1}"/>">Next</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+
     </ul>
 </nav>
 <h1>Admin</h1>
@@ -117,11 +140,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
+
 </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -30,19 +31,20 @@ public class ControllerMain {
     }
 
     @RequestMapping("/admin")
-    public String adminPage(Model model){
+    public String adminPage(Model model, @RequestParam(required = false, defaultValue="0") Integer page){
 
-        long clientPagesNum=clientService.count();
+        long clientNum=clientService.count();
 
-        long pageNum = clientPagesNum % ITEMS_PER_PAGE == 0
-                ? clientPagesNum / ITEMS_PER_PAGE : clientPagesNum / ITEMS_PER_PAGE + 1;
+        long clientPageNum = clientNum % ITEMS_PER_PAGE == 0
+                ? clientNum / ITEMS_PER_PAGE : clientNum / ITEMS_PER_PAGE + 1;
 
 
 
-        Page<Client> clients= clientService.findAll(PageRequest.of(0,6));
+        Page<Client> clients= clientService.findAll(PageRequest.of(page,ITEMS_PER_PAGE));
 
         model.addAttribute("clients",clients);
-        model.addAttribute("clientsPagesNum",clientPagesNum);
+        model.addAttribute("clientsPagesNum",clientPageNum);
+        model.addAttribute("page",page);
         return "admin";
     }
 }
