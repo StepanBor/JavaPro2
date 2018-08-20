@@ -1,0 +1,7 @@
+ua\kiev\prog\ChatController.class
+ua\kiev\prog\AppConfig.class
+ua\kiev\prog\Message.class
+ua\kiev\prog\MessageDAO.class
+ua\kiev\prog\MessageDTO.class
+ua\kiev\prog\MessageService.class
+ua\kiev\prog\Application.class
