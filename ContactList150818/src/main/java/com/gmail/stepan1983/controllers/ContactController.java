@@ -29,7 +29,6 @@ public class ContactController {
 
         List<GroupContact> groups = contactService.listGroups();
 
-
         List<Contact> contacts = contactService.listContacts(null, ((page == null || page == 1) ? 1 : page * ITEMS_PER_PAGE), ITEMS_PER_PAGE);
         model.addAttribute("contactList", contacts);
         model.addAttribute("groups", groups);

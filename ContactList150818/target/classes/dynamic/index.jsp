@@ -73,7 +73,7 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <c:forEach var="i" begin="1" end="${pages}">
-                        <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+                        <li><a href="/?page=<c:out value="><c:out value=" ${i}"/></a></li>
                     </c:forEach>
                 </ul>
             </nav>
