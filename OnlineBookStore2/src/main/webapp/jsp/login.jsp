@@ -43,14 +43,14 @@
 </head>
 <body>
 <%--<img height="50" width="55" src="<c:url value="/static/logo.png"/>"/><a href="/">Contacts List</a>--%>
-<img height="50" width="55" src="<c:url value="/static/logo.png"/>"/><a href="/">Contacts List</a>
-<form action="/fromForm" method="post">
-    <label for="login"><h2>Login</h2></label>
-    <input type="text" name="j_login" id="login">
-    <label for="pass"><h2>Password</h2></label>
-    <input type="password" name="j_password" id="pass">
-    <input type="submit">
-</form>
+<%--<img height="50" width="55" src="<c:url value="/static/logo.png"/>"/><a href="/">Contacts List</a>--%>
+<%--<form action="/fromForm" method="post">--%>
+    <%--<label for="login"><h2>Login</h2></label>--%>
+    <%--<input type="text" name="j_login" id="login">--%>
+    <%--<label for="pass"><h2>Password</h2></label>--%>
+    <%--<input type="password" name="j_password" id="pass">--%>
+    <%--<input type="submit">--%>
+<%--</form>--%>
 
 <div class="container">
     <div class="row">
@@ -60,21 +60,22 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form role="form" action="/fromForm" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                <input class="form-control" placeholder="login" name="j_login" type="text" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                <input class="form-control" placeholder="Password" name="j_password" type="password" >
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                </label>
-                            </div>
+                            <%--<div class="checkbox">--%>
+                                <%--<label>--%>
+                                    <%--<input name="remember" type="checkbox" value="Remember Me">Remember Me--%>
+                                <%--</label>--%>
+                            <%--</div>--%>
                             <!-- Change this to a button or input when using this as a form -->
-                            <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                            <input type="submit" class="btn btn-lg btn-success btn-block">
+                            <%--<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>--%>
                         </fieldset>
                     </form>
                 </div>
