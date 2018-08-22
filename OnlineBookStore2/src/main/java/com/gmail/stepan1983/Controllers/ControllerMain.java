@@ -45,6 +45,7 @@ public class ControllerMain {
         model.addAttribute("clients",clients);
         model.addAttribute("clientsPagesNum",clientPageNum);
         model.addAttribute("page",page);
-        return "admin";
+//        return "admin";
+        return "adminPage";
     }
 }
