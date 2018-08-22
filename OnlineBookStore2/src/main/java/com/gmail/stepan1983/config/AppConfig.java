@@ -85,9 +85,9 @@ public class AppConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/static/**/*")
                 .addResourceLocations("/static/",
-                        "/static/vendor/bootstrap/css/","/static/vendor/metisMenu/","/static/dist/css/","static/vendor/datatables-responsive",
-        "static/vendor/metisMenu","static/dist/js","static/vendor/datatables/js","static/vendor/datatables-plugins");
-//        .addResourceLocations("/static/**/*");
+                        "/static/vendor/bootstrap/css/","/static/vendor/metisMenu/","/static/dist/css/",
+                        "static/vendor/datatables-responsive","static/vendor/metisMenu","static/dist/js",
+                        "static/vendor/datatables/js","static/vendor/datatables-plugins","static/CSS");
     }
 
 
