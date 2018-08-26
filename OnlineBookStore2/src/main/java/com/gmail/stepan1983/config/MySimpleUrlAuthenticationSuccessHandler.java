@@ -70,7 +70,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
             System.out.println("!!!!!!!!!!!!!!!!!");
             return "/jsp/index.jsp";
         } else if (isAdmin) {
-            return "/admin";
+            return "/adminPage";
         } else {
             throw new IllegalStateException();
         }

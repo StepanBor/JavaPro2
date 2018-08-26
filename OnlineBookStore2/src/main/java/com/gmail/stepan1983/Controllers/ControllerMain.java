@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class ControllerMain {
 
-    private static final int ITEMS_PER_PAGE = 6;
+//    private static final int ITEMS_PER_PAGE = 6;
 
     @Autowired
     ClientService clientService;
@@ -30,17 +30,18 @@ public class ControllerMain {
         return "login";
     }
 
-    @RequestMapping("/admin")
-    public String adminPage(Model model, @RequestParam(required = false, defaultValue="0") Integer page){
+    @RequestMapping("/adminPage")
+    public String adminPage(Model model, @RequestParam(required = false, defaultValue="0") Integer page,
+                            @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage){
 
         long clientNum=clientService.count();
 
-        long clientPageNum = clientNum % ITEMS_PER_PAGE == 0
-                ? clientNum / ITEMS_PER_PAGE : clientNum / ITEMS_PER_PAGE + 1;
+        long clientPageNum = clientNum % itemsPerPage == 0
+                ? clientNum / itemsPerPage : clientNum / itemsPerPage + 1;
 
 
 
-        Page<Client> clients= clientService.findAll(PageRequest.of(page,ITEMS_PER_PAGE));
+        Page<Client> clients= clientService.findAll(PageRequest.of(page,itemsPerPage));
 
         model.addAttribute("clients",clients);
         model.addAttribute("clientsPagesNum",clientPageNum);

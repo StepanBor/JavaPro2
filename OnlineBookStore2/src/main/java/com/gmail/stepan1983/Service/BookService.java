@@ -1,15 +1,22 @@
 package com.gmail.stepan1983.Service;
 
-import com.gmail.stepan1983.DAO.BookDAO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.gmail.stepan1983.model.BookItem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-@Service
-public class BookService {
+import java.util.List;
 
-    @Autowired
-    private BookDAO bookDAO;
+public interface BookService {
 
+    void addBookItem(BookItem bookItem);
 
+    BookItem getById(Long bookId);
 
+    void updateBookItem(BookItem bookItem);
+
+    Page<BookItem> findAll(Pageable pageable);
+
+    List<BookItem> findAll();
+
+    long count();
 }

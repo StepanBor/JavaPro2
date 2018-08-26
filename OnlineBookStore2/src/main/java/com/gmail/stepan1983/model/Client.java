@@ -1,6 +1,7 @@
 package com.gmail.stepan1983.model;
 
 import javax.persistence.*;
+import java.io.File;
 
 @Entity
 @Table(name = "Client1")
@@ -30,8 +31,11 @@ public class Client {
     @OneToOne
     private ClientGroup clientGroup;
 
+    private File avatar;
+
     public Client(String login, String password, String email,
-                  String phone, String adress, String name, String lastname, UserRole role, ClientGroup clientGroup) {
+                  String phone, String adress, String name,
+                  String lastname, UserRole role, ClientGroup clientGroup, File avatar) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -41,6 +45,7 @@ public class Client {
         this.lastname = lastname;
         this.role = role;
         this.clientGroup = clientGroup;
+        this.avatar=avatar;
     }
 
     public Client() {
@@ -124,6 +129,14 @@ public class Client {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public File getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(File avatar) {
+        this.avatar = avatar;
     }
 
     @Override
