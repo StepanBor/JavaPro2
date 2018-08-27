@@ -31,10 +31,12 @@ public class TestDataBean {
     public void fillData() {
         List<File> avatars=new ArrayList<>();
         for (int i=0; i<11; i++){
-            avatars.add(new File("static/images/avatar-"+i+".jpg"));
+
+            File file=new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
+            avatars.add(file);
         }
         ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-        File image = new File("c:\\Users\\HOME\\Desktop\\817bb146cf317ccde05e716f6a495bbd.jpg");
+        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
         Client client = new Client("test1", encoder.encodePassword("Password", null), "email1@com",
                 "phone1", "Adress1", "name1", "lastname1", UserRole.CUSTOMER, null,avatars.get(0));
         Client client2 = new Client("admin", encoder.encodePassword("Password", null), "email2@com",

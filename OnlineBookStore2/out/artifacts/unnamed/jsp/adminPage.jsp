@@ -168,8 +168,8 @@
                                     <th>Login</th>
                                     <%--<th>Password</th>--%>
                                     <th>Name</th>
-                                    <th>Lastname</th>
-                                    <th>Address</th>
+                                    <%--<th>Lastname</th>--%>
+                                    <%--<th>Address</th>--%>
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>Role</th>
@@ -184,8 +184,8 @@
                                             <td><c:out value="${clients.getLogin()}"/></td>
                                                 <%--<td><c:out value="${clients.getPassword()}"/></td>--%>
                                             <td><c:out value="${clients.getName()}"/></td>
-                                            <td><c:out value="${clients.getLastname()}"/></td>
-                                            <td><c:out value="${clients.getAdress()}"/></td>
+                                            <%--<td><c:out value="${clients.getLastname()}"/></td>--%>
+                                            <%--<td><c:out value="${clients.getAdress()}"/></td>--%>
                                             <td><c:out value="${clients.getPhone()}"/></td>
                                             <td><c:out value="${clients.getEmail()}"/></td>
                                             <td><c:out value="${clients.getRole()}"/></td>
@@ -255,7 +255,11 @@
                             User details
                         </div>
                         <div class="card-body">
-                            <img src="<c:out value="${clients[1].getAvatar().getBites()}"/>"/>
+                            <c:forEach var="clients" items="${requestScope.clients.content}" varStatus="i">
+                                <c:if test="${i.index==0}">
+                                    <img src="/photo/<c:out value="${clients.getId()}"/>" width="50px" height="50px"/>
+                                </c:if>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

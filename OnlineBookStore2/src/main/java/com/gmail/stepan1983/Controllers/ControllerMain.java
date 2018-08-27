@@ -5,11 +5,18 @@ import com.gmail.stepan1983.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
 
 @Controller
@@ -42,11 +49,40 @@ public class ControllerMain {
 
 
         Page<Client> clients= clientService.findAll(PageRequest.of(page,itemsPerPage));
-
+        List<Client> clientList=clients.getContent();
         model.addAttribute("clients",clients);
+        model.addAttribute("clietList",clientList);
         model.addAttribute("clientsPagesNum",clientPageNum);
         model.addAttribute("page",page);
 //        return "admin";
         return "adminPage";
+    }
+
+    @RequestMapping("/photo/{photoId}")
+    public ResponseEntity<byte[]> getPhotoBytes(@PathVariable ("photoId") long id){
+
+
+        Client client=clientService.getById(id);
+        File file=client.getAvatar();
+        byte[] bytes=null;
+        byte[] buffer=new byte[(int) file.length()];
+        try(InputStream in=new FileInputStream(file); ByteArrayOutputStream baos=new ByteArrayOutputStream()) {
+
+            int read=0;
+            while ((read=in.read(buffer))>0){
+                baos.write(buffer,0,read);
+            }
+            bytes=baos.toByteArray();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+
     }
 }

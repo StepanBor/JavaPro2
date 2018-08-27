@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -38,18 +39,30 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public List<Client> findAll() {
         return clientDAO.findAll();
     }
 
     @Override
+    @Transactional
     public Page<Client> findAll(Pageable pageable) {
 
         return clientDAO.findAll(pageable);
     }
 
     @Override
+    @Transactional
     public long count() {
         return clientDAO.count();
+    }
+
+    @Override
+    @Transactional
+    public Client getById(Long id) {
+
+        Optional<Client> optionalClient=clientDAO.findById(id);
+
+        return optionalClient.get();
     }
 }

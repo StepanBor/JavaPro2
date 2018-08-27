@@ -12,6 +12,8 @@ public interface ClientService {
 
     Client getByLogin(String login);
 
+    Client getById(Long id);
+
     void updateClient(Client client);
 
     Page<Client> findAll(Pageable pageable);
