@@ -184,8 +184,8 @@
                                             <td><c:out value="${clients.getLogin()}"/></td>
                                                 <%--<td><c:out value="${clients.getPassword()}"/></td>--%>
                                             <td><c:out value="${clients.getName()}"/></td>
-                                            <%--<td><c:out value="${clients.getLastname()}"/></td>--%>
-                                            <%--<td><c:out value="${clients.getAdress()}"/></td>--%>
+                                                <%--<td><c:out value="${clients.getLastname()}"/></td>--%>
+                                                <%--<td><c:out value="${clients.getAdress()}"/></td>--%>
                                             <td><c:out value="${clients.getPhone()}"/></td>
                                             <td><c:out value="${clients.getEmail()}"/></td>
                                             <td><c:out value="${clients.getRole()}"/></td>
@@ -255,11 +255,74 @@
                             User details
                         </div>
                         <div class="card-body">
-                            <c:forEach var="clients" items="${requestScope.clients.content}" varStatus="i">
-                                <c:if test="${i.index==0}">
-                                    <img src="/photo/<c:out value="${clients.getId()}"/>" width="50px" height="50px"/>
-                                </c:if>
-                            </c:forEach>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card card-body">
+                                            <c:forEach var="clients" items="${requestScope.clients.content}" varStatus="i">
+                                                <c:if test="${i.index==0}">
+                                                    <img src="/photo/<c:out value="${clients.getId()}"/>" width="100px"
+                                                         height="100px"/>
+                                                </c:if>
+                                            </c:forEach>
+                                            <h3 class="card-title pricing-card-title mb-4">$0
+                                                <small class="text-muted">/ mo</small>
+                                            </h3>
+
+                                            <ol class="list-unstyled mb-4">
+                                                <li>10 users included
+                                                    <i class="fa fa-check green-text ml-1"></i>
+                                                </li>
+                                                <hr>
+                                                <li>2 GB of storage
+                                                    <i class="fa fa-check green-text ml-1"></i>
+                                                </li>
+                                                <hr>
+                                                <li>Email support
+                                                    <i class="fa fa-check green-text ml-1"></i>
+                                                </li>
+                                                <hr>
+                                                <li>Help center access
+                                                    <i class="fa fa-check green-text ml-1"></i>
+                                                </li>
+                                            </ol>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+                                                   role="tab"
+                                                   aria-controls="home" aria-selected="true">Home</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+                                                   role="tab"
+                                                   aria-controls="profile" aria-selected="false">Profile</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
+                                                   role="tab"
+                                                   aria-controls="contact" aria-selected="false">Contact</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                                 aria-labelledby="home-tab"><h1>tab1</h1></div>
+                                            <div class="tab-pane fade" id="profile" role="tabpanel"
+                                                 aria-labelledby="profile-tab">
+                                                <h1>tab2</h1></div>
+                                            <div class="tab-pane fade" id="contact" role="tabpanel"
+                                                 aria-labelledby="contact-tab">
+                                                <h1>tab3</h1></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
