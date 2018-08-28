@@ -263,57 +263,24 @@
                                     <div class="col-md-4">
                                         <div class="card card-body">
 
-                                            <c:choose>
-                                                <c:when test="${requestScope.detailId==0}">
-                                                    <c:forEach var="clients" items="${requestScope.clients.content}"
-                                                               varStatus="i">
-                                                        <c:if test="${i.index==0}">
-                                                            <img src="/photo/<c:out value="${clients.getId()}"/>"
-                                                                 width="100px"
-                                                                 height="100px"/>
-                                                            <ol class="list-unstyled mb-4">
-                                                                <li><c:out value="${clients.getLastname()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getLogin()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getEmail()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getPhone()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getRole()}"/></li>
-                                                                <hr>
-                                                            </ol>
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </c:when>
+                                            <img src="/photo/<c:out value="${requestScope.clientDetails.getId()}"/>"
+                                                 width="100px"
+                                                 height="100px"/>
+                                            <ol class="list-unstyled mb-4">
+                                                <li>Login: <c:out value="${requestScope.clientDetails.getLogin()}"/></li>
+                                                <hr>
+                                                <li>Name: <c:out value="${requestScope.clientDetails.getName()}"/></li>
+                                                <hr>
+                                                <li>Lastname: <c:out value="${requestScope.clientDetails.getLastname()}"/></li>
+                                                <hr>
+                                                <li>Email: <c:out value="${requestScope.clientDetails.getEmail()}"/></li>
+                                                <hr>
+                                                <li>Phone: <c:out value="${requestScope.clientDetails.getPhone()}"/></li>
+                                                <hr>
+                                                <li>Role: <c:out value="${requestScope.clientDetails.getRole()}"/></li>
+                                                <hr>
+                                            </ol>
 
-                                                <c:otherwise>
-                                                    <c:forEach var="clients" items="${requestScope.clients.content}"
-                                                               varStatus="i">
-                                                        <c:if test="${i.index==requestScope.detailsId}">
-                                                            <img src="/photo/<c:out value="${requestScope.detailsId}"/>"
-                                                                 width="100px"
-                                                                 height="100px"/>
-                                                            <img src="/photo/<c:out value="${clients.getId()}"/>"
-                                                                 width="100px"
-                                                                 height="100px"/>
-                                                            <ol class="list-unstyled mb-4">
-                                                                <li><c:out value="${clients.getLastname()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getLogin()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getEmail()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getPhone()}"/></li>
-                                                                <hr>
-                                                                <li><c:out value="${clients.getRole()}"/></li>
-                                                                <hr>
-                                                            </ol>
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </c:otherwise>
-
-                                            </c:choose>
                                         </div>
 
                                     </div>

@@ -40,21 +40,20 @@ public class ControllerMain {
     @RequestMapping("/adminPage")
     public String adminPage(Model model, @RequestParam(required = false, defaultValue="0") Integer page,
                             @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
-                            @RequestParam(required = false, defaultValue = "0") Long clientId){
+                            @RequestParam(required = false, defaultValue = "1") Long clientId){
 
+        Client client=clientService.getById(clientId);
         long clientNum=clientService.count();
 
         long clientPageNum = clientNum % itemsPerPage == 0
                 ? clientNum / itemsPerPage : clientNum / itemsPerPage + 1;
 
-
-
         Page<Client> clients= clientService.findAll(PageRequest.of(page,itemsPerPage));
-        List<Client> clientList=clients.getContent();
+
         model.addAttribute("clients",clients);
         model.addAttribute("clientsPagesNum",clientPageNum);
         model.addAttribute("page",page);
-        model.addAttribute("detailsId",clientId);
+        model.addAttribute("clientDetails",client);
 
 //        return "admin";
         return "adminPage";
