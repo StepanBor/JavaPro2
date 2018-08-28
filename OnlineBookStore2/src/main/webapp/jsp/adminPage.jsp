@@ -173,7 +173,7 @@
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th>Group</th>
+                                    <th>View details</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -189,7 +189,10 @@
                                             <td><c:out value="${clients.getPhone()}"/></td>
                                             <td><c:out value="${clients.getEmail()}"/></td>
                                             <td><c:out value="${clients.getRole()}"/></td>
-                                            <td><c:out value="${clients.getClientGroup()}"/></td>
+                                                <%--<td><c:out value="${clients.getClientGroup()}"/></td>--%>
+                                            <td>
+                                                <a href="/adminPage?page=<c:out value="${requestScope.page}"/>&clientId=<c:out value="${clients.getId()}"/>">View
+                                                    details</a></td>
                                         </tr>
                                     </c:forEach>
                                 </c:if>
@@ -259,33 +262,58 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="card card-body">
-                                            <c:forEach var="clients" items="${requestScope.clients.content}" varStatus="i">
-                                                <c:if test="${i.index==0}">
-                                                    <img src="/photo/<c:out value="${clients.getId()}"/>" width="100px"
-                                                         height="100px"/>
-                                                </c:if>
-                                            </c:forEach>
-                                            <h3 class="card-title pricing-card-title mb-4">$0
-                                                <small class="text-muted">/ mo</small>
-                                            </h3>
 
-                                            <ol class="list-unstyled mb-4">
-                                                <li>10 users included
-                                                    <i class="fa fa-check green-text ml-1"></i>
-                                                </li>
-                                                <hr>
-                                                <li>2 GB of storage
-                                                    <i class="fa fa-check green-text ml-1"></i>
-                                                </li>
-                                                <hr>
-                                                <li>Email support
-                                                    <i class="fa fa-check green-text ml-1"></i>
-                                                </li>
-                                                <hr>
-                                                <li>Help center access
-                                                    <i class="fa fa-check green-text ml-1"></i>
-                                                </li>
-                                            </ol>
+                                            <c:choose>
+                                                <c:when test="${requestScope.detailId==0}">
+                                                    <c:forEach var="clients" items="${requestScope.clients.content}"
+                                                               varStatus="i">
+                                                        <c:if test="${i.index==0}">
+                                                            <img src="/photo/<c:out value="${clients.getId()}"/>"
+                                                                 width="100px"
+                                                                 height="100px"/>
+                                                            <ol class="list-unstyled mb-4">
+                                                                <li><c:out value="${clients.getLastname()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getLogin()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getEmail()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getPhone()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getRole()}"/></li>
+                                                                <hr>
+                                                            </ol>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </c:when>
+
+                                                <c:otherwise>
+                                                    <c:forEach var="clients" items="${requestScope.clients.content}"
+                                                               varStatus="i">
+                                                        <c:if test="${i.index==requestScope.detailsId}">
+                                                            <img src="/photo/<c:out value="${requestScope.detailsId}"/>"
+                                                                 width="100px"
+                                                                 height="100px"/>
+                                                            <img src="/photo/<c:out value="${clients.getId()}"/>"
+                                                                 width="100px"
+                                                                 height="100px"/>
+                                                            <ol class="list-unstyled mb-4">
+                                                                <li><c:out value="${clients.getLastname()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getLogin()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getEmail()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getPhone()}"/></li>
+                                                                <hr>
+                                                                <li><c:out value="${clients.getRole()}"/></li>
+                                                                <hr>
+                                                            </ol>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </c:otherwise>
+
+                                            </c:choose>
                                         </div>
 
                                     </div>
@@ -354,6 +382,9 @@
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
         });
+    });
+    $('#add_group').click(function () {
+        window.location.href = '/group_add_page';
     });
 </script>
 </body>

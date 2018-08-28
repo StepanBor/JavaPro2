@@ -39,7 +39,8 @@ public class ControllerMain {
 
     @RequestMapping("/adminPage")
     public String adminPage(Model model, @RequestParam(required = false, defaultValue="0") Integer page,
-                            @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage){
+                            @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
+                            @RequestParam(required = false, defaultValue = "0") Long clientId){
 
         long clientNum=clientService.count();
 
@@ -51,9 +52,10 @@ public class ControllerMain {
         Page<Client> clients= clientService.findAll(PageRequest.of(page,itemsPerPage));
         List<Client> clientList=clients.getContent();
         model.addAttribute("clients",clients);
-        model.addAttribute("clietList",clientList);
         model.addAttribute("clientsPagesNum",clientPageNum);
         model.addAttribute("page",page);
+        model.addAttribute("detailsId",clientId);
+
 //        return "admin";
         return "adminPage";
     }
