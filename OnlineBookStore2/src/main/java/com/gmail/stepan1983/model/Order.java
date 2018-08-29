@@ -1,6 +1,8 @@
 package com.gmail.stepan1983.model;
 
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,12 +26,21 @@ public class Order {
 
     private String status;
 
-    public Order(List<BookItem> orderList, double orderPrice, Client client, Shipment shipment, String status) {
+    @Temporal(value = TemporalType.DATE)
+    private Date orderDate;
+
+    public Order(List<BookItem> orderList, Client client,
+                 Shipment shipment, String status, Date orderDate) {
         this.orderList = orderList;
-        this.orderPrice = orderPrice;
+
+        for (BookItem bookItem : orderList) {
+            this.orderPrice+=bookItem.getPrice();
+        }
+
         this.client = client;
         this.shipment = shipment;
         this.status = status;
+        this.orderDate=orderDate;
     }
 
     public Order() {
@@ -81,5 +92,13 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 }
