@@ -16,7 +16,8 @@ public class Publisher {
 
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.PERSIST)
+//    @OneToMany
     private List<BookItem> books;
 
     public Publisher(String publisherName,

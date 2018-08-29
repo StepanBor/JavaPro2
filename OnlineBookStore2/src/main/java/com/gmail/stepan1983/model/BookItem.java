@@ -16,15 +16,18 @@ public class BookItem {
 
     private String author;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne
     private Publisher publisher;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne
     private CategoryItem category;
 
     private Double price;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+//    @OneToOne
     private StorageBooks storageBooks;
 
     private File image;

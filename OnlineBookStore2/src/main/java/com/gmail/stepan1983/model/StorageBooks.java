@@ -10,10 +10,12 @@ public class StorageBooks {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
+//    @OneToOne
     private BookItem book;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
+//    @OneToOne
     private Stock stock;
 
     private Long bookQuantity;

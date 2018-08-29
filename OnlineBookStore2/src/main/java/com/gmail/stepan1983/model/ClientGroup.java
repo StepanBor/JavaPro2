@@ -1,6 +1,7 @@
 package com.gmail.stepan1983.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "GroupClient1")
@@ -13,9 +14,13 @@ public class ClientGroup {
 
     private String groupDescription;
 
-    public ClientGroup(String groupName, String groupDescription) {
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Client> clients;
+
+    public ClientGroup(String groupName, String groupDescription, List<Client> clients) {
         this.groupName = groupName;
         this.groupDescription = groupDescription;
+        this.clients=clients;
     }
 
     public ClientGroup() {
@@ -43,5 +48,13 @@ public class ClientGroup {
 
     public void setGroupDescription(String groupDescription) {
         this.groupDescription = groupDescription;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 }

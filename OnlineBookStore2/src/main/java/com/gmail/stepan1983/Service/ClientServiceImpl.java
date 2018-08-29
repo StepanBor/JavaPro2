@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,13 +19,17 @@ import java.util.Optional;
 @Service
 public class ClientServiceImpl implements ClientService {
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     @Autowired
     ClientDAO clientDAO;
 
     @Override
     @Transactional
     public void addClient(Client client) {
-        clientDAO.save(client);
+//        clientDAO.save(client);
+        entityManager.merge(client);
     }
 
     @Override

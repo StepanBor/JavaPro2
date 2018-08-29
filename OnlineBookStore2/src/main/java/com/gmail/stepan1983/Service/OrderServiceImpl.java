@@ -7,11 +7,15 @@ import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,26 +23,28 @@ import java.util.Optional;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    OrderDAO oredrDAO;
+    private OrderDAO oredrDAO;
 
     @Autowired
-    BookService bookService;
+    private BookService bookService;
 
     @Autowired
-    ClientService clientService;
+    private ClientService clientService;
 
     @Autowired
-    ShipmentService shipmentService;
+    private ShipmentService shipmentService;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     @Transactional
     public void addOrder(Order order) {
-        for (BookItem bookItem : order.getOrderList()) {
-            bookService.addBookItem(bookItem);
-        }
-        clientService.addClient(order.getClient());
+
+
         shipmentService.addShipment(order.getShipment());
         oredrDAO.save(order);
+
     }
 
     @Override
@@ -76,13 +82,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<Order> findByClient(Long clientId) {
-        return null;
+    public Page<Order> findByClient(Client client, Pageable pageable) {
+
+        Order exampleObj=new Order();
+        exampleObj.setClient(client);
+        Example<Order> orderExample=Example.of(exampleObj);
+
+        return oredrDAO.findAll(orderExample, pageable);
     }
 
     @Override
     @Transactional(readOnly = true)
     public long count() {
-        return 0;
+        return oredrDAO.count();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public long count(Order orderExample) {
+        return oredrDAO.count();
+    }
+
+
 }

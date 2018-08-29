@@ -28,7 +28,7 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private ClientGroup clientGroup;
 
     private File avatar;

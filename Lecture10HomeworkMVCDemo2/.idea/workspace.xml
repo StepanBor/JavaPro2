@@ -18,6 +18,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ContactController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ua/kiev/prog/controllers/ContactController.java">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -103,6 +104,7 @@
       <file leaf-file-name="contact_add_page.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resources/dynamic/contact_add_page.jsp">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
               <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
             </state>
           </provider>
@@ -759,6 +761,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/dataSources.local.xml">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
           <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
         </state>
       </provider>
@@ -776,6 +779,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/dynamic/contact_add_page.jsp">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>

@@ -1,6 +1,7 @@
 package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.model.BookItem;
+import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +20,9 @@ public interface OrderService {
 
     List<Order> findAll();
 
-    Page<Order> findByClient(Long clientId);
+    Page<Order> findByClient(Client client, Pageable pageable);
 
     long count();
 
+    long count(Order orderExample);
 }
