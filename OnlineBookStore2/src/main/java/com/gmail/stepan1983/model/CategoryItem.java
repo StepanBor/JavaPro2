@@ -11,6 +11,7 @@ public class CategoryItem {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="categoryId")
     private long id;
 
     private String categoryName;

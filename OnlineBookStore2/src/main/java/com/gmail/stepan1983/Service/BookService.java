@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BookService {
 
-    void addBookItem(BookItem bookItem);
+   BookItem addBookItem(BookItem bookItem);
 
     BookItem getById(Long bookId);
 

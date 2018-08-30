@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Stock {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="stockId")
     private long id;
 
     private String storageAddress;

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +19,14 @@ public class ShipmentServiceImpl implements ShipmentService{
     @Autowired
     ShipmentDAO shipmentDAO;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     @Override
     @Transactional
-    public void addShipment(Shipment shipment) {
-        shipmentDAO.save(shipment);
+    public Shipment addShipment(Shipment shipment) {
+
+        return entityManager.merge(shipment);
     }
 
     @Override

@@ -8,13 +8,14 @@ import java.util.List;
 public class ClientGroup {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="clientGroupId")
     private long id;
 
     private String groupName;
 
     private String groupDescription;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     private List<Client> clients;
 
     public ClientGroup(String groupName, String groupDescription, List<Client> clients) {

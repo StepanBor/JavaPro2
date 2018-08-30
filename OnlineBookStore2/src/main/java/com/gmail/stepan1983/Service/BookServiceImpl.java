@@ -36,10 +36,11 @@ public class BookServiceImpl implements BookService{
 
     @Override
     @Transactional
-    public void addBookItem(BookItem bookItem) {
+    public BookItem addBookItem(BookItem bookItem) {
 
 //        entityManager.merge(bookItem.getCategory());
-        entityManager.merge(bookItem);
+        return entityManager.merge(bookItem);
+//        bookDAO.saveAndFlush(bookItem);
 
 //        bookDAO.save(bookItem);
 //        Stock stock=bookItem.getStorageBooks().getStock();

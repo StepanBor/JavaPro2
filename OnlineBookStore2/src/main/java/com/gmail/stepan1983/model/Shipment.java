@@ -8,15 +8,20 @@ public class Shipment {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="shipmentId")
     private long id;
 
     private String shippingAddress;
 
     private String shipmentStatus;
 
-    public Shipment(String shippingAddress, String shipmentStatus) {
+    @OneToOne(cascade = CascadeType.ALL)
+    private Order order;
+
+    public Shipment(String shippingAddress, String shipmentStatus, Order order) {
         this.shippingAddress = shippingAddress;
         this.shipmentStatus = shipmentStatus;
+        this.order=order;
     }
 
     public Shipment() {
@@ -44,5 +49,13 @@ public class Shipment {
 
     public void setShipmentStatus(String shipmentStatus) {
         this.shipmentStatus = shipmentStatus;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

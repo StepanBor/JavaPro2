@@ -11,17 +11,22 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="orderId")
     private long id;
 
-    @OneToMany
+//    @OneToMany
+    @ManyToMany
+    @JoinTable(name="Orders_books", joinColumns = {@JoinColumn(name="orderId")},inverseJoinColumns = {@JoinColumn(name="id")})
     private List<BookItem> orderList;
 
     private double orderPrice;
 
     @OneToOne
+//    @JoinColumn(name="clientId")
     private Client client;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="shipmentId")
     private Shipment shipment;
 
     private String status;
@@ -100,5 +105,18 @@ public class Order {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderList=" + orderList +
+                ", orderPrice=" + orderPrice +
+                ", client=" + client +
+                ", shipment=" + shipment +
+                ", status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                '}';
     }
 }

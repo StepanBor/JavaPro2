@@ -8,6 +8,7 @@ import java.io.File;
 public class BookItem {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="bookId")
     private long id;
 
     private String bookName;
