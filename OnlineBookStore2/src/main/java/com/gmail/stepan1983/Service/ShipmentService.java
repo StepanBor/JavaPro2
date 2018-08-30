@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ShipmentService {
 
-    void addShipment(Shipment shipment);
+    Shipment addShipment(Shipment shipment);
 
     Shipment getById(Long shipmentId);
 

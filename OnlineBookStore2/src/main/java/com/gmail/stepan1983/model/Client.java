@@ -9,6 +9,7 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="clientId")
     private long id;
 
     private String login;
@@ -28,7 +29,7 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private ClientGroup clientGroup;
 
     private File avatar;

@@ -22,6 +22,8 @@ import java.util.Optional;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+
+
     @Autowired
     private OrderDAO oredrDAO;
 
@@ -40,11 +42,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public void addOrder(Order order) {
-
-
-        shipmentService.addShipment(order.getShipment());
-        oredrDAO.save(order);
-
+        System.out.println();
+        System.out.println();
+        System.out.println(order);
+//        shipmentService.addShipment(order.getShipment());
+        entityManager.merge(order);
     }
 
     @Override

@@ -8,6 +8,7 @@ public class StorageBooks {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="stogrageBooksId")
     private long id;
 
     @OneToOne(cascade = CascadeType.PERSIST)

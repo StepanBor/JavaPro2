@@ -8,6 +8,7 @@ import java.util.List;
 public class Publisher {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="publisherId")
     private long id;
 
     private String publisherName;

@@ -27,9 +27,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public void addClient(Client client) {
+    public Client addClient(Client client) {
 //        clientDAO.save(client);
-        entityManager.merge(client);
+        return entityManager.merge(client);
     }
 
     @Override
