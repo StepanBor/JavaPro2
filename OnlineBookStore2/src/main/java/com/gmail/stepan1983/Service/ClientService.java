@@ -16,7 +16,7 @@ public interface ClientService {
 
     void updateClient(Client client);
 
-    Page<Client> findAll(Pageable pageable);
+    List<Client> findAll(Pageable pageable);
 
     List<Client> findAll();
 

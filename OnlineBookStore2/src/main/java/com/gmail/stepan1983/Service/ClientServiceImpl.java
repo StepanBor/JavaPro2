@@ -52,9 +52,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public Page<Client> findAll(Pageable pageable) {
+    public List<Client> findAll(Pageable pageable) {
 
-        return clientDAO.findAll(pageable);
+        return clientDAO.findAll(pageable).getContent();
     }
 
     @Override

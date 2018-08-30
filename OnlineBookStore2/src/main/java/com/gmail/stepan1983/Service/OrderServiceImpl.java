@@ -1,13 +1,12 @@
 package com.gmail.stepan1983.Service;
 
-import com.gmail.stepan1983.DAO.BookDAO;
-import com.gmail.stepan1983.DAO.ClientDAO;
 import com.gmail.stepan1983.DAO.OrderDAO;
 import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -84,13 +83,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<Order> findByClient(Client client, Pageable pageable) {
+    public List<Order> findByClient(Client client, Pageable pageable) {
 
         Order exampleObj=new Order();
         exampleObj.setClient(client);
         Example<Order> orderExample=Example.of(exampleObj);
 
-        return oredrDAO.findAll(orderExample, pageable);
+        TypedQuery<Order> query=entityManager.createQuery
+                ("SELECT o FROM Order o WHERE o.client= :client ORDER BY o.orderPrice DESC ",Order.class);
+        query.setParameter("client",client);
+//        return oredrDAO.findAll(orderExample);
+        return query.getResultList();
     }
 
     @Override

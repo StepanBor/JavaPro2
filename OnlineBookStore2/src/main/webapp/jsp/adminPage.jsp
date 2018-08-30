@@ -178,7 +178,7 @@
                                 </thead>
                                 <tbody>
                                 <c:if test="${requestScope.clients!=null}">
-                                    <c:forEach var="clients" items="${requestScope.clients.content}">
+                                    <c:forEach var="clients" items="${requestScope.clients}">
                                         <tr>
                                             <td><c:out value="${clients.getId()}"/></td>
                                             <td><c:out value="${clients.getLogin()}"/></td>
@@ -192,7 +192,8 @@
                                                 <%--<td><c:out value="${clients.getClientGroup()}"/></td>--%>
                                             <td>
                                                 <a href="/adminPage?page=<c:out value="${requestScope.page}"/>&clientId=<c:out value="${clients.getId()}"/>">View
-                                                    details</a></td>
+                                                    details</a>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:if>
@@ -267,15 +268,19 @@
                                                  width="100px"
                                                  height="100px"/>
                                             <ol class="list-unstyled mb-4">
-                                                <li>Login: <c:out value="${requestScope.clientDetails.getLogin()}"/></li>
+                                                <li>Login: <c:out
+                                                        value="${requestScope.clientDetails.getLogin()}"/></li>
                                                 <hr>
                                                 <li>Name: <c:out value="${requestScope.clientDetails.getName()}"/></li>
                                                 <hr>
-                                                <li>Lastname: <c:out value="${requestScope.clientDetails.getLastname()}"/></li>
+                                                <li>Lastname: <c:out
+                                                        value="${requestScope.clientDetails.getLastname()}"/></li>
                                                 <hr>
-                                                <li>Email: <c:out value="${requestScope.clientDetails.getEmail()}"/></li>
+                                                <li>Email: <c:out
+                                                        value="${requestScope.clientDetails.getEmail()}"/></li>
                                                 <hr>
-                                                <li>Phone: <c:out value="${requestScope.clientDetails.getPhone()}"/></li>
+                                                <li>Phone: <c:out
+                                                        value="${requestScope.clientDetails.getPhone()}"/></li>
                                                 <hr>
                                                 <li>Role: <c:out value="${requestScope.clientDetails.getRole()}"/></li>
                                                 <hr>
@@ -290,7 +295,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
                                                    role="tab"
-                                                   aria-controls="home" aria-selected="true">Home</a>
+                                                   aria-controls="home" aria-selected="true">User orders</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
@@ -305,7 +310,29 @@
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                                 aria-labelledby="home-tab"><h1>tab1</h1></div>
+                                                 aria-labelledby="home-tab">
+
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>order Id</th>
+                                                        <th>sum</th>
+                                                        <th>order list</th>
+                                                        <th>status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <c:forEach var="order" items="${requestScope.orders}">
+                                                        <tr>
+                                                            <td><c:out value="${order.getId()}"/></td>
+                                                            <td><c:out value="${order.getOrderPrice()}"/></td>
+                                                            <td><c:out value="${order.getOrderList()}"/></td>
+                                                            <td><c:out value="${order.getStatus()}"/></td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <div class="tab-pane fade" id="profile" role="tabpanel"
                                                  aria-labelledby="profile-tab">
                                                 <h1>tab2</h1></div>
