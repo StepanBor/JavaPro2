@@ -51,15 +51,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="BookItem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/BookItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="37">
+              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
               <folding>
-                <element signature="e#2375#2376#0" expanded="true" />
+                <element signature="e#2361#2362#0" expanded="true" />
                 <element signature="e#2409#2410#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adminPage.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/adminPage.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2178" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestDataBean.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/TestDataBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-154">
+              <caret line="47" column="30" lean-forward="true" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryItem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/CategoryItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -67,7 +92,7 @@
       <file leaf-file-name="Publisher.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/Publisher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="330">
               <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -76,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CategoryItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/CategoryItem.java">
+      <file leaf-file-name="ClientGroup.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/ClientGroup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+            <state relative-caret-position="46">
+              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -94,67 +119,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StorageBooks.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/StorageBooks.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DAO/ClientDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-              <folding>
-                <element signature="e#1251#1252#0" expanded="true" />
-                <element signature="e#1279#1280#0" expanded="true" />
-                <element signature="e#1541#1542#0" expanded="true" />
-                <element signature="e#1569#1570#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BookServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/BookServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="197">
               <caret line="51" selection-start-line="51" selection-end-line="51" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1238#1239#0" expanded="true" />
-                <element signature="e#1283#1284#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/ClientServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+      <file leaf-file-name="client1" pinned="false" current-in-tab="false">
+        <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/client1">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CrudRepository.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.0.9.RELEASE/spring-data-commons-2.0.9.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java">
+      <file leaf-file-name="Order.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+            <state relative-caret-position="-551">
+              <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -227,8 +217,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/CategoryItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/BookItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/StorageBooks.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/TestDataBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/BookServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/TestDataBean.java" />
       </list>
     </option>
   </component>
@@ -277,7 +267,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -383,6 +372,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
@@ -468,7 +458,7 @@
       <listeners />
     </configuration>
     <configuration name="Unnamed" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.31" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="update-resources" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="unnamed">
           <settings>
@@ -579,11 +569,12 @@
       <workItem from="1535477862142" duration="7367000" />
       <workItem from="1535518825899" duration="22059000" />
       <workItem from="1535558184014" duration="45000" />
+      <workItem from="1535558306954" duration="2117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176481000" />
+    <option name="totallyTimeSpent" value="178598000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -596,30 +587,30 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="4" weight="0.32942432" />
+      <window_info anchor="right" id="Database" order="7" weight="0.14500538" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934713" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.27094668" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.37976062" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.90930504" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32979977" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22180451" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.32979977" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2094522" />
       <window_info id="Web" order="2" side_tool="true" />
-      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="8" weight="0.32979977" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32979977" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.27094668" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
@@ -640,13 +631,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.0.9.RELEASE/spring-data-commons-2.0.9.RELEASE-sources.jar!/org/springframework/data/repository/query/QueryByExampleExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="32" column="27" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.0.9.RELEASE/spring-data-commons-2.0.9.RELEASE-sources.jar!/org/springframework/data/domain/Example.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -734,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/BookService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -777,13 +754,6 @@
       </provider>
     </entry>
     <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/groupclient1">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/client1">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -860,13 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/ClientGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DAO/ClientGroupDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -902,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/category1">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/Webinitializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -920,13 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="73" column="53" lean-forward="true" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/TestDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1452">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
     </entry>
@@ -949,34 +898,10 @@
         <state relative-caret-position="638">
           <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
           <folding>
+            <element signature="e#1223#1224#0" expanded="true" />
             <element signature="e#1251#1252#0" expanded="true" />
-            <element signature="e#1279#1280#0" expanded="true" />
+            <element signature="e#1501#1502#0" expanded="true" />
             <element signature="e#1541#1542#0" expanded="true" />
-            <element signature="e#1569#1570#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/CategoryItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/books1">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/Publisher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -988,33 +913,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/BookServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/ClientServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        <state relative-caret-position="396">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/category1">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/client1">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-551">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/Publisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1238#1239#0" expanded="true" />
-            <element signature="e#1283#1284#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/ClientServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/CategoryItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+        <state relative-caret-position="307">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/BookItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="37">
+          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
           <folding>
-            <element signature="e#2375#2376#0" expanded="true" />
+            <element signature="e#2361#2362#0" expanded="true" />
             <element signature="e#2409#2410#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/adminPage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2178" />
+      </provider>
+    </entry>
+    <entry file="das://c4661bf0-1900-440f-8352-333750ba61b1/schema/bookstore/table/books1">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/model/ClientGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/BookServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/TestDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-154">
+          <caret line="47" column="30" lean-forward="true" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
         </state>
       </provider>
     </entry>
