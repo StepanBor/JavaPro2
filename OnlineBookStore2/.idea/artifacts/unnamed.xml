@@ -4,17 +4,11 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="OnlineBookStore" />
-          <element id="library" level="application" name="bootstrap" />
-          <element id="library" level="application" name="fontawesome" />
+          <element id="module-output" name="OnlineBookStore2" />
+          <element id="library" level="application" name="dataTables.bootstrap4" />
           <element id="library" level="application" name="html5shiv" />
-          <element id="library" level="application" name="jquery-3.3.1" />
-          <element id="library" level="application" name="jquery-3.3.1.slim" />
           <element id="library" level="application" name="jquery.dataTables" />
-          <element id="library" level="application" name="jquery.mCustomScrollbar.concat" />
-          <element id="library" level="application" name="popper" />
           <element id="library" level="application" name="respond" />
-          <element id="library" level="application" name="solid" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
@@ -24,7 +18,6 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.6" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.3.4" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
-          <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
           <element id="library" level="project" name="Maven: javax.activation:javax.activation-api:1.2.0" />
           <element id="library" level="project" name="Maven: javax.persistence:javax.persistence-api:2.2" />
@@ -57,7 +50,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.8.RELEASE" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="OnlineBookStore/web/Web" />
+      <element id="javaee-facet-resources" facet="OnlineBookStore2/web/Web" />
     </root>
   </artifact>
 </component>

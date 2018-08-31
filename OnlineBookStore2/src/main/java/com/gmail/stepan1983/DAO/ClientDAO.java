@@ -17,12 +17,7 @@ public interface ClientDAO extends JpaRepository<Client,Long> {
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM Client u WHERE u.login = :login")
     boolean existsByLogin(@Param("login") String login);
 
-    @Override
-    Page<Client> findAll(Pageable pageable);
 
-    @Override
-    List<Client> findAll();
 
-    @Override
-    long count();
+
 }

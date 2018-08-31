@@ -164,7 +164,7 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Id <i class="fas fa-sort-numeric-up"></i></th>
                                     <th>Login</th>
                                     <%--<th>Password</th>--%>
                                     <th>Name</th>
@@ -310,8 +310,7 @@
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                                 aria-labelledby="home-tab">
-
+                                                 aria-labelledby="home-tab" <%--style="overflow: scroll;/*width: 300px;*/height: 500px"--%>>
                                                 <table class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                     <tr>
@@ -326,7 +325,19 @@
                                                         <tr>
                                                             <td><c:out value="${order.getId()}"/></td>
                                                             <td><c:out value="${order.getOrderPrice()}"/></td>
-                                                            <td><c:out value="${order.getOrderList()}"/></td>
+                                                            <%--<td style="word-break: break-all"><c:out value="${order.getOrderList()}"/></td>--%>
+                                                            <td style="word-break: break-all">
+                                                                <div style="overflow: scroll;/*width: 300px;*/height: 100px">
+                                                                    <ul class="list-unstyled mb-4">
+                                                                        <c:forEach var="list" items="${order.getOrderList()}">
+                                                                            <li>Book name: <c:out value="${list.getBookName()}"/></li>
+                                                                            <li>Book prise: <c:out value="${list.getPrice()}"/></li>
+                                                                            <hr>
+                                                                        </c:forEach>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </td>
                                                             <td><c:out value="${order.getStatus()}"/></td>
                                                         </tr>
                                                     </c:forEach>

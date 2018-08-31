@@ -50,19 +50,21 @@ public class ControllerMain {
                             @RequestParam(required = false, defaultValue = "0") Long pageOrders) {
 
 
+        String sortBy="id";
+
         long clientNum = clientService.count();
 
         long clientPageNum = clientNum % itemsPerPage == 0
                 ? clientNum / itemsPerPage : clientNum / itemsPerPage + 1;
 
-        List<Client> clients = clientService.findAll(PageRequest.of(page, itemsPerPage));
+//        List<Client> clients = clientService.findAll(PageRequest.of(page, itemsPerPage));
+        List<Client> clients = clientService.findAll(page, itemsPerPage, sortBy, true);
 
         long clientDetailsId = (clientId == null) ? clients.get(0).getId() : clientId;
 
         Client client = clientService.getById(clientDetailsId);
 
-        List<Order> orders = orderService.findByClient(client,
-                PageRequest.of(pageOrders.intValue(), itemsPerPage,
+        List<Order> orders = orderService.findByClient(client, PageRequest.of(pageOrders.intValue(), itemsPerPage,
                         Sort.Direction.ASC, "status", "orderPrice"));
 
         model.addAttribute("clients", clients);

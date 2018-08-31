@@ -19,6 +19,7 @@ import java.util.Optional;
 @Service
 public class ClientServiceImpl implements ClientService {
 
+
     @PersistenceContext
     EntityManager entityManager;
 
@@ -54,6 +55,22 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public List<Client> findAll(Pageable pageable) {
 
+        boolean sortDirection;
+
+        return clientDAO.findAll(pageable).getContent();
+    }
+
+    @Transactional
+    @Override
+    public List<Client> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection){
+
+        boolean sortDirect=sortDirection;
+
+        Sort sort=new Sort(sortDirect?Sort.Direction.ASC:Sort.Direction.DESC,sortBy);
+
+        Pageable pageable=PageRequest.of(page,itemsPerPage,sort);
+
+
         return clientDAO.findAll(pageable).getContent();
     }
 
@@ -71,4 +88,6 @@ public class ClientServiceImpl implements ClientService {
 
         return optionalClient.get();
     }
+
+
 }

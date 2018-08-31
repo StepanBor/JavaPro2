@@ -15,7 +15,7 @@ public class Order {
     private long id;
 
 //    @OneToMany
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="Orders_books", joinColumns = {@JoinColumn(name="orderId")},inverseJoinColumns = {@JoinColumn(name="id")})
     private List<BookItem> orderList;
 

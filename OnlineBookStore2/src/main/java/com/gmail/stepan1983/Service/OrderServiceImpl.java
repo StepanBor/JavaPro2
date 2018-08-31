@@ -85,15 +85,14 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = true)
     public List<Order> findByClient(Client client, Pageable pageable) {
 
-        Order exampleObj=new Order();
-        exampleObj.setClient(client);
-        Example<Order> orderExample=Example.of(exampleObj);
+//        Order exampleObj=new Order();
+//        exampleObj.setStatus("Processed");
+//        Example<Order> orderExample=Example.of(exampleObj);
+//        TypedQuery<Order> query=entityManager.createQuery
+//                ("SELECT o FROM Order o WHERE o.client= :client ORDER BY o.orderPrice DESC ",Order.class);
+//        query.setParameter("client",client);
 
-        TypedQuery<Order> query=entityManager.createQuery
-                ("SELECT o FROM Order o WHERE o.client= :client ORDER BY o.orderPrice DESC ",Order.class);
-        query.setParameter("client",client);
-//        return oredrDAO.findAll(orderExample);
-        return query.getResultList();
+        return oredrDAO.findByClient(client,pageable).getContent();
     }
 
     @Override

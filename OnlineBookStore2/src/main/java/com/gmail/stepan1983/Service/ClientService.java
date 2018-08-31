@@ -20,5 +20,7 @@ public interface ClientService {
 
     List<Client> findAll();
 
+    List<Client> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection);
+
     long count();
 }
