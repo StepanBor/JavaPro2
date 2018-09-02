@@ -105,10 +105,12 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th><a href="/clientPage?sortBy=id&changeSortDirect=1"> Photo Id <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/clientPage?sortBy=id&changeSortDirect=1"> Photo Id <i
+                                            class="fas fa-sort"></i></a></th>
                                     <th><a href="#"> Preview </a></th>
                                     <th><a href="#"> Published by user </a></th>
-                                    <th><a href="/clientPage?sortBy=publishDate&changeSortDirect=1"> Publish date <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/clientPage?sortBy=publishDate&changeSortDirect=1"> Publish date <i
+                                            class="fas fa-sort"></i></a></th>
                                     <th>View details</th>
                                 </tr>
                                 </thead>
@@ -117,7 +119,8 @@
                                     <c:forEach var="photos" items="${requestScope.photos}">
                                         <tr>
                                             <td><c:out value="${photos.getId()}"/></td>
-                                            <td><img height="50" width="55" src="/photo/<c:url value="${photos.getId()}"/>"></td>
+                                            <td><img height="50" width="55"
+                                                     src="/photo/<c:url value="${photos.getId()}"/>"></td>
                                             <td><c:out value="${photos.getClient().getLogin()}"/></td>
                                             <td><c:out value="${photos.getPublishDate()}"/></td>
                                             <td>
@@ -197,7 +200,8 @@
                                                  width="100px"
                                                  height="100px"/>
                                             <ol class="list-unstyled mb-4">
-                                                <li>Login: <c:out value="${requestScope.clientDetails.getLogin()}"/></li>
+                                                <li>Login: <c:out
+                                                        value="${requestScope.clientDetails.getLogin()}"/></li>
                                                 <hr>
                                                 <li>Name: <c:out value="${requestScope.clientDetails.getName()}"/></li>
                                                 <hr>
@@ -226,25 +230,28 @@
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                                 aria-labelledby="home-tab" <%--style="overflow: scroll;/*width: 300px;*/height: 500px"--%>>
-                                                <table class="table table-striped table-bordered table-hover">
-                                                    <thead>
-                                                    <tr>
-                                                        <%--<th>photo Id</th>--%>
-                                                        <th>User photos</th>
-                                                        <%--<th>publishDate</th>--%>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <%--<c:forEach var="clientPhoto" items="${requestScope.clientDetails.clientPhoto}">--%>
+                                                 aria-labelledby="home-tab">
+                                                <div class="container-fluid">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <%--<th>photo Id</th>--%>
+                                                            <th>User photos</th>
+                                                            <%--<th>publishDate</th>--%>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <%--<c:forEach var="clientPhoto" items="${requestScope.clientDetails.clientPhoto}">--%>
                                                         <tr>
                                                             <%--<td><c:out value="${clientPhoto.getId()}"/></td>--%>
                                                             <td style="word-break: break-all">
-                                                                <div style="overflow: scroll;/*width: 300px;*/height: 100px">
+                                                                <div style="overflow: scroll;/*width: 300px;*/height: 200px">
                                                                     <ul class="list-unstyled mb-4">
-                                                                        <c:forEach var="clientPhoto" items="${requestScope.clientDetails.clientPhoto}">
-                                                                           <a href="/photo/<c:out value="${clientPhoto.getId()}"/>">
-                                                                               /photo/<c:out value="${clientPhoto.getId()}"/></a>
+                                                                        <c:forEach var="clientPhoto"
+                                                                                   items="${requestScope.clientDetails.clientPhoto}">
+                                                                            <a href="/photo/<c:out value="${clientPhoto.getId()}"/>">
+                                                                                /photo/<c:out
+                                                                                    value="${clientPhoto.getId()}"/></a>
                                                                             <hr>
                                                                         </c:forEach>
                                                                     </ul>
@@ -252,9 +259,12 @@
 
                                                             </td>
                                                         </tr>
-                                                    <%--</c:forEach>--%>
-                                                    </tbody>
-                                                </table>
+                                                        <%--</c:forEach>--%>
+                                                        </tbody>
+                                                    </table>
+                                                    <img class="img-fluid" src="/photo/<c:out value="${requestScope.photoId}"/>"
+                                                        style=" max-width: 100%; height: auto;"/>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="profile" role="tabpanel"
                                                  aria-labelledby="profile-tab">
@@ -304,6 +314,7 @@
         window.location.href = '/group_add_page';
     });
     var growth = true;
+
     function myFanction() {
         if (growth) {
             $('#sortBy').removeClass('fa-sort-numeric-up');
@@ -313,7 +324,8 @@
             $('#sortBy').removeClass('fa-sort-numeric-down');
             $('#sortBy').addClass('fa-sort-numeric-up');
             growth = true
-        }};
+        }
+    };
 
 </script>
 </body>

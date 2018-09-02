@@ -37,7 +37,7 @@ public class TestDataBean {
         for (int i = 0; i < 11; i++) {
             File file=new File( "C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\FotoSharingService2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
             avatars.add(file);
-            System.out.println(file.exists()+"WWWWWWWWWWWWWWW");
+//            System.out.println(file.exists()+"WWWWWWWWWWWWWWW");
 //            System.out.println(file.getPath()+"DDDDDDDDDDD");
         }
 
@@ -61,7 +61,7 @@ public class TestDataBean {
                     "name"+i, UserRole.CLIENT, (i < 11) ? avatars.get(i) : avatars.get(i - 11),new ArrayList<Photo>());
 
             for (int j = 0; j < i; j++) {
-                Photo photo =new Photo(client,(i < 11) ? avatars.get(i) : avatars.get(i - 11),new Date());
+                Photo photo =new Photo(client,(j < 11) ? avatars.get(j) : avatars.get(j - 11),new Date());
                 photoList.add(photo);
             }
 

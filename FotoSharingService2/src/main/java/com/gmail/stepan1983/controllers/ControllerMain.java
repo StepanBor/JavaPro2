@@ -71,6 +71,7 @@ public class ControllerMain {
         model.addAttribute("page", page);
         model.addAttribute("clientDetails", clientDetails);
         model.addAttribute("sortBy",sortBy);
+        model.addAttribute("photoId",photoId);
         return "clientPage";
     }
 
