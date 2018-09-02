@@ -36,7 +36,6 @@ public class Archive {
     public File packFile(File file) {
 
         String archName=file.getName().substring(0,file.getName().lastIndexOf(".")+1)+"zip";
-        System.out.println(archName+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         File archive=new File(archName);
 
         Path path = file.toPath();

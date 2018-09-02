@@ -64,10 +64,10 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<Client> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection){
 
-        boolean sortDirect=sortDirection;
 
-        Sort sort=new Sort(sortDirect?Sort.Direction.ASC:Sort.Direction.DESC,sortBy);
+        Sort sort=new Sort(sortDirection?Sort.Direction.ASC:Sort.Direction.DESC,sortBy);
 
+        System.out.println(sort+"WWWWWWWWWWWWWWWWWWWWWWWWW");
         Pageable pageable=PageRequest.of(page,itemsPerPage,sort);
 
 

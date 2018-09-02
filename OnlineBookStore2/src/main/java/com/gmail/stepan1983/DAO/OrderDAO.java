@@ -2,7 +2,6 @@ package com.gmail.stepan1983.DAO;
 
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
-import com.gmail.stepan1983.model.Shipment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

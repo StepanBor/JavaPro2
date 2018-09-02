@@ -164,15 +164,12 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th>Id <i class="fas fa-sort-numeric-up"></i></th>
-                                    <th>Login</th>
-                                    <%--<th>Password</th>--%>
-                                    <th>Name</th>
-                                    <%--<th>Lastname</th>--%>
-                                    <%--<th>Address</th>--%>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
+                                    <th><a href="/adminPage?sortBy=id&changeSortDirect=1" class="pr" onclick="myFanction()"> Id <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=login&changeSortDirect=1" class="pr" onclick="myFanction()"> Login <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=name&changeSortDirect=1" class="pr" onclick="myFanction()"> Name <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=phone&changeSortDirect=1" class="pr" onclick="myFanction()"> Phone <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=email&changeSortDirect=1" class="pr" onclick="myFanction()"> Email <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=role&changeSortDirect=1" class="pr" onclick="myFanction()"> Role <i class="fas fa-sort"></i></a></th>
                                     <th>View details</th>
                                 </tr>
                                 </thead>
@@ -205,14 +202,14 @@
                                         <c:when test="${requestScope.page > 0}">
                                             <li class="page-item">
                                                 <a class="page-link"
-                                                   href="/adminPage?page=<c:out value="${requestScope.page - 1}"/>">Previous</a>
+                                                   href="/adminPage?page=<c:out value="${requestScope.page - 1}"/>&sortBy=<c:out value="${sortBy}"/>">Previous</a>
                                             </li>
                                         </c:when>
 
                                         <c:otherwise>
                                             <li class="page-item disabled">
                                                 <a class="page-link"
-                                                   href="/adminPage?page=<c:out value="${requestScope.page - 1}"/>">Previous</a>
+                                                   href="/adminPage?page=<c:out value="${requestScope.page - 1}"/>&sortBy=<c:out value="${sortBy}"/>">Previous</a>
                                             </li>
                                         </c:otherwise>
                                     </c:choose>
@@ -221,13 +218,13 @@
                                         <c:choose>
                                             <c:when test="${(requestScope.page+1)==i}">
                                                 <li class="page-item active"><a class="page-link"
-                                                                                href="/adminPage?page=<c:out value="${i - 1}"/>"><c:out
+                                                                                href="/adminPage?page=<c:out value="${i - 1}"/>&sortBy=<c:out value="${sortBy}"/>"><c:out
                                                         value="${i}"/></a></li>
                                             </c:when>
                                             <c:otherwise>
                                                 <%--<li><a href="></a></li>--%>
                                                 <li class="page-item"><a class="page-link"
-                                                                         href="/adminPage?page=<c:out value="${i - 1}"/>"><c:out
+                                                                         href="/adminPage?page=<c:out value="${i - 1}"/>&sortBy=<c:out value="${sortBy}"/>"><c:out
                                                         value="${i}"/></a></li>
                                             </c:otherwise>
                                         </c:choose>
@@ -236,14 +233,14 @@
                                         <c:when test="${requestScope.page < requestScope.clientsPagesNum-1}">
                                             <li class="page-item">
                                                 <a class="page-link"
-                                                   href="/adminPage?page=<c:out value="${requestScope.page + 1}"/>">Next</a>
+                                                   href="/adminPage?page=<c:out value="${requestScope.page + 1}"/>&sortBy=<c:out value="${sortBy}"/>">Next</a>
                                             </li>
                                         </c:when>
 
                                         <c:otherwise>
                                             <li class="page-item disabled">
                                                 <a class="page-link"
-                                                   href="/adminPage?page=<c:out value="${requestScope.page + 1}"/>">Next</a>
+                                                   href="/adminPage?page=<c:out value="${requestScope.page + 1}"/>&sortBy=<c:out value="${sortBy}"/>">Next</a>
                                             </li>
                                         </c:otherwise>
                                     </c:choose>
@@ -391,6 +388,18 @@
     $('#add_group').click(function () {
         window.location.href = '/group_add_page';
     });
+    var growth = true;
+    function myFanction() {
+        if (growth) {
+            $('#sortBy').removeClass('fa-sort-numeric-up');
+            $('#sortBy').addClass('fa-sort-numeric-down');
+            growth = false
+        } else {
+            $('#sortBy').removeClass('fa-sort-numeric-down');
+            $('#sortBy').addClass('fa-sort-numeric-up');
+            growth = true
+        }};
+
 </script>
 </body>
 </html>

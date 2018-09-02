@@ -26,6 +26,7 @@ import java.util.List;
 public class ControllerMain {
 
 //    private static final int ITEMS_PER_PAGE = 6;
+    private static boolean sortDirection;
 
     @Autowired
     ClientService clientService;
@@ -47,18 +48,24 @@ public class ControllerMain {
     public String adminPage(Model model, @RequestParam(required = false, defaultValue = "0") Integer page,
                             @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                             @RequestParam(required = false) Long clientId,
-                            @RequestParam(required = false, defaultValue = "0") Long pageOrders) {
+                            @RequestParam(required = false, defaultValue = "0") Long pageOrders,
+                            @RequestParam(required = false, defaultValue="id")String sortBy,
+                            @RequestParam(required = false, defaultValue = "0")Integer changeSortDirect) {
 
 
-        String sortBy="id";
 
+        if(changeSortDirect==1){
+            sortDirection=!sortDirection;
+        }
+
+        System.out.println(sortDirection+"  in CONTROLLER");
         long clientNum = clientService.count();
 
         long clientPageNum = clientNum % itemsPerPage == 0
                 ? clientNum / itemsPerPage : clientNum / itemsPerPage + 1;
 
 //        List<Client> clients = clientService.findAll(PageRequest.of(page, itemsPerPage));
-        List<Client> clients = clientService.findAll(page, itemsPerPage, sortBy, true);
+        List<Client> clients = clientService.findAll(page, itemsPerPage, sortBy, sortDirection);
 
         long clientDetailsId = (clientId == null) ? clients.get(0).getId() : clientId;
 
@@ -72,6 +79,7 @@ public class ControllerMain {
         model.addAttribute("page", page);
         model.addAttribute("clientDetails", client);
         model.addAttribute("orders",orders);
+        model.addAttribute("sortBy",sortBy);
         System.out.println();
         System.out.println(orders);
         System.out.println(client);
