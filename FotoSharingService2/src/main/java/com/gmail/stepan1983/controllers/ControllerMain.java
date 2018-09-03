@@ -1,5 +1,6 @@
 package com.gmail.stepan1983.controllers;
 
+import com.gmail.stepan1983.config.EmailServiceImpl;
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Photo;
 import com.gmail.stepan1983.service.ClientService;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.io.*;
 import java.util.List;
 
@@ -27,6 +29,9 @@ public class ControllerMain {
 
     @Autowired
     PhotoService photoService;
+
+    @Autowired
+    EmailServiceImpl emailService;
 
     @RequestMapping("/")
     public String indexPage() {
@@ -43,13 +48,12 @@ public class ControllerMain {
                             @RequestParam(required = false, defaultValue = "10") Integer itemsPerPage,
                             @RequestParam(required = false) Long photoId,
                             @RequestParam(required = false, defaultValue = "0") Long pageOrders,
-                            @RequestParam(required = false, defaultValue="id")String sortBy,
-                            @RequestParam(required = false, defaultValue = "0")Integer changeSortDirect) {
+                            @RequestParam(required = false, defaultValue = "id") String sortBy,
+                            @RequestParam(required = false, defaultValue = "0") Integer changeSortDirect) {
 
 
-
-        if(changeSortDirect==1){
-            sortDirection=!sortDirection;
+        if (changeSortDirect == 1) {
+            sortDirection = !sortDirection;
         }
 
         long photoNum = photoService.count();
@@ -65,13 +69,12 @@ public class ControllerMain {
         Client clientDetails = photoService.findFotoById(photoDetailsId).getClient();
 
 
-
         model.addAttribute("photos", photos);
         model.addAttribute("photoPagesNum", photoPageNum);
         model.addAttribute("page", page);
         model.addAttribute("clientDetails", clientDetails);
-        model.addAttribute("sortBy",sortBy);
-        model.addAttribute("photoId",photoId);
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("photoId", photoId == null ? photos.get(0).getId() : photoId);
         return "clientPage";
     }
 
@@ -89,6 +92,7 @@ public class ControllerMain {
         return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
 
     }
+
     @RequestMapping("/avatar/{photoId}")
     public ResponseEntity<byte[]> getAvatarBytes(@PathVariable("photoId") long id) {
 
@@ -103,7 +107,37 @@ public class ControllerMain {
 
     }
 
-    public byte[] getBytesFromFile(File file){
+    @RequestMapping("/sendEmail")
+    public void sendEmail(@RequestParam String toClient,
+                          @RequestParam(defaultValue = "Message from photo sharing system") String subject,
+                          @RequestParam String text,
+                          @RequestParam(required = false) File file) {
+
+        System.out.println(toClient);
+        System.out.println(subject);
+        System.out.println(text);
+
+        if (file == null) {
+            emailService.sendSimpleMessage(toClient, subject, text);
+        } else {
+            emailService.sendMessageWithAttachment(toClient,subject,text,file);
+        }
+    }
+
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+
+    @RequestMapping("/createAccaunt")
+    public String createAccaunt(){
+
+
+        return null;
+    }
+
+    public byte[] getBytesFromFile(File file) {
         byte[] bytes = null;
         byte[] buffer = new byte[(int) file.length()];
         try (InputStream in = new FileInputStream(file); ByteArrayOutputStream baos = new ByteArrayOutputStream()) {

@@ -35,7 +35,9 @@ public class TestDataBean {
         /* get avatars*/
         List<File> avatars = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
-            File file=new File( "C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\FotoSharingService2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
+//            File file=new File( "C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\FotoSharingService2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
+            File file=new File( "C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\FotoSharingService2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
+
             avatars.add(file);
 //            System.out.println(file.exists()+"WWWWWWWWWWWWWWW");
 //            System.out.println(file.getPath()+"DDDDDDDDDDD");

@@ -26,6 +26,8 @@ public class Client {
 
     private File avatar;
 
+    Long aLong;
+
     @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Photo> clientPhoto;
 

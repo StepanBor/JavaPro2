@@ -66,23 +66,13 @@
 
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Page</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Page</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Page</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user-shield"></i> Admin profile
+                            <i class="fas fa-user-shield"></i> Cabinet profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> User profile</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i> Settings</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i>Cabinet</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
@@ -215,12 +205,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
                                                    role="tab"
-                                                   aria-controls="home" aria-selected="true">User orders</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-                                                   role="tab"
-                                                   aria-controls="profile" aria-selected="false">Profile</a>
+                                                   aria-controls="home" aria-selected="true">User photos</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
@@ -232,56 +217,55 @@
                                             <div class="tab-pane fade show active" id="home" role="tabpanel"
                                                  aria-labelledby="home-tab">
                                                 <div class="container-fluid">
-                                                    <table class="table table-striped table-bordered table-hover">
-                                                        <thead>
-                                                        <tr>
-                                                            <%--<th>photo Id</th>--%>
-                                                            <th>User photos</th>
-                                                            <%--<th>publishDate</th>--%>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <%--<c:forEach var="clientPhoto" items="${requestScope.clientDetails.clientPhoto}">--%>
-                                                        <tr>
-                                                            <%--<td><c:out value="${clientPhoto.getId()}"/></td>--%>
-                                                            <td style="word-break: break-all">
-                                                                <div style="overflow: scroll;/*width: 300px;*/height: 200px">
-                                                                    <ul class="list-unstyled mb-4">
-                                                                        <c:forEach var="clientPhoto"
-                                                                                   items="${requestScope.clientDetails.clientPhoto}">
-                                                                            <a href="/photo/<c:out value="${clientPhoto.getId()}"/>">
-                                                                                /photo/<c:out
-                                                                                    value="${clientPhoto.getId()}"/></a>
-                                                                            <hr>
-                                                                        </c:forEach>
-                                                                    </ul>
-                                                                </div>
-
-                                                            </td>
-                                                        </tr>
-                                                        <%--</c:forEach>--%>
-                                                        </tbody>
-                                                    </table>
-                                                    <img class="img-fluid" src="/photo/<c:out value="${requestScope.photoId}"/>"
-                                                        style=" max-width: 100%; height: auto;"/>
+                                                    <div style="overflow: scroll;/*width: 300px;*/height: 200px">
+                                                        <ul class="list-unstyled mb-4">
+                                                            <c:forEach var="clientPhoto"
+                                                                       items="${requestScope.clientDetails.clientPhoto}">
+                                                                <a href="/photo/<c:out value="${clientPhoto.getId()}"/>">
+                                                                    /photo/<c:out
+                                                                        value="${clientPhoto.getId()}"/></a>
+                                                                <hr>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="profile" role="tabpanel"
-                                                 aria-labelledby="profile-tab">
-                                                <h1>tab2</h1></div>
-                                            <div class="tab-pane fade" id="contact" role="tabpanel"
-                                                 aria-labelledby="contact-tab">
-                                                <h1>tab3</h1></div>
+                                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                                <form action="/sendEmail" method="post">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email address</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                                               aria-describedby="emailHelp" placeholder="<c:out value="${requestScope.clientDetails.getEmail()}"/>" readonly
+                                                        name="toClient" value="<c:out value="${requestScope.clientDetails.getEmail()}"/>">
+                                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="subjectId">Subject</label>
+                                                        <input type="text" class="form-control" id="subjectId"
+                                                               aria-describedby="emailHelp" placeholder="Subject" name="subject">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Message</label>
+                                                        <textarea class="form-control" id="exampleInputPassword1" placeholder="Enter message here" name="text"></textarea>
+                                                        <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">--%>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Send email</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <img class="img-fluid img-thumbnail mx-auto d-block"
+                                         src="/photo/<c:out value="${requestScope.photoId}"/>"
+                                         style=" max-width: 100%; height: auto;"/>
+                                </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>

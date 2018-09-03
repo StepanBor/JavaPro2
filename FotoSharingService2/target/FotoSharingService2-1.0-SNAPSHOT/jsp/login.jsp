@@ -75,7 +75,7 @@
                             <%--</div>--%>
                             <!-- Change this to a button or input when using this as a form -->
                             <input type="submit" class="btn btn-lg btn-success btn-block">
-                            <%--<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>--%>
+                            <a href="/register" class="btn btn-lg btn-success btn-block">Register</a>
                         </fieldset>
                     </form>
                 </div>
