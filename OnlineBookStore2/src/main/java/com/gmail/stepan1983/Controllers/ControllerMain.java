@@ -3,7 +3,9 @@ package com.gmail.stepan1983.Controllers;
 import com.gmail.stepan1983.Service.ClientService;
 import com.gmail.stepan1983.Service.OrderService;
 import com.gmail.stepan1983.model.Client;
+import com.gmail.stepan1983.model.ClientGroup;
 import com.gmail.stepan1983.model.Order;
+import com.gmail.stepan1983.model.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -112,5 +115,23 @@ public class ControllerMain {
 
         return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
 
+    }
+
+    @RequestMapping("/createAccaunt")
+    public String createAccaunt(Model model,
+                                @RequestParam(required = false) String login,
+                                @RequestParam(required = false) String email,
+                                @RequestParam(required = false) String password,
+                                @RequestParam(required = false) String phone,
+                                @RequestParam(required = false) String name,
+                                @RequestParam(required = false) String lastname,
+                                @RequestParam(required = false) MultipartFile avatar){
+
+        if(login!=null){
+            Client client=new Client(login,password,email,phone,null,name,lastname,UserRole.CUSTOMER,new ClientGroup(),avatar);
+
+            return "login";
+        }
+        return "register";
     }
 }

@@ -23,23 +23,14 @@
 
     <!-- Bootstrap Core CSS -->
 
-    <link href="<c:url value="/static/vendor/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="<c:url value="/static/CSS/bootstrap.min.css"/>" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="<c:url value= "/static/vendor/metisMenu/metisMenu.min.css" />" rel="stylesheet">
+    <!-- Font Awesome JS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-    <!-- Custom CSS -->
-    <link href= "<c:url value="/static/dist/css/sb-admin-2.css"/>" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="<c:url value="/static/vendor/font-awesome/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <%--<img height="50" width="55" src="<c:url value="/static/logo.png"/>"/><a href="/">Contacts List</a>--%>
@@ -54,12 +45,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Please Sign In</h3>
+        <div class="col-md-4 offset-md-4" style="margin-top: 100px">
+            <div class="card bg-light border-primary mb-3">
+                <div class="card-header border-primary mb-3">
+                    <h3>Please Sign In</h3>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <form role="form" action="/fromForm" method="post">
                         <fieldset>
                             <div class="form-group">
@@ -74,27 +65,27 @@
                                 <%--</label>--%>
                             <%--</div>--%>
                             <!-- Change this to a button or input when using this as a form -->
-                            <input type="submit" class="btn btn-lg btn-success btn-block">
+                            <input type="submit" class="btn btn-lg btn-primary btn-block">
                             <%--<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>--%>
                         </fieldset>
                     </form>
+                    <div class="text-center">
+                        <a class="d-block small mt-3" href="/createAccaunt">Create accaunt</a>
+                        <a class="d-block small" href="/forgotPassword">Forgot Password?</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="<c:url value="/static/vendor/jquery/jquery.min.js"/>"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="<c:url value="/static/vendor/bootstrap/js/bootstrap.min.js"/>"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<c:url value="/static/vendor/metisMenu/metisMenu.min.js"/>"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="<c:url value="/static/dist/js/sb-admin-2.js"/>"></script>
+<%--bootstrap js--%>
+<script src="<c:url value="/static/script/bootstrap.min.js"/>"></script>
 
 </body>
 </html>
