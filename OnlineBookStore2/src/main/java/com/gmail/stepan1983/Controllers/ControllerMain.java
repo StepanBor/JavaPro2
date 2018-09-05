@@ -140,11 +140,17 @@ public class ControllerMain {
         if (login != null) {
 
             File avatar = null;
+
+            System.out.println((multipartFile != null)+"WWWWWWWWW");
             if (multipartFile != null) {
 
                 avatar = new File(multipartFile.getOriginalFilename());
-                try {
-                    multipartFile.transferTo(avatar);
+                try(FileOutputStream fos=new FileOutputStream(avatar)){
+
+                    fos.write(multipartFile.getBytes());
+                    System.out.println(multipartFile.getOriginalFilename()+"WWWWWW");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -152,11 +158,9 @@ public class ControllerMain {
 
             if (!clientService.existsByLogin(login)) {
 
-                ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
 
-                Client client = new Client(login, password, email, phone, adress, name, lastname, UserRole.CUSTOMER, clientGroup, avatar);
+                Client client = new Client(login, password, email, phone, adress, name, lastname, UserRole.CUSTOMER, null, avatar);
 
-                clientGroup.getClients().add(client);
                 clientService.addClient(client);
 
                 return "login";

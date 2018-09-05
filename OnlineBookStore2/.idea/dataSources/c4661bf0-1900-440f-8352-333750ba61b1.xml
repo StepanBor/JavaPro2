@@ -13,7 +13,7 @@
     <schema id="3" parent="1" name="apartment">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="4" parent="1" name="bank">
+    <schema id="4" parent="1" name="archivator">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
     <schema id="5" parent="1" name="bookstore">
@@ -21,49 +21,49 @@
       <Visible>1</Visible>
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="6" parent="1" name="contacts">
+    <schema id="6" parent="1" name="bookstoreprobe">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="7" parent="1" name="fotosharing">
+    <schema id="7" parent="1" name="contacts">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="8" parent="1" name="information_schema">
+    <schema id="8" parent="1" name="fotosharing">
+      <Collation>utf8mb4_0900_ai_ci</Collation>
+    </schema>
+    <schema id="9" parent="1" name="information_schema">
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="9" parent="1" name="menu_restoran">
+    <schema id="10" parent="1" name="menu_restoran">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="10" parent="1" name="mycontacts">
+    <schema id="11" parent="1" name="mycontacts">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="11" parent="1" name="mysql">
+    <schema id="12" parent="1" name="mysql">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="12" parent="1" name="performance_schema">
+    <schema id="13" parent="1" name="orders">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="13" parent="1" name="prog">
+    <schema id="14" parent="1" name="performance_schema">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="14" parent="1" name="restmenu">
+    <schema id="15" parent="1" name="prog">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="15" parent="1" name="sakila">
+    <schema id="16" parent="1" name="restmenu">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="16" parent="1" name="students">
+    <schema id="17" parent="1" name="students">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="17" parent="1" name="sys">
+    <schema id="18" parent="1" name="sys">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="18" parent="1" name="test290518">
-      <Collation>utf8_bin</Collation>
-    </schema>
-    <schema id="19" parent="1" name="testsec">
+    <schema id="19" parent="1" name="testclasswork">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="20" parent="1" name="world">
+    <schema id="20" parent="1" name="testsec">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
     <collation id="21" parent="1" name="armscii8_bin">

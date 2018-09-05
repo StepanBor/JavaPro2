@@ -34,11 +34,20 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public Client addClient(Client client) {
 
-        List<ClientGroup> clientGroups=clientGroupService.findAll();
 
-        for (ClientGroup clientGroup : clientGroups) {
-            System.out.println(entityManager.contains(clientGroup)+"WWWWWWWWWWWWWWWWWWWW");
+        ClientGroup clientGroup=clientGroupService.findByGroupName("customers");
+
+        if(client.getClientGroup()!=null) {
+
+            clientGroup = clientGroupService.findByGroupName(client.getClientGroup().getGroupName());
+
+            if(clientGroup==null){
+                clientGroup=clientGroupService.findByGroupName("customers");
+            }
+
         }
+
+        client.setClientGroup(clientGroup);
 
         return entityManager.merge(client);
 //        return  clientDAO.save(client);

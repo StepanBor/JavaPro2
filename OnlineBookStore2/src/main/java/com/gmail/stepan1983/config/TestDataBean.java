@@ -89,60 +89,54 @@ public class TestDataBean {
                 "phone2", "Adress2", "name2", "lastname2", UserRole.ADMIN, clientGroup2, avatars.get(1));
 
 
-//        clientGroup1=clientGroupService.addClientGroup(clientGroup1);
-//        clientGroup2=clientGroupService.addClientGroup(clientGroup2);
+        clientGroup1=clientGroupService.addClientGroup(clientGroup1);
+        clientGroup2=clientGroupService.addClientGroup(clientGroup2);
         clientService.addClient(client1);
         clientService.addClient(client2);
 
 
-//        CategoryItem categoryItem = new CategoryItem("Category1", "category1 description", new ArrayList<BookItem>());
-//        Publisher publisher = new Publisher("Publisher1", "Publisher1 adress",
-//                "Publisher1 Description", new ArrayList<BookItem>());
-//        Stock stock1 = new Stock("Stock1 adress", "Stock1 phone");
-//
-//        List<BookItem> orderList=new ArrayList<>();
-//
-//        categoryDAO.save(categoryItem);
-//        stockDAO.save(stock1);
-//        publisherDAO.save(publisher);
-//
-//        for (int i = 0; i < 19; i++) {
-//            /*create books*/
-//            StorageBooks storageBooks=new StorageBooks(null, stock1, 10L);
-//
-//            BookItem book = new BookItem("name" + i, "description" + i, "Author" + i, publisher,
-//                    categoryItem, 100.0, storageBooks, image);
-//
-//            storageBooks.setBook(book);
-//
-//            book=bookService.addBookItem(book);
-////            bookDAO.save(book);
-//
-//
-//            /*create clients*/
-//            Client client = new Client("login" + i, encoder.encodePassword("Password" + i, null), "email" + i + "@com",
-//                    "phone" + i, "Adress" + i, "name" + i, "lastname" + i, UserRole.CUSTOMER, clientGroup2,
-//                    (i < 11) ? avatars.get(i) : avatars.get(i - 11));
-//
-//
-//
-//
-//
-//            clientGroup2.getClients().add(client);
-//
-//            client = clientService.addClient(client);
-//
-//            /*create orders*/
-//            orderList.add(book);
-//
-//            Shipment shipment=new Shipment("shipment adress"+i, "processed", null);
-//            Order order=new Order(orderList,client,shipment,"Processed",new Date());
-//            shipment.setOrder(order);
-//            orderService.addOrder(order);
-//            Order order2=new Order(orderList,client,shipment,"Processed",new Date());
-//            orderService.addOrder(order2);
-//
-//        }
+        CategoryItem categoryItem = new CategoryItem("Category1", "category1 description", new ArrayList<BookItem>());
+        Publisher publisher = new Publisher("Publisher1", "Publisher1 adress",
+                "Publisher1 Description", new ArrayList<BookItem>());
+        Stock stock1 = new Stock("Stock1 adress", "Stock1 phone");
+
+        List<BookItem> orderList=new ArrayList<>();
+
+        categoryDAO.save(categoryItem);
+        stockDAO.save(stock1);
+        publisherDAO.save(publisher);
+
+        for (int i = 0; i < 19; i++) {
+            /*create books*/
+            StorageBooks storageBooks=new StorageBooks(null, stock1, 10L);
+
+            BookItem book = new BookItem("name" + i, "description" + i, "Author" + i, publisher,
+                    categoryItem, 100.0, storageBooks, image);
+
+            storageBooks.setBook(book);
+
+            book=bookService.addBookItem(book);
+//            bookDAO.save(book);
+
+            /*create clients*/
+            Client client = new Client("login" + i, encoder.encodePassword("Password" + i, null), "email" + i + "@com",
+                    "phone" + i, "Adress" + i, "name" + i, "lastname" + i, UserRole.CUSTOMER, clientGroup1,
+                    (i < 11) ? avatars.get(i) : avatars.get(i - 11));
+
+
+            client = clientService.addClient(client);
+
+            /*create orders*/
+            orderList.add(book);
+
+            Shipment shipment=new Shipment("shipment adress"+i, "processed", null);
+            Order order=new Order(orderList,client,shipment,"Processed",new Date());
+            shipment.setOrder(order);
+            orderService.addOrder(order);
+            Order order2=new Order(orderList,client,shipment,"Processed",new Date());
+            orderService.addOrder(order2);
+
+        }
 
 //        List<Client> clientList=clientService.findAll();
 //
