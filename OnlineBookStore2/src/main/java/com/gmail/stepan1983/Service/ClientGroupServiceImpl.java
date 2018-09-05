@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 @Service
 public class ClientGroupServiceImpl implements ClientGroupService {
@@ -16,11 +18,15 @@ public class ClientGroupServiceImpl implements ClientGroupService {
     @Autowired
     ClientGroupDAO clientGroupDAO;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     @Override
     @Transactional
     public ClientGroup addClientGroup(ClientGroup clientGroup) {
 
-        return clientGroupDAO.save(clientGroup);
+//        return clientGroupDAO.save(clientGroup);
+        return entityManager.merge(clientGroup);
     }
 
     @Override
@@ -74,4 +80,7 @@ public class ClientGroupServiceImpl implements ClientGroupService {
     public ClientGroup findByGroupName(String clientGroupName) {
         return clientGroupDAO.findByGroupName(clientGroupName);
     }
+
+
+
 }

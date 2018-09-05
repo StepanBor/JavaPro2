@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,7 +30,7 @@ import java.util.List;
 @Controller
 public class ControllerMain {
 
-//    private static final int ITEMS_PER_PAGE = 6;
+    //    private static final int ITEMS_PER_PAGE = 6;
     private static boolean sortDirection;
 
     @Autowired
@@ -56,16 +57,15 @@ public class ControllerMain {
                             @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                             @RequestParam(required = false) Long clientId,
                             @RequestParam(required = false, defaultValue = "0") Long pageOrders,
-                            @RequestParam(required = false, defaultValue="id")String sortBy,
-                            @RequestParam(required = false, defaultValue = "0")Integer changeSortDirect) {
+                            @RequestParam(required = false, defaultValue = "id") String sortBy,
+                            @RequestParam(required = false, defaultValue = "0") Integer changeSortDirect) {
 
 
-
-        if(changeSortDirect==1){
-            sortDirection=!sortDirection;
+        if (changeSortDirect == 1) {
+            sortDirection = !sortDirection;
         }
 
-        System.out.println(sortDirection+"  in CONTROLLER");
+        System.out.println(sortDirection + "  in CONTROLLER");
         long clientNum = clientService.count();
 
         long clientPageNum = clientNum % itemsPerPage == 0
@@ -79,14 +79,14 @@ public class ControllerMain {
         Client client = clientService.getById(clientDetailsId);
 
         List<Order> orders = orderService.findByClient(client, PageRequest.of(pageOrders.intValue(), itemsPerPage,
-                        Sort.Direction.ASC, "status", "orderPrice"));
+                Sort.Direction.ASC, "status", "orderPrice"));
 
         model.addAttribute("clients", clients);
         model.addAttribute("clientsPagesNum", clientPageNum);
         model.addAttribute("page", page);
         model.addAttribute("clientDetails", client);
-        model.addAttribute("orders",orders);
-        model.addAttribute("sortBy",sortBy);
+        model.addAttribute("orders", orders);
+        model.addAttribute("sortBy", sortBy);
         System.out.println();
         System.out.println(orders);
         System.out.println(client);
@@ -121,33 +121,51 @@ public class ControllerMain {
 
     }
 
-    @RequestMapping("/createAccaunt")
-    public String createAccaunt(Model model,
-                                @RequestParam(required = false) String login,
-                                @RequestParam(required = false) String password,
-                                @RequestParam(required = false) String email,
-                                @RequestParam(required = false) String phone,
-                                @RequestParam(required = false) String adress,
-                                @RequestParam(required = false) String name,
-                                @RequestParam(required = false) String lastname,
-                                @RequestParam(required = false) MultipartFile multipartFile){
-
-        if(login!=null){
-            File avatar=new File(multipartFile.getOriginalFilename());
-            try {
-                multipartFile.transferTo(avatar);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            ClientGroup clientGroup=clientGroupService.findByGroupName("customers");
-
-            Client client=new Client(login,password,email,phone,adress,name,lastname,UserRole.CUSTOMER,clientGroup,avatar);
-
-            clientService.addClient(client);
-
-            return "login";
-        }
+    @RequestMapping(value = "/createAccaunt")
+    public String createAccaunt() {
         return "register";
     }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String createClient(Model model,
+                               @RequestParam(required = false, value = "login") String login,
+                               @RequestParam(required = false) String password,
+                               @RequestParam(required = false) String email,
+                               @RequestParam(required = false) String phone,
+                               @RequestParam(required = false) String adress,
+                               @RequestParam(required = false) String name,
+                               @RequestParam(required = false) String lastname,
+                               @RequestParam(required = false) MultipartFile multipartFile) {
+
+        if (login != null) {
+
+            File avatar = null;
+            if (multipartFile != null) {
+
+                avatar = new File(multipartFile.getOriginalFilename());
+                try {
+                    multipartFile.transferTo(avatar);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (!clientService.existsByLogin(login)) {
+
+                ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
+
+                Client client = new Client(login, password, email, phone, adress, name, lastname, UserRole.CUSTOMER, clientGroup, avatar);
+
+                clientGroup.getClients().add(client);
+                clientService.addClient(client);
+
+                return "login";
+            }
+        }
+        String wrongLogin="Wrong login";
+        model.addAttribute("wrongLofin", wrongLogin);
+        return "register";
+    }
+
+
 }

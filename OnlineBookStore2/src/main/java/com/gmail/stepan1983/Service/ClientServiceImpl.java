@@ -2,6 +2,7 @@ package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.DAO.ClientDAO;
 import com.gmail.stepan1983.model.Client;
+import com.gmail.stepan1983.model.ClientGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,11 +27,21 @@ public class ClientServiceImpl implements ClientService {
     @Autowired
     ClientDAO clientDAO;
 
+    @Autowired
+    ClientGroupService clientGroupService;
+
     @Override
     @Transactional
     public Client addClient(Client client) {
-//        clientDAO.save(client);
+
+        List<ClientGroup> clientGroups=clientGroupService.findAll();
+
+        for (ClientGroup clientGroup : clientGroups) {
+            System.out.println(entityManager.contains(clientGroup)+"WWWWWWWWWWWWWWWWWWWW");
+        }
+
         return entityManager.merge(client);
+//        return  clientDAO.save(client);
     }
 
     @Override
@@ -67,7 +78,6 @@ public class ClientServiceImpl implements ClientService {
 
         Sort sort=new Sort(sortDirection?Sort.Direction.ASC:Sort.Direction.DESC,sortBy);
 
-        System.out.println(sort+"WWWWWWWWWWWWWWWWWWWWWWWWW");
         Pageable pageable=PageRequest.of(page,itemsPerPage,sort);
 
 
@@ -89,5 +99,8 @@ public class ClientServiceImpl implements ClientService {
         return optionalClient.get();
     }
 
-
+    @Override
+    public boolean existsByLogin(String login) {
+        return clientDAO.existsByLogin(login);
+    }
 }

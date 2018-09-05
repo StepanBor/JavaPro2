@@ -28,6 +28,9 @@
 <body>
 
 <div class="container">
+    <c:if test="${requestScope.wrongLogin!=null}">
+        <c:out value="wrong login"/>
+    </c:if>
     <div class="row">
         <div class="col-md-6 offset-md-3" style="margin-top: 100px">
             <div class="card bg-light border-primary mb-3">
@@ -35,27 +38,53 @@
                     <h3>Please Sign In</h3>
                 </div>
                 <div class="card-body">
-                    <form role="form" action="/fromForm" method="post">
+                    <form role="form" action="/register" enctype="multipart/form-data" method="POST">
                         <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="login" name="j_login" type="text" autofocus>
+                            <div class="form-group" >
+                                <label for="login">Login <span class="text-danger">*</span></label>
+                                <input class="form-control" placeholder="login" name="login" type="text" autofocus required=""
+                                id="login">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="j_password" type="password" >
+                                <label for="email">Email <span class="text-danger">*</span></label>
+                                <input class="form-control" placeholder="Email" name="email" type="text" required=""
+                                id="email">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="j_password" type="password" >
+                                        <label for="password">Password <span class="text-danger">*</span></label>
+                                        <input class="form-control" placeholder="password" name="password"
+                                               type="password" required="" id="password">
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Confirm password" name="j_password" type="password" >
+                                        <label for="confirmPassword">Password <span class="text-danger">*</span></label>
+                                        <input class="form-control" placeholder="Confirm password" name="password"
+                                               type="password" required="" id="confirmPassword">
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Name" name="name" type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Last name" name="lastname" type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Phone" name="phone" type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Adress" name="adress" type="text">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Avatar file</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+
 
                             <input type="submit" class="btn btn-lg btn-primary btn-block">
                         </fieldset>

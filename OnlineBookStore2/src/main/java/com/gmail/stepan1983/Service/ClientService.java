@@ -14,6 +14,8 @@ public interface ClientService {
 
     Client getById(Long id);
 
+    boolean existsByLogin(String login);
+
     void updateClient(Client client);
 
     List<Client> findAll(Pageable pageable);
@@ -23,4 +25,6 @@ public interface ClientService {
     List<Client> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection);
 
     long count();
+
+
 }

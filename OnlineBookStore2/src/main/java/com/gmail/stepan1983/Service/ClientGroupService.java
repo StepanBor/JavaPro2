@@ -4,6 +4,7 @@ import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.ClientGroup;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

@@ -15,7 +15,7 @@ public class ClientGroup {
 
     private String groupDescription;
 
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Client> clients;
 
     public ClientGroup(String groupName, String groupDescription, List<Client> clients) {
