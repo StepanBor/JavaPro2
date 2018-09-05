@@ -65,20 +65,20 @@ public class TestDataBean {
         List<File> avatars = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
 
-            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
-//            File file=new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
+//            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+            File file=new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
             avatars.add(file);
 //            System.out.println(file.exists()+"WWWWWWWWWWWWWWWWWWW");
         }
 
         ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
-//        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+//        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
 
 
         /* create first test clients*/
-        ClientGroup clientGroup1 = new ClientGroup("clintGroupName1", "clientGroupDescription1", new ArrayList<Client>());
-        ClientGroup clientGroup2 = new ClientGroup("clintGroupName2", "clientGroupDescription2", new ArrayList<Client>());
+        ClientGroup clientGroup1 = new ClientGroup("customers", "clientGroupDescription1", new ArrayList<Client>());
+        ClientGroup clientGroup2 = new ClientGroup("administration", "clientGroupDescription2", new ArrayList<Client>());
 
         Client client1 = new Client("test1", encoder.encodePassword("Password", null), "email1@com",
                 "phone1", "Adress1", "name1", "lastname1", UserRole.CUSTOMER, clientGroup1, avatars.get(0));

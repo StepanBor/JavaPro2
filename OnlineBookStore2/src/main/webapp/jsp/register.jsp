@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: SteBor
-  Date: 19.08.2018
-  Time: 14:47
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="java.util.TreeMap" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Set" %>
@@ -33,19 +26,10 @@
 
 </head>
 <body>
-<%--<img height="50" width="55" src="<c:url value="/static/logo.png"/>"/><a href="/">Contacts List</a>--%>
-<%--<img height="50" width="55" src="<c:url value="/static/logo.png"/>"/><a href="/">Contacts List</a>--%>
-<%--<form action="/fromForm" method="post">--%>
-    <%--<label for="login"><h2>Login</h2></label>--%>
-    <%--<input type="text" name="j_login" id="login">--%>
-    <%--<label for="pass"><h2>Password</h2></label>--%>
-    <%--<input type="password" name="j_password" id="pass">--%>
-    <%--<input type="submit">--%>
-<%--</form>--%>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 offset-md-4" style="margin-top: 100px">
+        <div class="col-md-6 offset-md-3" style="margin-top: 100px">
             <div class="card bg-light border-primary mb-3">
                 <div class="card-header border-primary mb-3">
                     <h3>Please Sign In</h3>
@@ -57,16 +41,23 @@
                                 <input class="form-control" placeholder="login" name="j_login" type="text" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="j_password" type="password" >
+                                <input class="form-control" placeholder="Email" name="j_password" type="password" >
                             </div>
-                            <%--<div class="checkbox">--%>
-                                <%--<label>--%>
-                                    <%--<input name="remember" type="checkbox" value="Remember Me">Remember Me--%>
-                                <%--</label>--%>
-                            <%--</div>--%>
-                            <!-- Change this to a button or input when using this as a form -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="j_password" type="password" >
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Confirm password" name="j_password" type="password" >
+                                    </div>
+                                </div>
+                            </div>
+
                             <input type="submit" class="btn btn-lg btn-primary btn-block">
-                            <%--<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>--%>
                         </fieldset>
                     </form>
                     <div class="text-center">

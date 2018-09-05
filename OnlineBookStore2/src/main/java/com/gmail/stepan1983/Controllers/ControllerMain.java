@@ -1,5 +1,6 @@
 package com.gmail.stepan1983.Controllers;
 
+import com.gmail.stepan1983.Service.ClientGroupService;
 import com.gmail.stepan1983.Service.ClientService;
 import com.gmail.stepan1983.Service.OrderService;
 import com.gmail.stepan1983.model.Client;
@@ -36,6 +37,9 @@ public class ControllerMain {
 
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    ClientGroupService clientGroupService;
 
     @RequestMapping("/")
     public String indexPage() {
@@ -120,15 +124,27 @@ public class ControllerMain {
     @RequestMapping("/createAccaunt")
     public String createAccaunt(Model model,
                                 @RequestParam(required = false) String login,
-                                @RequestParam(required = false) String email,
                                 @RequestParam(required = false) String password,
+                                @RequestParam(required = false) String email,
                                 @RequestParam(required = false) String phone,
+                                @RequestParam(required = false) String adress,
                                 @RequestParam(required = false) String name,
                                 @RequestParam(required = false) String lastname,
-                                @RequestParam(required = false) MultipartFile avatar){
+                                @RequestParam(required = false) MultipartFile multipartFile){
 
         if(login!=null){
-            Client client=new Client(login,password,email,phone,null,name,lastname,UserRole.CUSTOMER,new ClientGroup(),avatar);
+            File avatar=new File(multipartFile.getOriginalFilename());
+            try {
+                multipartFile.transferTo(avatar);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            ClientGroup clientGroup=clientGroupService.findByGroupName("customers");
+
+            Client client=new Client(login,password,email,phone,adress,name,lastname,UserRole.CUSTOMER,clientGroup,avatar);
+
+            clientService.addClient(client);
 
             return "login";
         }
