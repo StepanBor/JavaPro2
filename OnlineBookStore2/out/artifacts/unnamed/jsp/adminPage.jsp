@@ -141,7 +141,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> User profile</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i> Settings</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>  Settings</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
@@ -306,8 +306,8 @@
                                             </li>
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                                 aria-labelledby="home-tab" <%--style="overflow: scroll;/*width: 300px;*/height: 500px"--%>>
+                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
+                                            <%--style="overflow: scroll;/*width: 300px;*/height: 500px"--%>>
                                                 <table class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                     <tr>
@@ -341,12 +341,49 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade" id="profile" role="tabpanel"
-                                                 aria-labelledby="profile-tab">
-                                                <h1>tab2</h1></div>
-                                            <div class="tab-pane fade" id="contact" role="tabpanel"
-                                                 aria-labelledby="contact-tab">
-                                                <h1>tab3</h1></div>
+                                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                <ol class="list-unstyled mb-4">
+                                                    <li>Login: <c:out value="${requestScope.clientDetails.getLogin()}"/></li>
+                                                    <hr>
+                                                    <li>Name: <c:out value="${requestScope.clientDetails.getName()}"/></li>
+                                                    <hr>
+                                                    <li>Lastname: <c:out value="${requestScope.clientDetails.getLastname()}"/></li>
+                                                    <hr>
+                                                    <li>Email: <c:out value="${requestScope.clientDetails.getEmail()}"/></li>
+                                                    <hr>
+                                                    <li>Phone: <c:out value="${requestScope.clientDetails.getPhone()}"/></li>
+                                                    <hr>
+                                                    <li>Role: <c:out value="${requestScope.clientDetails.getRole()}"/></li>
+                                                    <hr>
+                                                    <li>Adress: <c:out value="${requestScope.clientDetails.getAdress()}"/></li>
+                                                    <hr>
+                                                    <li>Group: <c:out value="${requestScope.clientDetails.getClientGroup().getGroupName()}"/></li>
+                                                    <hr>
+
+                                                </ol>
+                                            </div>
+                                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                                <form action="/sendEmail" method="post">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email address</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                                               aria-describedby="emailHelp" placeholder="<c:out value="${requestScope.clientDetails.getEmail()}"/>" readonly
+                                                               name="toClient" value="<c:out value="${requestScope.clientDetails.getEmail()}"/>">
+                                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="subjectId">Subject</label>
+                                                        <input type="text" class="form-control" id="subjectId"
+                                                               aria-describedby="emailHelp" placeholder="Subject" name="subject">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Message</label>
+                                                        <textarea class="form-control" id="exampleInputPassword1" placeholder="Enter message here" name="text"></textarea>
+                                                        <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">--%>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Send email</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

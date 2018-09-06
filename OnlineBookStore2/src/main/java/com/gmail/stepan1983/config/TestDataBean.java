@@ -3,6 +3,7 @@ package com.gmail.stepan1983.config;
 import com.gmail.stepan1983.DAO.*;
 import com.gmail.stepan1983.Service.*;
 import com.gmail.stepan1983.model.*;
+//import com.sun.java.util.jar.pack.Package;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,14 +70,34 @@ public class TestDataBean {
         List<File> avatars = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
 
-//            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
-            File file=new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
+            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+//            File test=new File(".");
+//            try {
+//                System.out.println(test.getCanonicalPath()+"WWWWWW");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            File file=new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-"+i+".jpg");
+//            File file=new File(i+".jpg");
+//            try(InputStream is=new BufferedInputStream(getClass().getResourceAsStream("/static/images/avatar-"+i+".jpg"));
+//                FileOutputStream fos=new FileOutputStream(file)){
+//
+//                int temp=0;
+//                byte[] buff=new byte[1024];
+//                while ((temp=is.read(buff,0,temp))>0){
+//                    fos.write(buff);
+//                }
+//
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             avatars.add(file);
         }
 
         ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-//        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
-        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+//        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
 
 
         /* create first test clients*/

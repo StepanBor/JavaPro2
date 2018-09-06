@@ -17,12 +17,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.List;
@@ -135,20 +134,21 @@ public class ControllerMain {
                                @RequestParam(required = false) String adress,
                                @RequestParam(required = false) String name,
                                @RequestParam(required = false) String lastname,
-                               @RequestParam(required = false) MultipartFile multipartFile) {
+                               @RequestParam(required = false) MultipartFile multipartFile)
+            throws MaxUploadSizeExceededException {
 
         if (login != null) {
 
             File avatar = null;
 
-            System.out.println((multipartFile != null)+"WWWWWWWWW");
+            System.out.println((multipartFile != null) + "WWWWWWWWW");
             if (multipartFile != null) {
 
                 avatar = new File(multipartFile.getOriginalFilename());
-                try(FileOutputStream fos=new FileOutputStream(avatar)){
+                try (FileOutputStream fos = new FileOutputStream(avatar)) {
 
                     fos.write(multipartFile.getBytes());
-                    System.out.println(multipartFile.getOriginalFilename()+"WWWWWW");
+                    System.out.println(multipartFile.getOriginalFilename() + "WWWWWW");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -166,10 +166,18 @@ public class ControllerMain {
                 return "login";
             }
         }
-        String wrongLogin="Wrong login";
+        String wrongLogin = "Wrong login";
         model.addAttribute("wrongLofin", wrongLogin);
         return "register";
     }
 
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public String handleSizeExceededException(Model model, Exception ex) {
+
+        String maxxSizeExceeded = "file size must be less than 10Mb";
+
+        model.addAttribute("MaxUploadSizeExceededException", maxxSizeExceeded);
+        return "register";
+    }
 
 }
