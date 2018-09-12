@@ -141,15 +141,13 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> User profile</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>  Settings</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i> Settings</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </li>
                 </ul>
             </div>
-
-
             <%--</div>--%>
         </nav>
 
@@ -164,12 +162,18 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th><a href="/adminPage?sortBy=id&changeSortDirect=1" class="pr" onclick="myFanction()"> Id <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="/adminPage?sortBy=login&changeSortDirect=1" class="pr" onclick="myFanction()"> Login <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="/adminPage?sortBy=name&changeSortDirect=1" class="pr" onclick="myFanction()"> Name <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="/adminPage?sortBy=phone&changeSortDirect=1" class="pr" onclick="myFanction()"> Phone <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="/adminPage?sortBy=email&changeSortDirect=1" class="pr" onclick="myFanction()"> Email <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="/adminPage?sortBy=role&changeSortDirect=1" class="pr" onclick="myFanction()"> Role <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=id&changeSortDirect=1" class="pr"
+                                           onclick="myFanction()"> Id <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=login&changeSortDirect=1" class="pr"
+                                           onclick="myFanction()"> Login <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=name&changeSortDirect=1" class="pr"
+                                           onclick="myFanction()"> Name <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=phone&changeSortDirect=1" class="pr"
+                                           onclick="myFanction()"> Phone <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=email&changeSortDirect=1" class="pr"
+                                           onclick="myFanction()"> Email <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="/adminPage?sortBy=role&changeSortDirect=1" class="pr"
+                                           onclick="myFanction()"> Role <i class="fas fa-sort"></i></a></th>
                                     <th>View details</th>
                                 </tr>
                                 </thead>
@@ -244,7 +248,6 @@
                                             </li>
                                         </c:otherwise>
                                     </c:choose>
-
                                 </ul>
                             </nav>
                         </div>
@@ -282,9 +285,7 @@
                                                 <li>Role: <c:out value="${requestScope.clientDetails.getRole()}"/></li>
                                                 <hr>
                                             </ol>
-
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-8">
@@ -306,7 +307,8 @@
                                             </li>
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
+                                            <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                                 aria-labelledby="home-tab"
                                             <%--style="overflow: scroll;/*width: 300px;*/height: 500px"--%>>
                                                 <table class="table table-striped table-bordered table-hover">
                                                     <thead>
@@ -322,13 +324,16 @@
                                                         <tr>
                                                             <td><c:out value="${order.getId()}"/></td>
                                                             <td><c:out value="${order.getOrderPrice()}"/></td>
-                                                            <%--<td style="word-break: break-all"><c:out value="${order.getOrderList()}"/></td>--%>
+                                                                <%--<td style="word-break: break-all"><c:out value="${order.getOrderList()}"/></td>--%>
                                                             <td style="word-break: break-all">
                                                                 <div style="overflow: scroll;/*width: 300px;*/height: 100px">
                                                                     <ul class="list-unstyled mb-4">
-                                                                        <c:forEach var="list" items="${order.getOrderList()}">
-                                                                            <li>Book name: <c:out value="${list.getBookName()}"/></li>
-                                                                            <li>Book prise: <c:out value="${list.getPrice()}"/></li>
+                                                                        <c:forEach var="list"
+                                                                                   items="${order.getOrderList()}">
+                                                                            <li>Book name: <c:out
+                                                                                    value="${list.getBookName()}"/></li>
+                                                                            <li>Book prise: <c:out
+                                                                                    value="${list.getPrice()}"/></li>
                                                                             <hr>
                                                                         </c:forEach>
                                                                     </ul>
@@ -341,44 +346,62 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="tab-pane fade" id="profile" role="tabpanel"
+                                                 aria-labelledby="profile-tab">
                                                 <ol class="list-unstyled mb-4">
-                                                    <li>Login: <c:out value="${requestScope.clientDetails.getLogin()}"/></li>
+                                                    <li>Login: <c:out
+                                                            value="${requestScope.clientDetails.getLogin()}"/></li>
                                                     <hr>
-                                                    <li>Name: <c:out value="${requestScope.clientDetails.getName()}"/></li>
+                                                    <li>Name: <c:out
+                                                            value="${requestScope.clientDetails.getName()}"/></li>
                                                     <hr>
-                                                    <li>Lastname: <c:out value="${requestScope.clientDetails.getLastname()}"/></li>
+                                                    <li>Lastname: <c:out
+                                                            value="${requestScope.clientDetails.getLastname()}"/></li>
                                                     <hr>
-                                                    <li>Email: <c:out value="${requestScope.clientDetails.getEmail()}"/></li>
+                                                    <li>Email: <c:out
+                                                            value="${requestScope.clientDetails.getEmail()}"/></li>
                                                     <hr>
-                                                    <li>Phone: <c:out value="${requestScope.clientDetails.getPhone()}"/></li>
+                                                    <li>Phone: <c:out
+                                                            value="${requestScope.clientDetails.getPhone()}"/></li>
                                                     <hr>
-                                                    <li>Role: <c:out value="${requestScope.clientDetails.getRole()}"/></li>
+                                                    <li>Role: <c:out
+                                                            value="${requestScope.clientDetails.getRole()}"/></li>
                                                     <hr>
-                                                    <li>Adress: <c:out value="${requestScope.clientDetails.getAdress()}"/></li>
+                                                    <li>Adress: <c:out
+                                                            value="${requestScope.clientDetails.getAdress()}"/></li>
                                                     <hr>
-                                                    <li>Group: <c:out value="${requestScope.clientDetails.getClientGroup().getGroupName()}"/></li>
+                                                    <li>Group: <c:out
+                                                            value="${requestScope.clientDetails.getClientGroup().getGroupName()}"/></li>
                                                     <hr>
 
                                                 </ol>
                                             </div>
-                                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                            <div class="tab-pane fade" id="contact" role="tabpanel"
+                                                 aria-labelledby="contact-tab">
                                                 <form action="/sendEmail" method="post">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Email address</label>
                                                         <input type="email" class="form-control" id="exampleInputEmail1"
-                                                               aria-describedby="emailHelp" placeholder="<c:out value="${requestScope.clientDetails.getEmail()}"/>" readonly
-                                                               name="toClient" value="<c:out value="${requestScope.clientDetails.getEmail()}"/>">
-                                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                               aria-describedby="emailHelp"
+                                                               placeholder="<c:out value="${requestScope.clientDetails.getEmail()}"/>"
+                                                               readonly
+                                                               name="toClient"
+                                                               value="<c:out value="${requestScope.clientDetails.getEmail()}"/>">
+                                                        <small id="emailHelp" class="form-text text-muted">We'll never
+                                                            share your email with anyone else.
+                                                        </small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="subjectId">Subject</label>
                                                         <input type="text" class="form-control" id="subjectId"
-                                                               aria-describedby="emailHelp" placeholder="Subject" name="subject">
+                                                               aria-describedby="emailHelp" placeholder="Subject"
+                                                               name="subject">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Message</label>
-                                                        <textarea class="form-control" id="exampleInputPassword1" placeholder="Enter message here" name="text"></textarea>
+                                                        <textarea class="form-control" id="exampleInputPassword1"
+                                                                  placeholder="Enter message here"
+                                                                  name="text"></textarea>
                                                         <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">--%>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Send email</button>
@@ -388,8 +411,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -426,6 +447,7 @@
         window.location.href = '/group_add_page';
     });
     var growth = true;
+
     function myFanction() {
         if (growth) {
             $('#sortBy').removeClass('fa-sort-numeric-up');
@@ -435,7 +457,8 @@
             $('#sortBy').removeClass('fa-sort-numeric-down');
             $('#sortBy').addClass('fa-sort-numeric-up');
             growth = true
-        }};
+        }
+    };
 
 </script>
 </body>

@@ -55,7 +55,7 @@ public class AppConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(jpaVendeorAdapter);
-        entityManagerFactory.setPackagesToScan("com.gmai.stepan1983");
+        entityManagerFactory.setPackagesToScan("com.gmail.stepan1983");
         entityManagerFactory.setJpaProperties(jpaProp);
         return entityManagerFactory;
     }
