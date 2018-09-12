@@ -36,7 +36,7 @@ public class MyRestController {
     ClientGroupService clientGroupService;
 
     @RequestMapping("/userPage")
-    public ResponseEntity<List<ClientDTO>> adminPage(@RequestParam(required = false, defaultValue = "0") Integer page,
+    public ResponseEntity<List<ClientDTO>> adminPage(@RequestParam(required = false, defaultValue = "1") Integer page,
                                                     @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                                     @RequestParam(required = false) Long clientId,
                                                     @RequestParam(required = false, defaultValue = "0") Long pageOrders,
@@ -53,7 +53,7 @@ public class MyRestController {
         Long clientPageNum = clientNum % itemsPerPage == 0
                 ? clientNum / itemsPerPage : clientNum / itemsPerPage + 1;
 
-        List<Client> clients = clientService.findAll(page, itemsPerPage, sortBy, sortDirection);
+        List<Client> clients = clientService.findAll(page-1, itemsPerPage, sortBy, sortDirection);
 
 
         List<ClientDTO> clientDTOS=new ArrayList<>();
@@ -78,7 +78,7 @@ public class MyRestController {
 
         objectList.add(clientPageNum);
 
-
+       
 
         return new ResponseEntity<>(clientDTOS,headers,HttpStatus.OK);
     }
