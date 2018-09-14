@@ -1,5 +1,7 @@
 package com.gmail.stepan1983.model;
 
+import com.gmail.stepan1983.DTO.BookItemDTO;
+
 import javax.persistence.*;
 import java.io.File;
 
@@ -47,6 +49,11 @@ public class BookItem {
     }
 
     public BookItem() {
+    }
+
+    public BookItemDTO toDTO(){
+        return new BookItemDTO(id,bookName,description,author,publisher.getPublisherName(),
+                category.getCategoryName(),price,storageBooks.getId());
     }
 
     public long getId() {

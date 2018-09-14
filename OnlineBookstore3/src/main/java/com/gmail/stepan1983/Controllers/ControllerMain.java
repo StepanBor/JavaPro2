@@ -98,14 +98,12 @@ public class ControllerMain {
 
             File avatar = null;
 
-            System.out.println((multipartFile != null) + "WWWWWWWWW");
             if (multipartFile != null) {
 
                 avatar = new File(multipartFile.getOriginalFilename());
                 try (FileOutputStream fos = new FileOutputStream(avatar)) {
 
                     fos.write(multipartFile.getBytes());
-                    System.out.println(multipartFile.getOriginalFilename() + "WWWWWW");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

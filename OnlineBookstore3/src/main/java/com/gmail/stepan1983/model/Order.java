@@ -1,9 +1,11 @@
 package com.gmail.stepan1983.model;
 
 
+import com.gmail.stepan1983.DTO.BookItemDTO;
 import com.gmail.stepan1983.DTO.OrderDTO;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class Order {
     @Temporal(value = TemporalType.DATE)
     private Date orderDate;
 
-    long[] orderListIds;
+
 
     public Order(List<BookItem> orderList, Client client,
                  Shipment shipment, String status, Date orderDate) {
@@ -52,17 +54,19 @@ public class Order {
         this.status = status;
         this.orderDate = orderDate;
 
-        this.orderListIds = new long[orderList.size()];
-        for (int i = 0; i < orderListIds.length; i++) {
-            orderListIds[i] = orderList.get(i).getId();
-        }
+
     }
 
     public Order() {
     }
 
     public OrderDTO toDTO() {
-        return new OrderDTO(id, orderListIds, orderPrice, client.toDTO(),
+        List<BookItemDTO> orderListDTO;
+       orderListDTO = new ArrayList<>();
+        for (BookItem bookItem: orderList) {
+            orderListDTO.add(bookItem.toDTO());
+        }
+        return new OrderDTO(id, orderListDTO, orderPrice, client.toDTO(),
                 shipment.getId(), status, orderDate);
     }
 

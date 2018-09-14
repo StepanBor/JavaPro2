@@ -87,7 +87,7 @@ public class MyRestController {
     }
 
     @RequestMapping("/orders")
-    public List<OrderDTO> getUserOrders(@RequestParam(required = false) Long userId,
+    public ResponseEntity<List<OrderDTO>> getUserOrders(@RequestParam(required = false) Long userId,
                                         @RequestParam(required = false, defaultValue = "0") Long pageOrders,
                                         @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage) {
 
@@ -104,9 +104,14 @@ public class MyRestController {
 
         for (Order order : orders) {
             ordersDTO.add(order.toDTO());
+            System.out.println(order.getOrderList()+"WWWWWWWWWWWWWWWWWWWWWW");
         }
 
-        return ordersDTO;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(ordersDTO, headers, HttpStatus.OK);
     }
 
 }

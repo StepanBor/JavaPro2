@@ -42,11 +42,11 @@ public class BookServiceImpl implements BookService {
 //        bookDAO.saveAndFlush(bookItem);
 
 //        bookDAO.save(bookItem);
-//        Stock stock=bookItem.getStorageBooks().getStock();
+//        Stock stock=bookItem.getStorageBooksId().getStock();
 //        publisherDAO.save(bookItem.getPublisher());
 //        categoryDAO.save(bookItem.getCategory());
 //        stockDAO.save(stock);
-//        storageBooksDAO.save(bookItem.getStorageBooks());
+//        storageBooksDAO.save(bookItem.getStorageBooksId());
 
     }
 

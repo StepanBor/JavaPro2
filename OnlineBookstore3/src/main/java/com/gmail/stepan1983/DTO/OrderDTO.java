@@ -1,15 +1,16 @@
 package com.gmail.stepan1983.DTO;
 
-import com.gmail.stepan1983.model.Client;
-import com.gmail.stepan1983.model.Shipment;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class OrderDTO {
 
     private long id;
 
-    private long[] orderListIds;
+    private List<BookItemDTO> orderList;
 
     private double orderPrice;
 
@@ -19,14 +20,15 @@ public class OrderDTO {
 
     private String status;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private Date orderDate;
 
-    public OrderDTO(long id, long[] orderListIds,
+    public OrderDTO(long id, List<BookItemDTO> orderList,
                     double orderPrice, ClientDTO client,
                     long shipmentId, String status,
                     Date orderDate) {
         this.id = id;
-        this.orderListIds = orderListIds;
+        this.orderList = orderList;
         this.orderPrice = orderPrice;
         this.client = client;
         this.shipmentId = shipmentId;
@@ -45,12 +47,12 @@ public class OrderDTO {
         this.id = id;
     }
 
-    public long[] getOrderListIds() {
-        return orderListIds;
+    public List<BookItemDTO> getOrderList() {
+        return orderList;
     }
 
-    public void setOrderListIds(long[] orderListIds) {
-        this.orderListIds = orderListIds;
+    public void setOrderList(List<BookItemDTO> orderList) {
+        this.orderList = orderList;
     }
 
     public double getOrderPrice() {
