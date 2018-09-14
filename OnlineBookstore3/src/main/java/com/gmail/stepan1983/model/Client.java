@@ -54,12 +54,6 @@ public class Client {
     public Client() {
     }
 
-//    public Client fromDTO(ClientDTO clientDTO){
-//
-//        return new Client(clientDTO.getLogin(),clientDTO.getPassword(),clientDTO.getEmail(),
-//                clientDTO.getPhone(),clientDTO.getAdress(),clientDTO.getName(),clientDTO.getLastname(),
-//                clientDTO.getRole(),clientDTO.getClientGroup(),new File(clientDTO.getAvatar()));
-//    }
 
     public ClientDTO toDTO(){
         return new ClientDTO(this.id,this.login, this.email,

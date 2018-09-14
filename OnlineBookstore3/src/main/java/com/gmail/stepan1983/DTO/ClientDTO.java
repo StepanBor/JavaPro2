@@ -9,7 +9,6 @@ public class ClientDTO {
 
     private String login;
 
-
     private String email;
 
     private String phone;

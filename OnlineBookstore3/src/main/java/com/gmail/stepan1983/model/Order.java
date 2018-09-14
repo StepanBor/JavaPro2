@@ -1,6 +1,8 @@
 package com.gmail.stepan1983.model;
 
 
+import com.gmail.stepan1983.DTO.OrderDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -10,13 +12,14 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="orderId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "orderId")
     private long id;
 
-//    @OneToMany
+    //    @OneToMany
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="Orders_books", joinColumns = {@JoinColumn(name="orderId")},inverseJoinColumns = {@JoinColumn(name="id")})
+    @JoinTable(name = "Orders_books", joinColumns = {@JoinColumn(name = "orderId")},
+            inverseJoinColumns = {@JoinColumn(name = "id")})
     private List<BookItem> orderList;
 
     private double orderPrice;
@@ -34,21 +37,33 @@ public class Order {
     @Temporal(value = TemporalType.DATE)
     private Date orderDate;
 
+    long[] orderListIds;
+
     public Order(List<BookItem> orderList, Client client,
                  Shipment shipment, String status, Date orderDate) {
         this.orderList = orderList;
 
         for (BookItem bookItem : orderList) {
-            this.orderPrice+=bookItem.getPrice();
+            this.orderPrice += bookItem.getPrice();
         }
 
         this.client = client;
         this.shipment = shipment;
         this.status = status;
-        this.orderDate=orderDate;
+        this.orderDate = orderDate;
+
+        this.orderListIds = new long[orderList.size()];
+        for (int i = 0; i < orderListIds.length; i++) {
+            orderListIds[i] = orderList.get(i).getId();
+        }
     }
 
     public Order() {
+    }
+
+    public OrderDTO toDTO() {
+        return new OrderDTO(id, orderListIds, orderPrice, client.toDTO(),
+                shipment.getId(), status, orderDate);
     }
 
     public long getId() {
