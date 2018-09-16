@@ -88,23 +88,37 @@ public class MyRestController {
 
     @RequestMapping("/orders")
     public ResponseEntity<List<OrderDTO>> getUserOrders(@RequestParam(required = false) Long userId,
-                                        @RequestParam(required = false, defaultValue = "0") Long pageOrders,
-                                        @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage) {
+                                        @RequestParam(required = false, defaultValue = "1") Long page,
+                                        @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
+                                        @RequestParam(required = false, defaultValue = "id") String sortBy,
+                                        @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
+
+        System.out.println("userId "+userId);
+        System.out.println("page "+page);
+        System.out.println("itemsPerPage "+itemsPerPage);
+        System.out.println("sortBy "+sortBy);
+        System.out.println("changeSortDirect "+changeSortDirect);
+        if (changeSortDirect) {
+            sortDirection = !sortDirection;
+        }
 
         List<Order> orders;
         if (userId != null) {
             Client client = clientService.getById(userId);
-            orders = orderService.findByClient(client, PageRequest.of(pageOrders.intValue(), itemsPerPage,
+            orders = orderService.findByClient(client, PageRequest.of(page.intValue()-1, itemsPerPage,
                     Sort.Direction.ASC, "status", "orderPrice"));
         } else {
-            orders = orderService.findAll();
+//            orders = orderService.findAll();
+            orders=orderService.findAll(page.intValue() - 1, itemsPerPage, sortBy, sortDirection);
         }
+
+
 
         List<OrderDTO> ordersDTO = new ArrayList<>();
 
         for (Order order : orders) {
             ordersDTO.add(order.toDTO());
-            System.out.println(order.getOrderList()+"WWWWWWWWWWWWWWWWWWWWWW");
+            System.out.println(order.toDTO() + "WWWWWWWWWW");
         }
 
 
@@ -112,6 +126,14 @@ public class MyRestController {
         headers.set("Access-Control-Allow-Origin", "*");
 
         return new ResponseEntity<>(ordersDTO, headers, HttpStatus.OK);
+    }
+
+    @RequestMapping("/orderCount")
+    public ResponseEntity<Long> getTotalOrderCount() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<>(orderService.count(), headers, HttpStatus.OK);
     }
 
 }

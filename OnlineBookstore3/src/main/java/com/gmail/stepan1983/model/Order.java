@@ -130,10 +130,10 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", orderList=" + orderList +
+//                ", orderList=" + orderList +
                 ", orderPrice=" + orderPrice +
                 ", client=" + client +
-                ", shipment=" + shipment +
+                ", shipment=" + shipment.getId() +
                 ", status='" + status + '\'' +
                 ", orderDate=" + orderDate +
                 '}';

@@ -19,6 +19,8 @@ public interface OrderService {
 
     List<Order> findAll();
 
+    List<Order> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection);
+
     List<Order> findByClient(Client client, Pageable pageable);
 
     long count();

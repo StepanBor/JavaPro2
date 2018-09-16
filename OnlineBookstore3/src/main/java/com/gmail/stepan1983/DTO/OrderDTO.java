@@ -94,4 +94,17 @@ public class OrderDTO {
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDTO{" +
+                "id=" + id +
+//                ", orderList=" + orderList +
+                ", orderPrice=" + orderPrice +
+                ", client=" + client +
+                ", shipmentId=" + shipmentId +
+                ", status='" + status + '\'' +
+                ", orderDate=" + orderDate +
+                '}';
+    }
 }

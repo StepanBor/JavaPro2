@@ -85,13 +85,9 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<Client> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection){
 
-
         Sort sort=new Sort(sortDirection?Sort.Direction.ASC:Sort.Direction.DESC,sortBy);
 
         Pageable pageable=PageRequest.of(page,itemsPerPage,sort);
-
-
-
 
         return clientDAO.findAll(pageable).getContent();
     }
