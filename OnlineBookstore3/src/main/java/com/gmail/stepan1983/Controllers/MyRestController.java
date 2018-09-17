@@ -118,7 +118,7 @@ public class MyRestController {
 
         for (Order order : orders) {
             ordersDTO.add(order.toDTO());
-            System.out.println(order.toDTO() + "WWWWWWWWWW");
+//            System.out.println(order.toDTO() + "WWWWWWWWWW");
         }
 
 

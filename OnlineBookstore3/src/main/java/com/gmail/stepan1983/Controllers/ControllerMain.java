@@ -39,10 +39,10 @@ public class ControllerMain {
     @Autowired
     ClientGroupService clientGroupService;
 
-    @RequestMapping("/")
-    public String indexPage() {
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String indexPage() {
+//        return "index";
+//    }
 
     @RequestMapping("/login")
     public String loginPage() {

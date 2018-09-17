@@ -67,7 +67,7 @@ public class Order {
             orderListDTO.add(bookItem.toDTO());
         }
         return new OrderDTO(id, orderListDTO, orderPrice, client.toDTO(),
-                shipment.getId(), status, orderDate);
+                shipment.toDTO(), status, orderDate);
     }
 
     public long getId() {

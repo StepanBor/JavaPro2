@@ -1,36 +1,24 @@
-package com.gmail.stepan1983.model;
+package com.gmail.stepan1983.DTO;
 
-import com.gmail.stepan1983.DTO.ShipmentDTO;
 
-import javax.persistence.*;
+public class ShipmentDTO {
 
-@Entity
-@Table(name = "Shipment1")
-public class Shipment {
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="shipmentId")
     private long id;
 
     private String shippingAddress;
 
     private String shipmentStatus;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Order order;
+    private Long order;
 
-    public Shipment(String shippingAddress, String shipmentStatus, Order order) {
+    public ShipmentDTO(long id, String shippingAddress, String shipmentStatus, Long order) {
+        this.id = id;
         this.shippingAddress = shippingAddress;
         this.shipmentStatus = shipmentStatus;
-        this.order=order;
+        this.order = order;
     }
 
-    public Shipment() {
-    }
-
-    public ShipmentDTO toDTO(){
-        return new ShipmentDTO(id,shippingAddress,shipmentStatus,order.getId());
+    public ShipmentDTO() {
     }
 
     public long getId() {
@@ -57,11 +45,13 @@ public class Shipment {
         this.shipmentStatus = shipmentStatus;
     }
 
-    public Order getOrder() {
+    public Long getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Long order) {
         this.order = order;
     }
+
+
 }

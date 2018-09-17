@@ -16,7 +16,7 @@ public class OrderDTO {
 
     private ClientDTO client;
 
-    private long shipmentId;
+    private ShipmentDTO shipment;
 
     private String status;
 
@@ -25,13 +25,13 @@ public class OrderDTO {
 
     public OrderDTO(long id, List<BookItemDTO> orderList,
                     double orderPrice, ClientDTO client,
-                    long shipmentId, String status,
+                    ShipmentDTO shipment, String status,
                     Date orderDate) {
         this.id = id;
         this.orderList = orderList;
         this.orderPrice = orderPrice;
         this.client = client;
-        this.shipmentId = shipmentId;
+        this.shipment = shipment;
         this.status = status;
         this.orderDate = orderDate;
     }
@@ -71,12 +71,12 @@ public class OrderDTO {
         this.client = client;
     }
 
-    public long getShipment() {
-        return shipmentId;
+    public ShipmentDTO getShipment() {
+        return shipment;
     }
 
-    public void setShipment(long shipmentId) {
-        this.shipmentId = shipmentId;
+    public void setShipment(ShipmentDTO shipmentId) {
+        this.shipment = shipmentId;
     }
 
     public String getStatus() {
@@ -102,7 +102,7 @@ public class OrderDTO {
 //                ", orderList=" + orderList +
                 ", orderPrice=" + orderPrice +
                 ", client=" + client +
-                ", shipmentId=" + shipmentId +
+                ", shipment=" + shipment +
                 ", status='" + status + '\'' +
                 ", orderDate=" + orderDate +
                 '}';
