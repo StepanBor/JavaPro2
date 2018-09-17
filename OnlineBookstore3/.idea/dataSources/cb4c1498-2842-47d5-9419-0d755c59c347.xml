@@ -1424,172 +1424,167 @@
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="352" parent="299" name="orderListIds">
+    <column id="352" parent="299" name="orderPrice">
       <Position>3</Position>
-      <DataType>tinyblob|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="353" parent="299" name="orderPrice">
-      <Position>4</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="354" parent="299" name="status">
-      <Position>5</Position>
+    <column id="353" parent="299" name="status">
+      <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="355" parent="299" name="client_clientId">
+    <column id="354" parent="299" name="client_clientId">
+      <Position>5</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="355" parent="299" name="shipment_shipmentId">
       <Position>6</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="356" parent="299" name="shipment_shipmentId">
-      <Position>7</Position>
-      <DataType>bigint(20)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="357" parent="299" name="FKtdco6cd4klycahf9gikihy64o">
+    <index id="356" parent="299" name="FKtdco6cd4klycahf9gikihy64o">
       <ColNames>client_clientId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="358" parent="299" name="FK1xps5l6ydqngq1yngpq63ak30">
+    <index id="357" parent="299" name="FK1xps5l6ydqngq1yngpq63ak30">
       <ColNames>shipment_shipmentId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="359" parent="299" name="PRIMARY">
+    <key id="358" parent="299" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>orderId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="360" parent="300" name="orderId">
+    <column id="359" parent="300" name="orderId">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="361" parent="300" name="id">
+    <column id="360" parent="300" name="id">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="362" parent="300" name="FK4umdfjdwviqvfw0oyof5to8n8">
+    <index id="361" parent="300" name="FK4umdfjdwviqvfw0oyof5to8n8">
       <ColNames>orderId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="363" parent="300" name="FK2nw4e3s6r42bi8m5ep30mfxkr">
+    <index id="362" parent="300" name="FK2nw4e3s6r42bi8m5ep30mfxkr">
       <ColNames>id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="364" parent="301" name="publisherId">
+    <column id="363" parent="301" name="publisherId">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="365" parent="301" name="description">
+    <column id="364" parent="301" name="description">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="366" parent="301" name="publisherAdress">
+    <column id="365" parent="301" name="publisherAdress">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="367" parent="301" name="publisherName">
+    <column id="366" parent="301" name="publisherName">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="368" parent="301" name="PRIMARY">
+    <key id="367" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>publisherId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="369" parent="302" name="shipmentId">
+    <column id="368" parent="302" name="shipmentId">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="302" name="shipmentStatus">
+    <column id="369" parent="302" name="shipmentStatus">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="302" name="shippingAddress">
+    <column id="370" parent="302" name="shippingAddress">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="302" name="order_orderId">
+    <column id="371" parent="302" name="order_orderId">
       <Position>4</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="373" parent="302" name="FKc3wcwtrnljl2u3770o7nhcnug">
+    <index id="372" parent="302" name="FKc3wcwtrnljl2u3770o7nhcnug">
       <ColNames>order_orderId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="374" parent="302" name="PRIMARY">
+    <key id="373" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>shipmentId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="375" parent="303" name="stockId">
+    <column id="374" parent="303" name="stockId">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="376" parent="303" name="storageAddress">
+    <column id="375" parent="303" name="storageAddress">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="377" parent="303" name="storagePhone">
+    <column id="376" parent="303" name="storagePhone">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="378" parent="303" name="PRIMARY">
+    <key id="377" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>stockId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="379" parent="304" name="stogrageBooksId">
+    <column id="378" parent="304" name="stogrageBooksId">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="380" parent="304" name="bookQuantity">
+    <column id="379" parent="304" name="bookQuantity">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="381" parent="304" name="book_bookId">
+    <column id="380" parent="304" name="book_bookId">
       <Position>3</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="382" parent="304" name="stock_stockId">
+    <column id="381" parent="304" name="stock_stockId">
       <Position>4</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="383" parent="304" name="FKfh9vsub7iiu6glqrjx3v8nric">
+    <index id="382" parent="304" name="FKfh9vsub7iiu6glqrjx3v8nric">
       <ColNames>book_bookId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="384" parent="304" name="FKdvosdbfdspauk677qagyyj1hj">
+    <index id="383" parent="304" name="FKdvosdbfdspauk677qagyyj1hj">
       <ColNames>stock_stockId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="385" parent="304" name="PRIMARY">
+    <key id="384" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>stogrageBooksId</ColNames>
       <Primary>1</Primary>
