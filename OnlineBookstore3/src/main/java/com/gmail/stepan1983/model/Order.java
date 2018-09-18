@@ -2,6 +2,7 @@ package com.gmail.stepan1983.model;
 
 
 import com.gmail.stepan1983.DTO.BookItemDTO;
+import com.gmail.stepan1983.DTO.MyEntry;
 import com.gmail.stepan1983.DTO.OrderDTO;
 
 import javax.persistence.*;
@@ -60,9 +61,8 @@ public class Order {
 
     public OrderDTO toDTO() {
         Map<BookItemDTO,Integer> orderMap=new TreeMap<>((BookItemDTO bo1, BookItemDTO bo2)->((int)(bo1.getId()-bo2.getId())));
-
-//        List<BookItemDTO> orderListDTO;
-//       orderListDTO = new ArrayList<>();
+        OrderDTO orderDTO=new OrderDTO();
+        List<MyEntry> orderListDTO=new ArrayList<>();
         for (BookItem bookItem: orderList) {
             BookItemDTO bookItemDTO=bookItem.toDTO();
 //            orderListDTO.add(bookItemDTO);
@@ -71,11 +71,14 @@ public class Order {
             } else {
                 orderMap.put(bookItemDTO,1);
             }
-
         }
 
-        return new OrderDTO(id, orderPrice, client.toDTO(),
-                shipment.toDTO(), status, orderDate, orderMap);
+        for (BookItemDTO bookItemDTO : orderMap.keySet()) {
+            orderListDTO.add(new MyEntry(bookItemDTO,orderMap.get(bookItemDTO)));
+        }
+
+        return new OrderDTO(id,orderListDTO, orderPrice, client.toDTO(),
+                shipment.toDTO(), status, orderDate/*, orderMap*/);
     }
 
     public long getId() {

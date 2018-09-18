@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class OrderDTO {
 
     private long id;
 
-//    private List<BookItemDTO> orderList;
+    private List<MyEntry> orderList;
 
-    private Map<BookItemDTO,Integer> orderMap;
+//    private Map<BookItemDTO,Integer> orderMap;
+
 
     private double orderPrice;
 
@@ -26,17 +26,17 @@ public class OrderDTO {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private Date orderDate;
 
-    public OrderDTO(long id, double orderPrice, ClientDTO client,
+    public OrderDTO(long id, List<MyEntry> orderList, double orderPrice, ClientDTO client,
                     ShipmentDTO shipment, String status,
-                    Date orderDate, Map<BookItemDTO,Integer> orderMap) {
+                    Date orderDate /*Map<BookItemDTO,Integer> orderMap*/) {
         this.id = id;
-//        this.orderList = orderList;
+        this.orderList = orderList;
         this.orderPrice = orderPrice;
         this.client = client;
         this.shipment = shipment;
         this.status = status;
         this.orderDate = orderDate;
-        this.orderMap=orderMap;
+//        this.orderMap=orderMap;
     }
 
     public OrderDTO() {
@@ -98,12 +98,21 @@ public class OrderDTO {
         this.orderDate = orderDate;
     }
 
-    public Map<BookItemDTO, Integer> getOrderMap() {
-        return orderMap;
+//    public Map<BookItemDTO, Integer> getOrderMap() {
+//        return orderMap;
+//    }
+//
+//    public void setOrderMap(Map<BookItemDTO, Integer> orderMap) {
+//        this.orderMap = orderMap;
+//    }
+
+
+    public List<MyEntry> getOrderList() {
+        return orderList;
     }
 
-    public void setOrderMap(Map<BookItemDTO, Integer> orderMap) {
-        this.orderMap = orderMap;
+    public void setOrderList(List<MyEntry> orderList) {
+        this.orderList = orderList;
     }
 
     @Override
