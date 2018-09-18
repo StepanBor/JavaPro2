@@ -5,9 +5,7 @@ import com.gmail.stepan1983.DTO.BookItemDTO;
 import com.gmail.stepan1983.DTO.OrderDTO;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "Orders1")
@@ -61,13 +59,23 @@ public class Order {
     }
 
     public OrderDTO toDTO() {
-        List<BookItemDTO> orderListDTO;
-       orderListDTO = new ArrayList<>();
+        Map<BookItemDTO,Integer> orderMap=new TreeMap<>((BookItemDTO bo1, BookItemDTO bo2)->((int)(bo1.getId()-bo2.getId())));
+
+//        List<BookItemDTO> orderListDTO;
+//       orderListDTO = new ArrayList<>();
         for (BookItem bookItem: orderList) {
-            orderListDTO.add(bookItem.toDTO());
+            BookItemDTO bookItemDTO=bookItem.toDTO();
+//            orderListDTO.add(bookItemDTO);
+            if(orderMap.containsKey(bookItemDTO)){
+                orderMap.put(bookItemDTO,(orderMap.get(bookItemDTO)+1));
+            } else {
+                orderMap.put(bookItemDTO,1);
+            }
+
         }
-        return new OrderDTO(id, orderListDTO, orderPrice, client.toDTO(),
-                shipment.toDTO(), status, orderDate);
+
+        return new OrderDTO(id, orderPrice, client.toDTO(),
+                shipment.toDTO(), status, orderDate, orderMap);
     }
 
     public long getId() {

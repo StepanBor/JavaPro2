@@ -39,9 +39,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public void addOrder(Order order) {
-        System.out.println();
-        System.out.println();
-        System.out.println(order);
+//        System.out.println();
+//        System.out.println();
+//        System.out.println(order);
 //        shipmentService.addShipment(order.getShipment());
         entityManager.merge(order);
     }

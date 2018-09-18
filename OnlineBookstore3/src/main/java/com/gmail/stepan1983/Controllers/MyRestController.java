@@ -121,7 +121,7 @@ public class MyRestController {
 //            System.out.println(order.toDTO() + "WWWWWWWWWW");
         }
 
-
+        System.out.println(ordersDTO.get(1).getOrderMap());
         HttpHeaders headers = new HttpHeaders();
         headers.set("Access-Control-Allow-Origin", "*");
 

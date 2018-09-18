@@ -5,12 +5,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class OrderDTO {
 
     private long id;
 
-    private List<BookItemDTO> orderList;
+//    private List<BookItemDTO> orderList;
+
+    private Map<BookItemDTO,Integer> orderMap;
 
     private double orderPrice;
 
@@ -23,17 +26,17 @@ public class OrderDTO {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private Date orderDate;
 
-    public OrderDTO(long id, List<BookItemDTO> orderList,
-                    double orderPrice, ClientDTO client,
+    public OrderDTO(long id, double orderPrice, ClientDTO client,
                     ShipmentDTO shipment, String status,
-                    Date orderDate) {
+                    Date orderDate, Map<BookItemDTO,Integer> orderMap) {
         this.id = id;
-        this.orderList = orderList;
+//        this.orderList = orderList;
         this.orderPrice = orderPrice;
         this.client = client;
         this.shipment = shipment;
         this.status = status;
         this.orderDate = orderDate;
+        this.orderMap=orderMap;
     }
 
     public OrderDTO() {
@@ -47,13 +50,13 @@ public class OrderDTO {
         this.id = id;
     }
 
-    public List<BookItemDTO> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<BookItemDTO> orderList) {
-        this.orderList = orderList;
-    }
+//    public List<BookItemDTO> getOrderList() {
+//        return orderList;
+//    }
+//
+//    public void setOrderList(List<BookItemDTO> orderList) {
+//        this.orderList = orderList;
+//    }
 
     public double getOrderPrice() {
         return orderPrice;
@@ -93,6 +96,14 @@ public class OrderDTO {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public Map<BookItemDTO, Integer> getOrderMap() {
+        return orderMap;
+    }
+
+    public void setOrderMap(Map<BookItemDTO, Integer> orderMap) {
+        this.orderMap = orderMap;
     }
 
     @Override
