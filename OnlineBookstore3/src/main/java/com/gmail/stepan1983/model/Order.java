@@ -33,7 +33,8 @@ public class Order {
 //    @JoinColumn(name="shipmentId")
     private Shipment shipment;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @Temporal(value = TemporalType.DATE)
     private Date orderDate;
@@ -41,7 +42,8 @@ public class Order {
 
 
     public Order(List<BookItem> orderList, Client client,
-                 Shipment shipment, String status, Date orderDate) {
+                 Shipment shipment, OrderStatus status, Date orderDate) {
+
         this.orderList = orderList;
 
         for (BookItem bookItem : orderList) {
@@ -52,7 +54,6 @@ public class Order {
         this.shipment = shipment;
         this.status = status;
         this.orderDate = orderDate;
-
 
     }
 
@@ -78,7 +79,7 @@ public class Order {
         }
 
         return new OrderDTO(id,orderListDTO, orderPrice, client.toDTO(),
-                shipment.toDTO(), status, orderDate/*, orderMap*/);
+                shipment.toDTO(), status.toString(), orderDate/*, orderMap*/);
     }
 
     public long getId() {
@@ -121,11 +122,11 @@ public class Order {
         this.shipment = shipment;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 

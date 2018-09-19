@@ -141,10 +141,10 @@ public class TestDataBean {
             }
 
             Shipment shipment = new Shipment("shipment adress" + i, "processed", null);
-            Order order = new Order(orderList, client, shipment, "Processed", new Date());
+            Order order = new Order(orderList, client, shipment, (i % 2 == 0) ? OrderStatus.processed : OrderStatus.closed, new Date());
             shipment.setOrder(order);
             orderService.addOrder(order);
-            Order order2 = new Order(orderList, client, shipment, "Processed", new Date());
+            Order order2 = new Order(orderList, client, shipment, (i % 2 == 0) ? OrderStatus.unProcessed : OrderStatus.closed, new Date());
             orderService.addOrder(order2);
 
         }
