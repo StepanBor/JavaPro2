@@ -23,7 +23,7 @@ public class OrderDTO {
 
     private String status;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date orderDate;
 
     public OrderDTO(long id, List<MyEntry> orderList, double orderPrice, ClientDTO client,
