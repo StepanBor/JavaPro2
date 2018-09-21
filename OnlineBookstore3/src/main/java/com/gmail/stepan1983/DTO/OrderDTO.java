@@ -2,6 +2,7 @@ package com.gmail.stepan1983.DTO;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gmail.stepan1983.model.Order;
 
 import java.util.Date;
 import java.util.List;
@@ -57,6 +58,12 @@ public class OrderDTO {
 //    public void setOrderList(List<BookItemDTO> orderList) {
 //        this.orderList = orderList;
 //    }
+
+    public Order toOrder(){
+
+
+        return null;
+    }
 
     public double getOrderPrice() {
         return orderPrice;

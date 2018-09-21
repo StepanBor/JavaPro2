@@ -49,6 +49,7 @@ public class ControllerMain {
         return "login";
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/photo/{photoId}")
     public ResponseEntity<byte[]> getPhotoBytes(@PathVariable("photoId") long id) {
 
@@ -73,7 +74,8 @@ public class ControllerMain {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG);
 
-        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+//        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+        return new ResponseEntity<>(bytes, HttpStatus.OK);
 
     }
 

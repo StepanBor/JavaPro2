@@ -11,13 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +34,9 @@ public class MyRestController {
     @Autowired
     ClientGroupService clientGroupService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/userPage")
-    public ResponseEntity<List<ClientDTO>> adminPage(@RequestParam(required = false, defaultValue = "1") Integer page,
+    public List<ClientDTO> adminPage(@RequestParam(required = false, defaultValue = "1") Integer page,
                                                      @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                                      @RequestParam(required = false) Long clientId,
                                                      @RequestParam(required = false, defaultValue = "0") Long pageOrders,
@@ -75,29 +74,32 @@ public class MyRestController {
 
         objectList.add(clientPageNum);
 
-        return new ResponseEntity<>(clientDTOS, headers, HttpStatus.OK);
+//        return new ResponseEntity<>(clientDTOS, headers, HttpStatus.OK);
+        return clientDTOS;
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/usersCount")
-    public ResponseEntity<Long> getTotalUsersCount() {
+    public Long getTotalUsersCount() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Access-Control-Allow-Origin", "*");
 
-        return new ResponseEntity<>(clientService.count(), headers, HttpStatus.OK);
+//        return new ResponseEntity<>(clientService.count(), headers, HttpStatus.OK);
+        return clientService.count();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/orders")
-    public ResponseEntity<List<OrderDTO>> getUserOrders(@RequestParam(required = false) Long userId,
+    public List<OrderDTO> getUserOrders(@RequestParam(required = false) Long userId,
                                         @RequestParam(required = false, defaultValue = "1") Long page,
                                         @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                         @RequestParam(required = false, defaultValue = "id") String sortBy,
                                         @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
-        System.out.println("userId "+userId);
-        System.out.println("page "+page);
-        System.out.println("itemsPerPage "+itemsPerPage);
-        System.out.println("sortBy "+sortBy);
-        System.out.println("changeSortDirect "+changeSortDirect);
+//        System.out.println("userId "+userId);
+//        System.out.println("page "+page);
+//        System.out.println("itemsPerPage "+itemsPerPage);
+//        System.out.println("sortBy "+sortBy);
+//        System.out.println("changeSortDirect "+changeSortDirect);
         if (changeSortDirect) {
             sortDirection = !sortDirection;
         }
@@ -123,17 +125,27 @@ public class MyRestController {
 
 //        System.out.println(ordersDTO.get(1).getOrderMap());
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
+//        headers.set("Access-Control-Allow-Origin", "*");
 
-        return new ResponseEntity<>(ordersDTO, headers, HttpStatus.OK);
+//        return new ResponseEntity<>(ordersDTO, headers, HttpStatus.OK);
+        return ordersDTO;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/orderCount")
-    public ResponseEntity<Long> getTotalOrderCount() {
+    public Long getTotalOrderCount() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Access-Control-Allow-Origin", "*");
+//        return new ResponseEntity<>(orderService.count(), headers, HttpStatus.OK);
+        return orderService.count();
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value="/saveOrder", method = RequestMethod.POST)
+    public void saveOrder(@RequestBody OrderDTO orderDTO){
 
-        return new ResponseEntity<>(orderService.count(), headers, HttpStatus.OK);
+
+        System.out.println(orderDTO + "HHHHHHHHHHHHHHHH");
+//        System.out.println(orderToSave+"hhhhhhhhhhhhhhhhhhhh");
     }
 
 }
