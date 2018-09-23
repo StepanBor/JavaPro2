@@ -35,7 +35,6 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public Client addClient(Client client) {
 
-
         ClientGroup clientGroup=clientGroupService.findByGroupName("customers");
 
         if(client.getClientGroup()!=null) {
@@ -102,9 +101,10 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public Client getById(Long id) {
 
-        Optional<Client> optionalClient=clientDAO.findById(id);
+//        Optional<Client> optionalClient=clientDAO.findById(id);
 
-        return optionalClient.get();
+//        return optionalClient.get();
+        return clientDAO.getOne(id);
     }
 
     @Override

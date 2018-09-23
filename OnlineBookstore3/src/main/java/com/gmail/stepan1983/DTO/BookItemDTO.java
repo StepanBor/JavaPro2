@@ -1,7 +1,25 @@
 package com.gmail.stepan1983.DTO;
 
 
+import com.gmail.stepan1983.Service.BookService;
+import com.gmail.stepan1983.Service.CategoryService;
+import com.gmail.stepan1983.Service.PublisherService;
+import com.gmail.stepan1983.Service.StorageBooksService;
+import com.gmail.stepan1983.config.ContextProvider;
+import com.gmail.stepan1983.model.BookItem;
+import com.gmail.stepan1983.model.CategoryItem;
+import com.gmail.stepan1983.model.Publisher;
+import com.gmail.stepan1983.model.StorageBooks;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+import java.util.Locale;
+
 public class BookItemDTO {
+
+    BookService bookService=ContextProvider.getBean(com.gmail.stepan1983.Service.BookServiceImpl.class);
 
     private long id;
 
@@ -33,6 +51,15 @@ public class BookItemDTO {
     }
 
     public BookItemDTO() {
+    }
+
+    public BookItem toBookItem(){
+
+//        System.out.println("\u001B[33m"+id);
+        BookItem bookItem=bookService.getById(id);
+//        System.out.println("\u001B[33m"+bookItem+"LLLLLLLLLLLLLLLLLLL");
+//        return bookService.getById(id);
+        return bookItem;
     }
 
     public long getId() {
@@ -112,4 +139,6 @@ public class BookItemDTO {
                 ", storageBooksId=" + storageBooksId +
                 '}';
     }
+
+
 }

@@ -1,6 +1,8 @@
 package com.gmail.stepan1983.DTO;
 
 
+import com.gmail.stepan1983.model.Shipment;
+
 public class ShipmentDTO {
 
     private long id;
@@ -16,6 +18,10 @@ public class ShipmentDTO {
         this.shippingAddress = shippingAddress;
         this.shipmentStatus = shipmentStatus;
         this.order = order;
+    }
+
+    public Shipment toShipment(){
+        return new Shipment(shippingAddress,shipmentStatus,null);
     }
 
     public ShipmentDTO() {

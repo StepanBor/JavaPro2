@@ -58,11 +58,11 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void updateOrder(Order order) {
 
-        for (BookItem bookItem : order.getOrderList()) {
-            bookService.addBookItem(bookItem);
-        }
-        clientService.addClient(order.getClient());
-        shipmentService.addShipment(order.getShipment());
+//        for (BookItem bookItem : order.getOrderList()) {
+//            bookService.addBookItem(bookItem);
+//        }
+//        clientService.addClient(order.getClient());
+//        shipmentService.addShipment(order.getShipment());
         orderDAO.save(order);
 
     }

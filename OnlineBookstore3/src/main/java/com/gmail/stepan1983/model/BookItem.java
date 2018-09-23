@@ -19,17 +19,17 @@ public class BookItem {
 
     private String author;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @ManyToOne
     private Publisher publisher;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @ManyToOne
     private CategoryItem category;
 
     private Double price;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
 //    @OneToOne
     private StorageBooks storageBooks;
 
@@ -38,6 +38,7 @@ public class BookItem {
     public BookItem(String bookName, String description, String author,
                     Publisher publisher, CategoryItem category, Double price,
                     StorageBooks storageBooks, File image) {
+
         this.bookName = bookName;
         this.description = description;
         this.author = author;
@@ -52,7 +53,7 @@ public class BookItem {
     }
 
     public BookItemDTO toDTO(){
-        return new BookItemDTO(id,bookName,description,author,publisher.getPublisherName(),
+        return new BookItemDTO(id,bookName,description,author,String.valueOf(publisher.getId()),
                 category.getCategoryName(),price,storageBooks.getId());
     }
 
@@ -126,5 +127,20 @@ public class BookItem {
 
     public void setImage(File image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "BookItem{" +
+                "id=" + id +
+                ", bookName='" + bookName + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher=" + publisher.getId() +
+                ", category=" + category.getId() +
+                ", price=" + price +
+                ", storageBooks=" + storageBooks.getId() +
+//                ", image=" + image +
+                '}'+"\r\n";
     }
 }
