@@ -2,8 +2,8 @@ package com.gmail.stepan1983.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "Stock1")
+//@Entity
+//@Table(name = "Stock1")
 public class Stock {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

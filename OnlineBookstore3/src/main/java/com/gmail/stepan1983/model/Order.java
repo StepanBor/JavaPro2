@@ -18,7 +18,7 @@ public class Order {
     private long id;
 
     //    @OneToMany
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "Orders_books", joinColumns = {@JoinColumn(name = "orderId")},
             inverseJoinColumns = {@JoinColumn(name = "id")})
     private List<BookItem> orderList;
@@ -142,7 +142,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-//                ", orderList=" + orderList +
+                ", orderList=" + orderList +
                 ", orderPrice=" + orderPrice +
                 ", client=" + client +
                 ", shipment=" + shipment.getId() +

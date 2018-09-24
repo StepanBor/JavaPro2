@@ -1,5 +1,7 @@
 package com.gmail.stepan1983.DTO;
 
+import com.gmail.stepan1983.model.BookItem;
+
 public class MyEntry {
 
 
@@ -10,6 +12,8 @@ public class MyEntry {
         this.key = key;
         this.value = value;
     }
+
+
 
     public MyEntry() {
     }
@@ -30,4 +34,11 @@ public class MyEntry {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "MyEntry{" +
+                "key=" + key +
+                ", value=" + value +
+                '}'+"\r\n";
+    }
 }

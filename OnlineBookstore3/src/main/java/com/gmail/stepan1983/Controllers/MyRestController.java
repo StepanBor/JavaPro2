@@ -5,6 +5,7 @@ import com.gmail.stepan1983.DTO.OrderDTO;
 import com.gmail.stepan1983.Service.ClientGroupService;
 import com.gmail.stepan1983.Service.ClientService;
 import com.gmail.stepan1983.Service.OrderService;
+import com.gmail.stepan1983.config.ConsoleColors;
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,6 +129,7 @@ public class MyRestController {
 //        headers.set("Access-Control-Allow-Origin", "*");
 
 //        return new ResponseEntity<>(ordersDTO, headers, HttpStatus.OK);
+
         return ordersDTO;
     }
 
@@ -141,11 +143,15 @@ public class MyRestController {
     }
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value="/saveOrder", method = RequestMethod.POST)
-    public void saveOrder(@RequestBody OrderDTO orderDTO){
+    public ResponseEntity saveOrder(@RequestBody OrderDTO orderDTO){
 
+        Order order=orderDTO.toOrder();
 
-        System.out.println(orderDTO + "HHHHHHHHHHHHHHHH");
-//        System.out.println(orderToSave+"hhhhhhhhhhhhhhhhhhhh");
+        orderService.updateOrder(order);
+
+        System.out.println(ConsoleColors.BLUE_BRIGHT+order +ConsoleColors.RESET);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

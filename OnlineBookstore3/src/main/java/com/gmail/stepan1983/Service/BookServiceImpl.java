@@ -2,6 +2,7 @@ package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.DAO.*;
 import com.gmail.stepan1983.model.BookItem;
+import com.gmail.stepan1983.model.StorageBooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +28,6 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private CategoryDAO categoryDAO;
 
-    @Autowired
-    private StockDAO stockDAO;
 
     @Autowired
     private StorageBooksDAO storageBooksDAO;
@@ -36,17 +35,7 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public BookItem addBookItem(BookItem bookItem) {
-
-//        entityManager.merge(bookItem.getCategory());
         return entityManager.merge(bookItem);
-//        bookDAO.saveAndFlush(bookItem);
-
-//        bookDAO.save(bookItem);
-//        Stock stock=bookItem.getStorageBooksId().getStock();
-//        publisherDAO.save(bookItem.getPublisher());
-//        categoryDAO.save(bookItem.getCategory());
-//        stockDAO.save(stock);
-//        storageBooksDAO.save(bookItem.getStorageBooksId());
 
     }
 

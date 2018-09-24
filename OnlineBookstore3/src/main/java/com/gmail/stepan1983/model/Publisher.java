@@ -71,4 +71,14 @@ public class Publisher {
     public void setBooks(List<BookItem> books) {
         this.books = books;
     }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", publisherName='" + publisherName + '\'' +
+                ", publisherAdress='" + publisherAdress + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

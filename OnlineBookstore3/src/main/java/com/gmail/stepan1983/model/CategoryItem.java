@@ -61,5 +61,12 @@ public class CategoryItem {
         this.books = books;
     }
 
-
+    @Override
+    public String toString() {
+        return "CategoryItem{" +
+                "id=" + id +
+                ", categoryName='" + categoryName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

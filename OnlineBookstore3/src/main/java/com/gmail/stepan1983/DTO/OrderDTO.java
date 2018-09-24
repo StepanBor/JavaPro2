@@ -2,12 +2,22 @@ package com.gmail.stepan1983.DTO;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gmail.stepan1983.Service.ClientService;
+import com.gmail.stepan1983.config.ContextProvider;
+import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.Order;
+import com.gmail.stepan1983.model.OrderStatus;
+import com.gmail.stepan1983.model.Shipment;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class OrderDTO {
+
+    ClientService clientService=ContextProvider.getBean(com.gmail.stepan1983.Service.ClientServiceImpl.class);
 
     private long id;
 
@@ -26,6 +36,8 @@ public class OrderDTO {
 
 //    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private Date orderDate;
+
+//    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
     public OrderDTO(long id, List<MyEntry> orderList, double orderPrice, ClientDTO client,
                     ShipmentDTO shipment, String status,
@@ -61,8 +73,22 @@ public class OrderDTO {
 
     public Order toOrder(){
 
+        List<BookItem> orderListTemp=new ArrayList<>();
 
-        return null;
+        for (MyEntry entry : orderList) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                orderListTemp.add(entry.getKey().toBookItem());
+            }
+        }
+
+        Order order=new Order(orderListTemp,clientService.getById(client.getId()),
+                this.shipment.toShipment(),OrderStatus.valueOf(status),orderDate);
+
+
+        order.getShipment().setOrder(order);
+
+
+        return order;
     }
 
     public double getOrderPrice() {
@@ -126,7 +152,7 @@ public class OrderDTO {
     public String toString() {
         return "OrderDTO{" +
                 "id=" + id +
-//                ", orderList=" + orderList +
+                ", orderList=" + orderList +
                 ", orderPrice=" + orderPrice +
                 ", client=" + client +
                 ", shipment=" + shipment +
