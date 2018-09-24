@@ -63,7 +63,8 @@ public class OrderServiceImpl implements OrderService {
 //        }
 //        clientService.addClient(order.getClient());
 //        shipmentService.addShipment(order.getShipment());
-        orderDAO.save(order);
+        entityManager.merge(order);
+//        orderDAO.save(order);
 
     }
 

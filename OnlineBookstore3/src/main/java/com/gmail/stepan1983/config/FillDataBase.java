@@ -84,15 +84,15 @@ public class FillDataBase {
 //        platformTransactionManager.getTransaction(null);
         List<File> avatars = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
-            File file = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
-//            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+//            File file = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
             avatars.add(file);
         }
 
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
-//        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+//        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
 
 
         /* create first test clients*/
@@ -160,11 +160,11 @@ public class FillDataBase {
             }
 
             Shipment shipment = new Shipment("shipment adress" + i, "processed", null);
-            Order order = new Order(orderList, client, shipment, (i % 2 == 0) ? OrderStatus.processed : OrderStatus.closed, new Date());
+            Order order = new Order(new ArrayList<>(orderList), client, shipment, (i % 2 == 0) ? OrderStatus.processed : OrderStatus.closed, new Date());
             shipment.setOrder(order);
             entityManager.persist(order);
 //            orderService.addOrder(order);
-            Order order2 = new Order(orderList, client, shipment, (i % 2 == 0) ? OrderStatus.unProcessed : OrderStatus.closed, new Date());
+            Order order2 = new Order(new ArrayList<>(orderList), client, shipment, (i % 2 == 0) ? OrderStatus.unProcessed : OrderStatus.closed, new Date());
             entityManager.persist(order2);
 //            orderService.addOrder(order2);
 

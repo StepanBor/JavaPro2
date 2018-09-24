@@ -96,6 +96,10 @@ public class Order {
 
     public void setOrderList(List<BookItem> orderList) {
         this.orderList = orderList;
+        this.orderPrice=0;
+        for (BookItem bookItem : orderList) {
+            this.orderPrice=this.orderPrice+bookItem.getPrice();
+        }
     }
 
     public double getOrderPrice() {
@@ -136,6 +140,16 @@ public class Order {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public void addBookIten(BookItem bookItem){
+        orderList.add(bookItem);
+        orderPrice=orderPrice+bookItem.getPrice();
+    }
+
+    public void removeBookItem(BookItem bookItem){
+        orderList.remove(bookItem);
+        orderPrice=orderPrice-bookItem.getPrice();
     }
 
     @Override
