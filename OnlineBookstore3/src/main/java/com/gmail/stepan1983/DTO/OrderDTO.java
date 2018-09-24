@@ -84,9 +84,9 @@ public class OrderDTO {
         Order order=new Order(orderListTemp,clientService.getById(client.getId()),
                 this.shipment.toShipment(),OrderStatus.valueOf(status),orderDate);
 
-
         order.getShipment().setOrder(order);
 
+        order.setId(id);
 
         return order;
     }

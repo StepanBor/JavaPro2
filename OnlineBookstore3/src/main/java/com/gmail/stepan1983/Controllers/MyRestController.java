@@ -148,7 +148,7 @@ public class MyRestController {
         Order order=orderDTO.toOrder();
 
         orderService.updateOrder(order);
-
+        System.out.println(ConsoleColors.PURPLE+orderDTO+ConsoleColors.RESET);
         System.out.println(ConsoleColors.BLUE_BRIGHT+order +ConsoleColors.RESET);
 
         return new ResponseEntity(HttpStatus.OK);
