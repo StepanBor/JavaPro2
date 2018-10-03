@@ -18,19 +18,17 @@ public class Order {
     private long id;
 
     //    @OneToMany
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "Orders_books", joinColumns = {@JoinColumn(name = "orderId")},
-            inverseJoinColumns = {@JoinColumn(name = "id")})
+            inverseJoinColumns = {@JoinColumn(name = "bookId")})
     private List<BookItem> orderList;
 
     private double orderPrice;
 
-    @OneToOne
-//    @JoinColumn(name="clientId")
+    @OneToOne(fetch = FetchType.EAGER)
     private Client client;
 
-    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name="shipmentId")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Shipment shipment;
 
     @Enumerated(EnumType.STRING)

@@ -16,6 +16,8 @@ public interface BookService {
 
     Page<BookItem> findAll(Pageable pageable);
 
+    List<BookItem> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection);
+
     List<BookItem> findAll();
 
     long count();

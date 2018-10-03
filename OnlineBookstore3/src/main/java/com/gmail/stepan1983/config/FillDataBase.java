@@ -84,15 +84,22 @@ public class FillDataBase {
 //        platformTransactionManager.getTransaction(null);
         List<File> avatars = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
-//            File file = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
-            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+            File file = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+//            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
             avatars.add(file);
         }
 
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-//        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
-        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+        List<File> bookCovers=new ArrayList<>();
+        for (int i = 0; i < 14; i++) {
+            File file = new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\"+(i+1)+".jpg");
+            bookCovers.add(file);
+        }
+
+
+//        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
 
 
         /* create first test clients*/
@@ -130,7 +137,7 @@ public class FillDataBase {
 
 
             BookItem book = new BookItem("name" + i, "description" + i, "Author" + i, publisher,
-                    categoryItem , 100.0, storageBooks, image);
+                    categoryItem , 100.0, storageBooks, (i < 14) ? bookCovers.get(i) : bookCovers.get(i - 14));
 
             if(i<10) {
                 storageBooks.getBookQuantityMap().put(book, 10);
@@ -158,18 +165,22 @@ public class FillDataBase {
             } else {
                 orderList.add(book);
             }
-
             Shipment shipment = new Shipment("shipment adress" + i, "processed", null);
             Order order = new Order(new ArrayList<>(orderList), client, shipment, (i % 2 == 0) ? OrderStatus.processed : OrderStatus.closed, new Date());
             shipment.setOrder(order);
+            if(order.getStatus()==OrderStatus.closed){
+                shipment.setShipmentStatus("Closed");
+            }
             entityManager.persist(order);
-//            orderService.addOrder(order);
-            Order order2 = new Order(new ArrayList<>(orderList), client, shipment, (i % 2 == 0) ? OrderStatus.unProcessed : OrderStatus.closed, new Date());
+
+            Shipment shipment2 = new Shipment("shipment adress" + i, "processed", null);
+            Order order2 = new Order(new ArrayList<>(orderList), client, shipment2, (i % 2 == 0) ? OrderStatus.unProcessed : OrderStatus.closed, new Date());
+            shipment2.setOrder(order2);
+            if(order2.getStatus()==OrderStatus.closed){
+                shipment2.setShipmentStatus("Closed");
+            }
             entityManager.persist(order2);
-//            orderService.addOrder(order2);
         }
-
-
         entityManager.getTransaction().commit();
     }
 }

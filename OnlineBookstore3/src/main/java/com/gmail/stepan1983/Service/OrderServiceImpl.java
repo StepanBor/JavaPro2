@@ -1,9 +1,11 @@
 package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.DAO.OrderDAO;
+import com.gmail.stepan1983.config.ConsoleColors;
 import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
+import com.gmail.stepan1983.model.Shipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
@@ -36,13 +39,12 @@ public class OrderServiceImpl implements OrderService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    EntityManagerFactory entityManagerFactory;
+
     @Override
     @Transactional
     public void addOrder(Order order) {
-//        System.out.println();
-//        System.out.println();
-//        System.out.println(order);
-//        shipmentService.addShipment(order.getShipment());
         entityManager.merge(order);
     }
 
@@ -110,5 +112,15 @@ public class OrderServiceImpl implements OrderService {
         return orderDAO.count();
     }
 
+    @Override
+    @Transactional
+    public void deleteOrder(Order order) {
 
+        Order tempOrder=entityManager.merge(order);
+
+        System.out.println(ConsoleColors.YELLOW+tempOrder+ConsoleColors.RESET);
+
+        entityManager.remove(tempOrder);
+
+    }
 }

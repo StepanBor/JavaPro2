@@ -5,7 +5,9 @@ import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.StorageBooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +61,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional (readOnly = true)
+    public List<BookItem> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection) {
+
+        Sort sort = new Sort(sortDirection ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy);
+
+        Pageable pageable = PageRequest.of(page, itemsPerPage, sort);
+
+        return bookDAO.findAll(pageable).getContent();
+    }
+
+    @Override
     public List<BookItem> findAll() {
         return bookDAO.findAll();
     }

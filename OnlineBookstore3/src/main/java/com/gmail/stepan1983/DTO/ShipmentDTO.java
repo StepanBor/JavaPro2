@@ -1,9 +1,14 @@
 package com.gmail.stepan1983.DTO;
 
 
+import com.gmail.stepan1983.Service.ClientService;
+import com.gmail.stepan1983.Service.OrderService;
+import com.gmail.stepan1983.config.ContextProvider;
 import com.gmail.stepan1983.model.Shipment;
 
 public class ShipmentDTO {
+
+    OrderService orderService=ContextProvider.getBean(com.gmail.stepan1983.Service.OrderServiceImpl.class);
 
     private long id;
 
@@ -21,7 +26,9 @@ public class ShipmentDTO {
     }
 
     public Shipment toShipment(){
-        return new Shipment(shippingAddress,shipmentStatus,null);
+        Shipment tempShipment=new Shipment(shippingAddress,shipmentStatus,orderService.getById(order));
+        tempShipment.setId(id);
+        return tempShipment;
     }
 
     public ShipmentDTO() {
@@ -59,5 +66,13 @@ public class ShipmentDTO {
         this.order = order;
     }
 
-
+    @Override
+    public String toString() {
+        return "ShipmentDTO{" +
+                "id=" + id +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                ", shipmentStatus='" + shipmentStatus + '\'' +
+                ", order=" + order +
+                '}'+"\r\n";
+    }
 }

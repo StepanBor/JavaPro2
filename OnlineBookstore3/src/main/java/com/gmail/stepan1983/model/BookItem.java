@@ -33,11 +33,11 @@ public class BookItem {
 //    @OneToOne
     private StorageBooks storageBooks;
 
-    private File image;
+    private File cover;
 
     public BookItem(String bookName, String description, String author,
                     Publisher publisher, CategoryItem category, Double price,
-                    StorageBooks storageBooks, File image) {
+                    StorageBooks storageBooks, File cover) {
 
         this.bookName = bookName;
         this.description = description;
@@ -46,7 +46,7 @@ public class BookItem {
         this.category = category;
         this.price = price;
         this.storageBooks = storageBooks;
-        this.image = image;
+        this.cover = cover;
     }
 
     public BookItem() {
@@ -121,12 +121,12 @@ public class BookItem {
         this.storageBooks = storageBooks;
     }
 
-    public File getImage() {
-        return image;
+    public File getCover() {
+        return cover;
     }
 
-    public void setImage(File image) {
-        this.image = image;
+    public void setCover(File cover) {
+        this.cover = cover;
     }
 
     @Override
@@ -140,7 +140,7 @@ public class BookItem {
                 ", category=" + category.getId() +
                 ", price=" + price +
                 ", storageBooks=" + storageBooks.getId() +
-//                ", image=" + image +
+//                ", cover=" + cover +
                 '}'+"\r\n";
     }
 }

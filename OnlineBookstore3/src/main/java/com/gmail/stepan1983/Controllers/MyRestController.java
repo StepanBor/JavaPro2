@@ -1,11 +1,14 @@
 package com.gmail.stepan1983.Controllers;
 
+import com.gmail.stepan1983.DTO.BookItemDTO;
 import com.gmail.stepan1983.DTO.ClientDTO;
 import com.gmail.stepan1983.DTO.OrderDTO;
+import com.gmail.stepan1983.Service.BookService;
 import com.gmail.stepan1983.Service.ClientGroupService;
 import com.gmail.stepan1983.Service.ClientService;
 import com.gmail.stepan1983.Service.OrderService;
 import com.gmail.stepan1983.config.ConsoleColors;
+import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +38,9 @@ public class MyRestController {
     @Autowired
     ClientGroupService clientGroupService;
 
+    @Autowired
+    BookService bookService;
+
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/userPage")
     public List<ClientDTO> adminPage(@RequestParam(required = false, defaultValue = "1") Integer page,
@@ -63,21 +69,24 @@ public class MyRestController {
             clientDTOS.add(client.toDTO());
         }
 
-        long clientDetailsId = (clientId == null) ? clients.get(0).getId() : clientId;
-
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Access-Control-Allow-Origin", "*");
-
-        List<Object> objectList = new ArrayList<>();
-
-        objectList.add(clientDTOS);
-
-        objectList.add(clientPageNum);
-
-//        return new ResponseEntity<>(clientDTOS, headers, HttpStatus.OK);
         return clientDTOS;
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/getUsers")
+    public List<ClientDTO> getUsers() {
+
+        List<Client> clients = clientService.findAll();
+
+        List<ClientDTO> clientDTOS = new ArrayList<>();
+
+        for (Client client : clients) {
+            clientDTOS.add(client.toDTO());
+        }
+
+        return clientDTOS;
+    }
+
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/usersCount")
     public Long getTotalUsersCount() {
@@ -96,11 +105,6 @@ public class MyRestController {
                                         @RequestParam(required = false, defaultValue = "id") String sortBy,
                                         @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
-//        System.out.println("userId "+userId);
-//        System.out.println("page "+page);
-//        System.out.println("itemsPerPage "+itemsPerPage);
-//        System.out.println("sortBy "+sortBy);
-//        System.out.println("changeSortDirect "+changeSortDirect);
         if (changeSortDirect) {
             sortDirection = !sortDirection;
         }
@@ -111,7 +115,6 @@ public class MyRestController {
             orders = orderService.findByClient(client, PageRequest.of(page.intValue()-1, itemsPerPage,
                     Sort.Direction.ASC, "status", "orderPrice"));
         } else {
-//            orders = orderService.findAll();
             orders=orderService.findAll(page.intValue() - 1, itemsPerPage, sortBy, sortDirection);
         }
 
@@ -121,14 +124,9 @@ public class MyRestController {
 
         for (Order order : orders) {
             ordersDTO.add(order.toDTO());
-//            System.out.println(order.toDTO() + "WWWWWWWWWW");
         }
 
-//        System.out.println(ordersDTO.get(1).getOrderMap());
         HttpHeaders headers = new HttpHeaders();
-//        headers.set("Access-Control-Allow-Origin", "*");
-
-//        return new ResponseEntity<>(ordersDTO, headers, HttpStatus.OK);
 
         return ordersDTO;
     }
@@ -141,17 +139,69 @@ public class MyRestController {
 //        return new ResponseEntity<>(orderService.count(), headers, HttpStatus.OK);
         return orderService.count();
     }
+
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value="/saveOrder", method = RequestMethod.POST)
     public ResponseEntity saveOrder(@RequestBody OrderDTO orderDTO){
 
+        System.out.println(ConsoleColors.PURPLE+orderDTO+ConsoleColors.RESET);
+
         Order order=orderDTO.toOrder();
+        System.out.println(ConsoleColors.BLUE_BRIGHT+order +ConsoleColors.RESET);
 
         orderService.updateOrder(order);
-        System.out.println(ConsoleColors.PURPLE+orderDTO+ConsoleColors.RESET);
-        System.out.println(ConsoleColors.BLUE_BRIGHT+order +ConsoleColors.RESET);
+
 
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/bookItems")
+    public List<BookItemDTO> getBookItems(@RequestParam(required = false) Long userId,
+                                        @RequestParam(required = false) Long page,
+                                        @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
+                                        @RequestParam(required = false, defaultValue = "id") String sortBy,
+                                        @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
+
+        if (changeSortDirect) {
+            sortDirection = !sortDirection;
+        }
+
+        List<BookItem> bookItems;
+
+        if(page==null){
+            bookItems=bookService.findAll();
+        }else{
+            bookItems=bookService.findAll(page.intValue() - 1, itemsPerPage, sortBy, sortDirection);
+        }
+
+        List<BookItemDTO> bookItemsDTO = new ArrayList<>();
+
+        for (BookItem bookItem : bookItems) {
+            bookItemsDTO.add(bookItem.toDTO());
+        }
+
+        return bookItemsDTO;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/bookCount")
+    public Long getTotalBookCount() {
+        return bookService.count();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value="/deleteOrder", method = RequestMethod.POST)
+    public ResponseEntity deleteOrder(@RequestBody OrderDTO orderDTO){
+
+        System.out.println(ConsoleColors.YELLOW+orderDTO+ConsoleColors.RESET);
+
+        Order order=orderDTO.toOrder();
+
+        System.out.println(ConsoleColors.RED+order +ConsoleColors.RESET);
+
+        orderService.deleteOrder(order);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
