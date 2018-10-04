@@ -60,6 +60,16 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client getByEmail(String email) {
+        return clientDAO.getByEmail(email);
+    }
+
+    @Override
+    public Client getByPhone(String phone) {
+        return clientDAO.getByPhone(phone);
+    }
+
+    @Override
     @Transactional
     public void updateClient(Client client) {
         clientDAO.save(client);
@@ -111,4 +121,6 @@ public class ClientServiceImpl implements ClientService {
     public boolean existsByLogin(String login) {
         return clientDAO.existsByLogin(login);
     }
+
+
 }

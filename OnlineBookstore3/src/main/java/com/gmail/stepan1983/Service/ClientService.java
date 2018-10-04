@@ -12,6 +12,10 @@ public interface ClientService {
 
     Client getByLogin(String login);
 
+    Client getByEmail(String email);
+
+    Client getByPhone(String phone);
+
     Client getById(Long id);
 
     boolean existsByLogin(String login);
