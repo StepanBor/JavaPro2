@@ -1,11 +1,7 @@
 package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.DAO.OrderDAO;
-import com.gmail.stepan1983.config.ConsoleColors;
-import com.gmail.stepan1983.model.BookItem;
-import com.gmail.stepan1983.model.Client;
-import com.gmail.stepan1983.model.Order;
-import com.gmail.stepan1983.model.Shipment;
+import com.gmail.stepan1983.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,8 +41,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public void addOrder(Order order) {
-        entityManager.merge(order);
+    public Order addOrder(Order order) {
+        Client client=entityManager.merge(order.getClient());
+        order.setClient(client);
+        Order temp=entityManager.merge(order);
+        updateBookItemsRaiting();
+        return temp;
     }
 
     @Override
@@ -58,14 +59,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public void updateOrder(Order order) {
+    public Order updateOrder(Order order) {
 
 //        for (BookItem bookItem : order.getOrderList()) {
 //            bookService.addBookItem(bookItem);
 //        }
 //        clientService.addClient(order.getClient());
 //        shipmentService.addShipment(order.getShipment());
-        entityManager.merge(order);
+
+        Order temp= entityManager.merge(order);
+        updateBookItemsRaiting();
+      return temp;
 //        orderDAO.save(order);
 
     }
@@ -79,6 +83,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional(readOnly = true)
     public List<Order> findAll() {
+        Sort sort = new Sort(Sort.Direction.ASC , "id");
         return orderDAO.findAll();
     }
 
@@ -117,10 +122,39 @@ public class OrderServiceImpl implements OrderService {
     public void deleteOrder(Order order) {
 
         Order tempOrder=entityManager.merge(order);
-
-        System.out.println(ConsoleColors.YELLOW+tempOrder+ConsoleColors.RESET);
-
         entityManager.remove(tempOrder);
+        updateBookItemsRaiting();
+    }
 
+    @Override
+    @Transactional
+    public long countByParam(String paramName, String paramValue){
+
+        TypedQuery<Long> typedQuery=entityManager.createQuery("SELECT COUNT(o) FROM TheOrder o WHERE o."+paramName+"=:parValue", Long.class);
+        if(paramName.equals("status")){
+            typedQuery.setParameter("parValue",OrderStatus.valueOf(paramValue));
+        }else {
+            typedQuery.setParameter("parValue",paramValue);
+        }
+
+        return typedQuery.getSingleResult();
+    }
+
+    public void updateBookItemsRaiting() {
+        List<Order> orders = orderDAO.findAll();
+        List<BookItem> items = bookService.findAll();
+
+        for (int i = 0; i < items.size(); i++) {
+            items.get(i).setRating(0);
+            for (int j = 0; j < orders.size(); j++) {
+                List<BookItem> orderList = orders.get(j).getOrderList();
+                for (BookItem bookItem : orderList) {
+                    if (bookItem.getId() == items.get(i).getId()) {
+                        items.get(i).setRating(items.get(i).getRating() + 1);
+                    }
+                }
+            }
+            bookService.updateBookItem(items.get(i));
+        }
     }
 }

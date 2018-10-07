@@ -3,11 +3,9 @@ package com.gmail.stepan1983.Controllers;
 import com.gmail.stepan1983.DTO.BookItemDTO;
 import com.gmail.stepan1983.DTO.ClientDTO;
 import com.gmail.stepan1983.DTO.OrderDTO;
-import com.gmail.stepan1983.Service.BookService;
-import com.gmail.stepan1983.Service.ClientGroupService;
-import com.gmail.stepan1983.Service.ClientService;
-import com.gmail.stepan1983.Service.OrderService;
+import com.gmail.stepan1983.Service.*;
 import com.gmail.stepan1983.config.ConsoleColors;
+import com.gmail.stepan1983.config.RateRetriever;
 import com.gmail.stepan1983.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import sun.security.provider.certpath.OCSPResponse;
 
@@ -26,7 +25,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MyRestController {
@@ -44,6 +45,13 @@ public class MyRestController {
 
     @Autowired
     BookService bookService;
+
+    @Autowired
+    RateRetriever rateRetriever;
+
+    @Autowired
+    TaskServiceImpl taskService;
+
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/userPage")
@@ -131,8 +139,8 @@ public class MyRestController {
             message = "client with phone \'" + phone + "\' already exists";
             return new ResponseEntity(message, HttpStatus.OK);
         }
-        ClientGroup clientGroup=clientGroupService.findByGroupName("customers");
-        Client newClient= new Client(login,password,email,phone,address,name,lastname,UserRole.CUSTOMER,clientGroup,avatar);
+        ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
+        Client newClient = new Client(login, password, email, phone, address, name, lastname, UserRole.CUSTOMER, clientGroup, avatar);
 
         clientService.addClient(newClient);
 
@@ -146,14 +154,17 @@ public class MyRestController {
                                         @RequestParam(required = false, defaultValue = "1") Long page,
                                         @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                         @RequestParam(required = false, defaultValue = "id") String sortBy,
-                                        @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
+                                        @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect,
+                                        @RequestParam(required = false, defaultValue = "false") Boolean allOrders) {
 
         if (changeSortDirect) {
             sortDirection = !sortDirection;
         }
 
         List<Order> orders;
-        if (userId != null) {
+        if (allOrders) {
+            orders = orderService.findAll();
+        } else if (userId != null) {
             Client client = clientService.getById(userId);
             orders = orderService.findByClient(client, PageRequest.of(page.intValue() - 1, itemsPerPage,
                     Sort.Direction.ASC, "status", "orderPrice"));
@@ -186,14 +197,17 @@ public class MyRestController {
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
     public ResponseEntity saveOrder(@RequestBody OrderDTO orderDTO) {
 
+
         System.out.println(ConsoleColors.PURPLE + orderDTO + ConsoleColors.RESET);
 
         Order order = orderDTO.toOrder();
         System.out.println(ConsoleColors.BLUE_BRIGHT + order + ConsoleColors.RESET);
 
-        orderService.updateOrder(order);
-
-
+        order = orderService.updateOrder(order);
+//        if(order.getStatus()==OrderStatus.unProcessed){
+//            Task task = new Task("Unprocessed order id "+order.getId(), "open");
+//            taskService.addTask(task);
+//        }
         return new ResponseEntity(HttpStatus.OK);
     }
 
@@ -243,7 +257,57 @@ public class MyRestController {
         System.out.println(ConsoleColors.RED + order + ConsoleColors.RESET);
 
         orderService.deleteOrder(order);
-
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/createNewOrder")
+    public ResponseEntity createNewOrder() {
+
+        Shipment shipment = new Shipment("", "unProcessed", null);
+        ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
+        Client client = new Client("default", "", "default", "default",
+                "default", "default", "default",
+                UserRole.CUSTOMER, clientGroup, new File("default"));
+        Order order = new Order(new ArrayList<BookItem>(), client, shipment, OrderStatus.unProcessed, new Date());
+        shipment.setOrder(order);
+//        clientService.addClient(client);
+        order = orderService.addOrder(order);
+        System.out.println(ConsoleColors.BLUE_UNDERLINED + order + ConsoleColors.RESET);
+        return new ResponseEntity<>(order.getId(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/countOrdersByParam", method = RequestMethod.GET)
+    public ResponseEntity countOrdersByParam(@RequestParam String paramName,
+                                             @RequestParam String paramValue) {
+
+        System.out.println(ConsoleColors.BLUE_UNDERLINED + orderService.countByParam(paramName, paramValue) + ConsoleColors.RESET);
+        return new ResponseEntity<>(orderService.countByParam(paramName, paramValue), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/rates", method = RequestMethod.GET)
+    public Rate getRates() {
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String> response = restTemplate.getForEntity
+//                ("http://apilayer.net/api/live?access_key=8742691146d4666a721d276747be45ab&currencies=UAH,USD,EUR,RUB",
+//                        String.class);
+
+
+        return rateRetriever.getRate();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/tasks")
+    public List<Task> getTasks(@RequestParam(required = false) Task task) {
+
+        if (task != null) {
+            taskService.addTask(task);
+        }
+
+        return taskService.findByStatus("open");
+    }
+
+
 }

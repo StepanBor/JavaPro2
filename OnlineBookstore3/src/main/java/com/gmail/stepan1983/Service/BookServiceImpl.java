@@ -49,8 +49,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public void updateBookItem(BookItem bookItem) {
-        bookDAO.save(bookItem);
+    public BookItem updateBookItem(BookItem bookItem) {
+       return entityManager.merge(bookItem);
     }
 
     @Override

@@ -9,8 +9,8 @@ import java.io.File;
 @Table(name = "books1")
 public class BookItem {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="bookId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "bookId")
     private long id;
 
     private String bookName;
@@ -18,6 +18,8 @@ public class BookItem {
     private String description;
 
     private String author;
+
+    private Integer rating;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @ManyToOne
@@ -37,7 +39,7 @@ public class BookItem {
 
     public BookItem(String bookName, String description, String author,
                     Publisher publisher, CategoryItem category, Double price,
-                    StorageBooks storageBooks, File cover) {
+                    StorageBooks storageBooks, File cover, Integer rating) {
 
         this.bookName = bookName;
         this.description = description;
@@ -47,14 +49,15 @@ public class BookItem {
         this.price = price;
         this.storageBooks = storageBooks;
         this.cover = cover;
+        this.rating = rating;
     }
 
     public BookItem() {
     }
 
-    public BookItemDTO toDTO(){
-        return new BookItemDTO(id,bookName,description,author,String.valueOf(publisher.getId()),
-                category.getCategoryName(),price,storageBooks.getId());
+    public BookItemDTO toDTO() {
+        return new BookItemDTO(id, bookName, description, author, String.valueOf(publisher.getId()),
+                category.getCategoryName(), price, storageBooks.getId(), rating);
     }
 
     public long getId() {
@@ -129,6 +132,14 @@ public class BookItem {
         this.cover = cover;
     }
 
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer raiting) {
+        this.rating = raiting;
+    }
+
     @Override
     public String toString() {
         return "BookItem{" +
@@ -136,11 +147,9 @@ public class BookItem {
                 ", bookName='" + bookName + '\'' +
                 ", description='" + description + '\'' +
                 ", author='" + author + '\'' +
-                ", publisher=" + publisher.getId() +
-                ", category=" + category.getId() +
+                ", raiting=" + rating +
+                ", publisher=" + publisher +
                 ", price=" + price +
-                ", storageBooks=" + storageBooks.getId() +
-//                ", cover=" + cover +
-                '}'+"\r\n";
+                '}';
     }
 }

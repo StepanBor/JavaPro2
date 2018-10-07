@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderDAO extends JpaRepository<Order, Long>, QueryByExampleExecutor<Order> {
 
-    @Query("SELECT o FROM Order o WHERE o.client= :client ORDER BY o.orderPrice DESC ")
+    @Query("SELECT o FROM TheOrder o WHERE o.client= :client ORDER BY o.orderPrice DESC ")
     Page<Order> findByClient(@Param("client") Client client, Pageable pageable);
 
 }

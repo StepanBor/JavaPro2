@@ -12,7 +12,7 @@ public interface BookService {
 
     BookItem getById(Long bookId);
 
-    void updateBookItem(BookItem bookItem);
+    BookItem updateBookItem(BookItem bookItem);
 
     Page<BookItem> findAll(Pageable pageable);
 

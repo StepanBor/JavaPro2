@@ -8,7 +8,7 @@ import com.gmail.stepan1983.DTO.OrderDTO;
 import javax.persistence.*;
 import java.util.*;
 
-@Entity
+@Entity(name = "TheOrder")
 @Table(name = "Orders1")
 public class Order {
 
@@ -75,6 +75,7 @@ public class Order {
         for (BookItemDTO bookItemDTO : orderMap.keySet()) {
             orderListDTO.add(new MyEntry(bookItemDTO,orderMap.get(bookItemDTO)));
         }
+
 
         return new OrderDTO(id,orderListDTO, orderPrice, client.toDTO(),
                 shipment.toDTO(), status.toString(), orderDate/*, orderMap*/);

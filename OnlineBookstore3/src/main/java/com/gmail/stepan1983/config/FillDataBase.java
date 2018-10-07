@@ -72,7 +72,7 @@ public class FillDataBase {
     @PostConstruct
 //    @Transactional
     public void fillData() {
-
+        Date today=new Date();
         try {
             Class.forName("com.gmail.stepan1983.config.ConsoleColors");
         } catch (ClassNotFoundException e) {
@@ -137,7 +137,7 @@ public class FillDataBase {
 
 
             BookItem book = new BookItem("name" + i, "description" + i, "Author" + i, publisher,
-                    categoryItem , 100.0, storageBooks, (i < 14) ? bookCovers.get(i) : bookCovers.get(i - 14));
+                    categoryItem , 100.0, storageBooks, (i < 14) ? bookCovers.get(i) : bookCovers.get(i - 14),0);
 
             if(i<10) {
                 storageBooks.getBookQuantityMap().put(book, 10);
@@ -166,21 +166,33 @@ public class FillDataBase {
                 orderList.add(book);
             }
             Shipment shipment = new Shipment("shipment adress" + i, "processed", null);
-            Order order = new Order(new ArrayList<>(orderList), client, shipment, (i % 2 == 0) ? OrderStatus.processed : OrderStatus.closed, new Date());
+            Order order = new Order(new ArrayList<>(orderList), client, shipment, (i % 2 == 0) ? OrderStatus.processed : OrderStatus.closed, new Date((long)(today.getTime()-(long)i*8.64e+7)));
             shipment.setOrder(order);
             if(order.getStatus()==OrderStatus.closed){
                 shipment.setShipmentStatus("Closed");
             }
             entityManager.persist(order);
+//            if(order.getStatus()==OrderStatus.unProcessed){
+//                Task task=new Task("Unprocessed order id "+order.getId(), "open");
+//                entityManager.persist(task);
+//            }
+
 
             Shipment shipment2 = new Shipment("shipment adress" + i, "processed", null);
-            Order order2 = new Order(new ArrayList<>(orderList), client, shipment2, (i % 2 == 0) ? OrderStatus.unProcessed : OrderStatus.closed, new Date());
+            Order order2 = new Order(new ArrayList<>(orderList), client, shipment2, (i % 2 == 0) ? OrderStatus.unProcessed : OrderStatus.closed, new Date((long)(today.getTime()-(long)i*8.64e+7)));
             shipment2.setOrder(order2);
             if(order2.getStatus()==OrderStatus.closed){
                 shipment2.setShipmentStatus("Closed");
             }
             entityManager.persist(order2);
+            if(order2.getStatus()==OrderStatus.unProcessed){
+                Task task2=new Task("Task description"+order2.getId(), "open");
+                entityManager.persist(task2);
+            }
         }
         entityManager.getTransaction().commit();
+        List<Order> orders=orderService.findAll();
+        orderService.updateOrder(orders.get(1));
     }
+
 }

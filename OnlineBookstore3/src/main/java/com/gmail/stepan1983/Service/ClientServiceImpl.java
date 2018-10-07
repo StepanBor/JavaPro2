@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -122,5 +124,11 @@ public class ClientServiceImpl implements ClientService {
         return clientDAO.existsByLogin(login);
     }
 
+    @Transactional
+    long countByParam(String paramName, String paramValue){
+        TypedQuery<Long> typedQuery=entityManager.createQuery("SELECT COUNT(c) FROM Client c WHERE c."+paramName+"=:parValue", Long.class);
+        typedQuery.setParameter("parValue",paramValue);
+        return typedQuery.getSingleResult();
+    }
 
 }
