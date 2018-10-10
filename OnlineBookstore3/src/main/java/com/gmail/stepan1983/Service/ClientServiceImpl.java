@@ -131,4 +131,11 @@ public class ClientServiceImpl implements ClientService {
         return typedQuery.getSingleResult();
     }
 
+    @Override
+    @Transactional
+    public void deleteClient(Client client) {
+        Client client1=entityManager.merge(client);
+        client1.setClientGroup(null);
+        entityManager.remove(client1);
+    }
 }

@@ -1,8 +1,6 @@
 package com.gmail.stepan1983.Controllers;
 
-import com.gmail.stepan1983.DTO.BookItemDTO;
-import com.gmail.stepan1983.DTO.ClientDTO;
-import com.gmail.stepan1983.DTO.OrderDTO;
+import com.gmail.stepan1983.DTO.*;
 import com.gmail.stepan1983.Service.*;
 import com.gmail.stepan1983.config.ConsoleColors;
 import com.gmail.stepan1983.config.RateRetriever;
@@ -14,6 +12,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -52,6 +52,16 @@ public class MyRestController {
     @Autowired
     TaskServiceImpl taskService;
 
+    @Autowired
+    PublisherService publisherService;
+
+    @Autowired
+    CategoryService categoryService;
+
+    @Autowired
+    StorageBooksService storageBooksService;
+
+    PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/userPage")
@@ -118,32 +128,65 @@ public class MyRestController {
                                         @RequestParam(required = false) String address,
                                         @RequestParam(required = false) String name,
                                         @RequestParam(required = false) String lastname,
-                                        @RequestParam(required = false) String password) {
-        File avatar = new File("photo");
+                                        @RequestParam(required = false) String password,
+                                        @RequestParam(required = false, defaultValue = "false") Boolean updateUser,
+                                        @RequestParam(required = false) Long id) {
 
-        try (OutputStream os = new FileOutputStream(avatar)) {
-            os.write(photo.getBytes());
-            System.out.println(ConsoleColors.BLUE_UNDERLINED + avatar.length() + ConsoleColors.RESET);
-        } catch (IOException e) {
-            e.printStackTrace();
+        File avatar = new File("photo");
+        if (photo != null) {
+            try (OutputStream os = new FileOutputStream(avatar)) {
+                os.write(photo.getBytes());
+                System.out.println(ConsoleColors.BLUE_UNDERLINED + avatar.length() + ConsoleColors.RESET);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        String message = "user created";
-        if (clientService.getByLogin(login) != null) {
-            message = "client with login \'" + login + "\' already exists";
+        List<String> message = new ArrayList<>();
+        if (updateUser) {
+            Client client = clientService.getById(id);
+            if (login != null) {
+                client.setLogin(login);
+            }
+            if (email != null) {
+                client.setEmail(email);
+            }
+            if (phone != null) {
+                client.setPhone(phone);
+            }
+            if (address != null) {
+                client.setAdress(address);
+            }
+            if (name != null) {
+                client.setName(name);
+            }
+            if (lastname != null) {
+                client.setLastname(lastname);
+            }
+            if (password != null) {
+                client.setPassword(encoder.encode(password));
+            }
+            if (photo != null) {
+                client.setAvatar(avatar);
+            }
+            clientService.updateClient(client);
+            message.add("client profile id " + client.getId() + " updated");
+            return new ResponseEntity(message, HttpStatus.OK);
+        } else if (clientService.getByLogin(login) != null) {
+            message.add("client with login \'" + login + "\' already exists");
             return new ResponseEntity(message, HttpStatus.OK);
         } else if (clientService.getByEmail(email) != null) {
-            message = "client with email \'" + email + "\' already exists";
+            message.add("client with email \'" + email + "\' already exists");
             return new ResponseEntity(message, HttpStatus.OK);
         } else if (clientService.getByPhone(phone) != null) {
-            message = "client with phone \'" + phone + "\' already exists";
+            message.add("client with phone \'" + phone + "\' already exists");
             return new ResponseEntity(message, HttpStatus.OK);
         }
         ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
-        Client newClient = new Client(login, password, email, phone, address, name, lastname, UserRole.CUSTOMER, clientGroup, avatar);
+        Client newClient = new Client(login, encoder.encode(password), email, phone, address, name, lastname, UserRole.CUSTOMER, clientGroup, avatar);
 
-        clientService.addClient(newClient);
-
+        Client client = clientService.addClient(newClient);
+        message.add("New user id is " + client.getId());
         return new ResponseEntity(message, HttpStatus.OK);
     }
 
@@ -194,6 +237,15 @@ public class MyRestController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/deleteUser")
+    public ResponseEntity deleteUser(@RequestParam Long userId) {
+        Client client = clientService.getById(userId);
+
+        clientService.deleteClient(client);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
     public ResponseEntity saveOrder(@RequestBody OrderDTO orderDTO) {
 
@@ -213,7 +265,7 @@ public class MyRestController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/bookItems")
-    public List<BookItemDTO> getBookItems(@RequestParam(required = false) Long userId,
+    public List<BookItemDTO> getBookItems(@RequestParam(required = false) Long bookId,
                                           @RequestParam(required = false) Long page,
                                           @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                           @RequestParam(required = false, defaultValue = "id") String sortBy,
@@ -244,6 +296,86 @@ public class MyRestController {
     @RequestMapping("/bookCount")
     public Long getTotalBookCount() {
         return bookService.count();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/saveBookItem", method = RequestMethod.POST)
+    public ResponseEntity saveBookItem(@RequestBody BookItemDTO bookItemDTO) {
+
+        BookItem bookItem = bookItemDTO.toBookItem();
+        bookService.updateBookItem(bookItem);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/deleteBookItem", method = RequestMethod.POST)
+    public ResponseEntity deleteBookItem(@RequestBody Long bookItemId) {
+        BookItem bookItem = bookService.getById(bookItemId);
+        bookService.deleteBookItem(bookItem);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/createNewBookItem", method = RequestMethod.POST)
+    public ResponseEntity createNewBookItem(@RequestParam(required = false) MultipartFile cover,
+                                            @RequestParam String bookName,
+                                            @RequestParam String description,
+                                            @RequestParam String author,
+                                            @RequestParam Long publisherId,
+//                                            @RequestParam String publisherName,
+//                                            @RequestParam String publisherDescription,
+//                                            @RequestParam String publisherAdress,
+                                            @RequestParam(required = false) Long categoryId,
+                                            @RequestParam(required = false) Double price,
+                                            @RequestParam(required = false) String ISBN,
+                                            @RequestParam(required = false, defaultValue = "false") Boolean updateBook,
+                                            @RequestParam(required = false) Long id) {
+
+        File bookCover = new File("cover");
+        if (cover != null) {
+            bookCover = new File(cover.getName());
+            try (OutputStream os = new FileOutputStream(bookCover)) {
+                os.write(cover.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Publisher publisher = publisherService.getById(publisherId);
+        CategoryItem categoryItem = categoryService.getById(categoryId);
+
+        if (updateBook) {
+            BookItem bookItem = bookService.getById(id);
+
+            bookItem.setISBN(ISBN);
+            bookItem.setBookName(bookName);
+            bookItem.setDescription(description);
+            bookItem.setPrice(price);
+            bookItem.setAuthor(author);
+            bookItem.setPublisher(publisher);
+            bookItem.setCategory(categoryItem);
+            if (cover != null) {
+                bookItem.setCover(bookCover);
+            }
+
+            bookService.updateBookItem(bookItem);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+
+
+        BookItem newBookItem = new BookItem(bookName, description, author, publisher,
+                categoryItem, price, new StorageBooks(), bookCover, 0, ISBN);
+
+        bookService.updateBookItem(newBookItem);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/storageBook")
+    public StorageBookDTO getStorageBook() {
+        List<StorageBooks> storageBooksList = storageBooksService.findAll();
+        StorageBookDTO storageBookDTO = storageBooksList.get(0).toStorageDTO();
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+storageBookDTO+ConsoleColors.RESET);
+        return storageBookDTO;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -299,15 +431,29 @@ public class MyRestController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/tasks")
-    public List<Task> getTasks(@RequestParam(required = false) Task task) {
+    @RequestMapping(value = "/tasks", method = RequestMethod.POST)
+    public List<Task> updateTasks(@RequestBody TaskDTO taskDTO) {
 
-        if (task != null) {
+        Task task = taskDTO.toTask();
+//        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+task+ConsoleColors.RESET);
+        if (!task.getStatus().equals("closed")) {
             taskService.addTask(task);
+        } else if (task.getStatus().equals("closed")) {
+            taskService.deleteTask(task);
         }
 
         return taskService.findByStatus("open");
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/getTasks")
+    public List<Task> getTasks() {
+
+        return taskService.findByStatus("open");
+    }
+
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    @RequestMapping(value = "/tasks")
+//    public closeTask()
 
 }

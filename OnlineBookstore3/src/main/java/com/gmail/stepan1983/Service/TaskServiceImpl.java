@@ -36,6 +36,12 @@ public class TaskServiceImpl {
 
     }
 
+    @Transactional
+    public void deleteTask(Task task) {
+        Task temp = entityManager.merge(task);
+        entityManager.remove(temp);
+    }
+
     public List<Task> findAll() {
         return taskDAO.findAll();
     }

@@ -14,6 +14,8 @@ public interface BookService {
 
     BookItem updateBookItem(BookItem bookItem);
 
+    void deleteBookItem(BookItem bookItem);
+
     Page<BookItem> findAll(Pageable pageable);
 
     List<BookItem> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection);

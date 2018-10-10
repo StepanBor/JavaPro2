@@ -37,9 +37,11 @@ public class BookItem {
 
     private File cover;
 
+    private String ISBN;
+
     public BookItem(String bookName, String description, String author,
                     Publisher publisher, CategoryItem category, Double price,
-                    StorageBooks storageBooks, File cover, Integer rating) {
+                    StorageBooks storageBooks, File cover, Integer rating, String ISBN) {
 
         this.bookName = bookName;
         this.description = description;
@@ -50,6 +52,7 @@ public class BookItem {
         this.storageBooks = storageBooks;
         this.cover = cover;
         this.rating = rating;
+        this.ISBN=ISBN;
     }
 
     public BookItem() {
@@ -57,7 +60,7 @@ public class BookItem {
 
     public BookItemDTO toDTO() {
         return new BookItemDTO(id, bookName, description, author, String.valueOf(publisher.getId()),
-                category.getCategoryName(), price, storageBooks.getId(), rating);
+                category.getCategoryName(), price, storageBooks.getId(), rating,ISBN);
     }
 
     public long getId() {
@@ -140,6 +143,14 @@ public class BookItem {
         this.rating = raiting;
     }
 
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
     @Override
     public String toString() {
         return "BookItem{" +
@@ -150,6 +161,7 @@ public class BookItem {
                 ", raiting=" + rating +
                 ", publisher=" + publisher +
                 ", price=" + price +
+                ", ISBN=" + ISBN +
                 '}';
     }
 }

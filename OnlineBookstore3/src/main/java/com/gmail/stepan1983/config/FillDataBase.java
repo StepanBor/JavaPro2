@@ -137,7 +137,7 @@ public class FillDataBase {
 
 
             BookItem book = new BookItem("name" + i, "description" + i, "Author" + i, publisher,
-                    categoryItem , 100.0, storageBooks, (i < 14) ? bookCovers.get(i) : bookCovers.get(i - 14),0);
+                    categoryItem , 100.0, storageBooks, (i < 14) ? bookCovers.get(i) : bookCovers.get(i - 14),0,"ISBN"+i);
 
             if(i<10) {
                 storageBooks.getBookQuantityMap().put(book, 10);

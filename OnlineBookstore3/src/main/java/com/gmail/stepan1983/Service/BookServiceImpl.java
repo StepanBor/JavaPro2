@@ -54,6 +54,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
+    public void deleteBookItem(BookItem bookItem) {
+        BookItem temp=entityManager.merge(bookItem);
+        entityManager.remove(temp);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Page<BookItem> findAll(Pageable pageable) {
         return bookDAO.findAll(pageable);

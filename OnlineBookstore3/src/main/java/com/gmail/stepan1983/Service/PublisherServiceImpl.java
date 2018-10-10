@@ -21,7 +21,11 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public Publisher getById(Long publisherId) {
-        return publisherDAO.getOne(publisherId);
+        if(publisherDAO.existsById(publisherId)){
+            return publisherDAO.getOne(publisherId);
+        }
+        return null;
+
     }
 
     @Override
