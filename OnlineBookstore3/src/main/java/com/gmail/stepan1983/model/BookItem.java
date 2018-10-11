@@ -1,13 +1,19 @@
 package com.gmail.stepan1983.model;
 
 import com.gmail.stepan1983.DTO.BookItemDTO;
+import com.gmail.stepan1983.Service.StorageBooksService;
+import com.gmail.stepan1983.config.ContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "books1")
 public class BookItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "bookId")
@@ -59,8 +65,9 @@ public class BookItem {
     }
 
     public BookItemDTO toDTO() {
+        int copiesInStock=storageBooks.getBookQuantityMap().get(this);
         return new BookItemDTO(id, bookName, description, author, String.valueOf(publisher.getId()),
-                category.getCategoryName(), price, storageBooks.getId(), rating,ISBN);
+                category.getCategoryName(), price, storageBooks.getId(), rating,ISBN,copiesInStock);
     }
 
     public long getId() {
@@ -149,6 +156,20 @@ public class BookItem {
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookItem)) return false;
+        BookItem bookItem = (BookItem) o;
+        return getId() == bookItem.getId();
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId());
     }
 
     @Override

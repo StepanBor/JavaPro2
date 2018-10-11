@@ -3,10 +3,7 @@ package com.gmail.stepan1983.model;
 import com.gmail.stepan1983.DTO.StorageBookDTO;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 @Entity
 @Table(name = "StorageBooks1")
@@ -22,7 +19,7 @@ public class StorageBooks {
             joinColumns = @JoinColumn(name = "STORE"))
     @Column(name = "COPIES_IN_STOCK")
     @MapKeyJoinColumn(name = "Book", referencedColumnName = "bookId")
-    private Map<BookItem, Integer> bookQuantityMap = new TreeMap<>((BookItem bi1, BookItem bi2) -> (int) (bi1.getId() - bi2.getId()));
+    private Map<BookItem, Integer> bookQuantityMap = new HashMap<>();
 
 
     private String storageAddress;
@@ -55,7 +52,7 @@ public class StorageBooks {
 
         for (Map.Entry<BookItem, Integer> bookItemIntegerEntry : mapEntrySet) {
             StorageBookDTO.StorageEntry storageEntry=
-                    storageBookDTO.new StorageEntry(bookItemIntegerEntry.getKey().toDTO(),bookItemIntegerEntry.getValue());
+                    storageBookDTO.new StorageEntry(bookItemIntegerEntry.getKey().getId(),bookItemIntegerEntry.getValue());
             storageBookDTO.getStorageEntryList().add(storageEntry);
         }
 

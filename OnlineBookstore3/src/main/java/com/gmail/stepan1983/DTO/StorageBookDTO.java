@@ -1,5 +1,9 @@
 package com.gmail.stepan1983.DTO;
 
+import com.gmail.stepan1983.Service.BookService;
+import com.gmail.stepan1983.Service.ClientService;
+import com.gmail.stepan1983.Service.StorageBooksService;
+import com.gmail.stepan1983.config.ContextProvider;
 import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.StorageBooks;
 
@@ -9,13 +13,16 @@ import java.util.Map;
 
 public class StorageBookDTO {
 
+
+    BookService bookService = ContextProvider.getBean(com.gmail.stepan1983.Service.BookServiceImpl.class);
+
     private long id;
 
     private String storageAddress;
 
     private String storagePhone;
 
-    List<StorageEntry> storageEntryList;
+    private List<StorageEntry> storageEntryList;
 
     public StorageBookDTO(long id, String storageAddress,
                           String storagePhone, List<StorageEntry> storageEntryList) {
@@ -29,23 +36,23 @@ public class StorageBookDTO {
     }
 
     public class StorageEntry {
-        private BookItemDTO bookItem;
+        private Long bookItemId;
         private Integer copiesInStock;
 
-        public StorageEntry(BookItemDTO bookItem, Integer copiesInStock) {
-            this.bookItem = bookItem;
+        public StorageEntry(Long bookItemId, Integer copiesInStock) {
+            this.bookItemId = bookItemId;
             this.copiesInStock = copiesInStock;
         }
 
         public StorageEntry() {
         }
 
-        public BookItemDTO getBookItem() {
-            return bookItem;
+        public Long getBookItemId() {
+            return bookItemId;
         }
 
-        public void setBookItem(BookItemDTO bookItemDTO) {
-            this.bookItem = bookItemDTO;
+        public void setBookItemId(Long bookItemDTO) {
+            this.bookItemId = bookItemDTO;
         }
 
         public Integer getCopiesInStock() {
@@ -59,7 +66,7 @@ public class StorageBookDTO {
         @Override
         public String toString() {
             return "StorageEntry{" +
-                    "bookItem=" + bookItem.getId() +
+                    "bookItemId=" + bookItemId +
                     ", copiesInStock=" + copiesInStock +
                     '}';
         }
@@ -68,7 +75,7 @@ public class StorageBookDTO {
     public StorageBooks toStorageBooks() {
         Map<BookItem, Integer> storageMap=new HashMap<>();
         for (StorageEntry storageEntry : storageEntryList) {
-            storageMap.put(storageEntry.getBookItem().toBookItem(), storageEntry.getCopiesInStock());
+            storageMap.put(bookService.getById(storageEntry.getBookItemId()), storageEntry.getCopiesInStock());
         }
         StorageBooks storageBooks=new StorageBooks(storageAddress,storagePhone);
         storageBooks.setId(id);

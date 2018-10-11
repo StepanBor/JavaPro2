@@ -25,13 +25,16 @@ public class BookItemDTO {
 
     private Long storageBooksId;
 
+    private int copiesInStock;
+
     private Integer rating;
 
     private String ISBN;
 
 
     public BookItemDTO(long id, String bookName, String description, String author,
-                       String publisher, String category, Double price, Long storageBooksId, Integer rating, String ISBN) {
+                       String publisher, String category, Double price, Long storageBooksId,
+                       Integer rating, String ISBN, int copiesInStock) {
         this.id = id;
         this.bookName = bookName;
         this.description = description;
@@ -42,6 +45,7 @@ public class BookItemDTO {
         this.storageBooksId = storageBooksId;
         this.rating = rating;
         this.ISBN = ISBN;
+        this.copiesInStock=copiesInStock;
     }
 
     public BookItemDTO() {
@@ -57,6 +61,7 @@ public class BookItemDTO {
         bookItem.setDescription(description);
         bookItem.setBookName(bookName);
         bookItem.setISBN(ISBN);
+        bookItem.getStorageBooks().getBookQuantityMap().put(bookItem,copiesInStock);
 //        System.out.println("\u001B[33m"+bookItem+"LLLLLLLLLLLLLLLLLLL");
 //        return bookService.getById(id);
 
@@ -143,6 +148,16 @@ public class BookItemDTO {
         this.ISBN = ISBN;
     }
 
+    public int getCopiesInStock() {
+        return copiesInStock;
+    }
+
+    public void setCopiesInStock(int copiesInStock) {
+        this.copiesInStock = copiesInStock;
+    }
+
+
+
     @Override
     public String toString() {
         return "BookItemDTO{" +
@@ -156,6 +171,7 @@ public class BookItemDTO {
                 ", storageBooksId=" + storageBooksId +
                 ", rating=" + rating +
                 ", ISBN=" + ISBN +
+                ", copiesInStock" + copiesInStock +
                 '}';
     }
 }
