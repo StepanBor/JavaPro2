@@ -29,6 +29,11 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
     @Override
+    public Publisher getByName(String publisherName) {
+        return publisherDAO.getByName(publisherName);
+    }
+
+    @Override
     @Transactional
     public void updatePublisher(Publisher publisher) {
         publisherDAO.save(publisher);

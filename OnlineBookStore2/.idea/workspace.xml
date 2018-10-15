@@ -126,7 +126,7 @@
       <file leaf-file-name="AppConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
+            <state relative-caret-position="1298">
               <caret line="82" selection-start-line="82" selection-end-line="82" />
             </state>
           </provider>
@@ -135,8 +135,8 @@
       <file leaf-file-name="MyRestController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="41" column="60" lean-forward="true" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
+            <state relative-caret-position="747">
+              <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -237,7 +237,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -246,11 +245,6 @@
             <path>
               <item name="OnlineBookStore2" type="b2602c69:ProjectViewProjectNode" />
               <item name="OnlineBookStore2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookStore2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookStore2" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OnlineBookStore2" type="b2602c69:ProjectViewProjectNode" />
@@ -337,6 +331,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -514,15 +509,15 @@
       <workItem from="1537277570403" duration="615000" />
       <workItem from="1537337180281" duration="611000" />
       <workItem from="1538659247272" duration="141000" />
+      <workItem from="1539449896739" duration="23000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141835000" />
+    <option name="totallyTimeSpent" value="141858000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
@@ -545,7 +540,7 @@
       <window_info anchor="bottom" id="Run" order="15" weight="0.38633686" />
       <window_info anchor="bottom" id="Spring" order="6" weight="0.32979977" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3297062" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23630504" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20998926" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -863,15 +858,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
+        <state relative-caret-position="1298">
           <caret line="82" selection-start-line="82" selection-end-line="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="41" column="60" lean-forward="true" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
+        <state relative-caret-position="747">
+          <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
         </state>
       </provider>
     </entry>

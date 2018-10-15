@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
@@ -45,6 +46,26 @@ public class BookServiceImpl implements BookService {
     @Transactional(readOnly = true)
     public BookItem getById(Long bookId) {
         return bookDAO.getOne(bookId);
+    }
+
+    @Override
+    public List<BookItem> getByAuthor(String author) {
+        return bookDAO.getByAuthor(author);
+    }
+
+    @Override
+    public List<BookItem> getByCategory(String category) {
+        return bookDAO.getByCategory(category);
+    }
+
+    @Override
+    public List<BookItem> getByPublisher(String publisher) {
+        return bookDAO.getByPublisher(publisher);
+    }
+
+    @Override
+    public BookItem getByBookName(String bookName) {
+        return bookDAO.getByBookName(bookName);
     }
 
     @Override
@@ -86,5 +107,13 @@ public class BookServiceImpl implements BookService {
     @Transactional(readOnly = true)
     public long count() {
         return bookDAO.count();
+    }
+
+    @Transactional
+    public Double getAvgRating(){
+
+        TypedQuery<Double> avgRating=entityManager.createQuery("Select avg(s.rating) from BookItem s",Double.class);
+
+        return avgRating.getSingleResult();
     }
 }

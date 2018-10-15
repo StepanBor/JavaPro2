@@ -27,14 +27,14 @@ public class BookItemDTO {
 
     private int copiesInStock;
 
-    private Integer rating;
+    private Double rating;
 
     private String ISBN;
 
 
     public BookItemDTO(long id, String bookName, String description, String author,
                        String publisher, String category, Double price, Long storageBooksId,
-                       Integer rating, String ISBN, int copiesInStock) {
+                       Double rating, String ISBN, int copiesInStock) {
         this.id = id;
         this.bookName = bookName;
         this.description = description;
@@ -55,7 +55,7 @@ public class BookItemDTO {
 
 //        System.out.println("\u001B[33m"+id);
         BookItem bookItem = bookService.getById(id);
-        bookItem.setRating(rating);
+//        bookItem.setRating(rating);
         bookItem.setPrice(price);
         bookItem.setPrice(price);
         bookItem.setDescription(description);
@@ -132,11 +132,11 @@ public class BookItemDTO {
         this.storageBooksId = storageBooksId;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

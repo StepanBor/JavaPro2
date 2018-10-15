@@ -1,16 +1,27 @@
 package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.model.BookItem;
+import com.gmail.stepan1983.model.Client;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface BookService {
 
-   BookItem addBookItem(BookItem bookItem);
+    BookItem addBookItem(BookItem bookItem);
 
     BookItem getById(Long bookId);
+
+    List<BookItem> getByAuthor(String author);
+
+    List<BookItem> getByCategory(String category);
+
+    List<BookItem> getByPublisher(String publisher);
+
+    BookItem getByBookName(String bookName);
 
     BookItem updateBookItem(BookItem bookItem);
 
@@ -23,4 +34,6 @@ public interface BookService {
     List<BookItem> findAll();
 
     long count();
+
+    Double getAvgRating();
 }

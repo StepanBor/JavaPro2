@@ -1,7 +1,9 @@
 package com.gmail.stepan1983.model;
 
 import com.gmail.stepan1983.DTO.BookItemDTO;
+import com.gmail.stepan1983.Service.BookService;
 import com.gmail.stepan1983.Service.StorageBooksService;
+import com.gmail.stepan1983.config.ConsoleColors;
 import com.gmail.stepan1983.config.ContextProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +23,7 @@ public class BookItem {
 
     private String bookName;
 
+    @Column(length=2000)
     private String description;
 
     private String author;
@@ -58,16 +61,18 @@ public class BookItem {
         this.storageBooks = storageBooks;
         this.cover = cover;
         this.rating = rating;
-        this.ISBN=ISBN;
+        this.ISBN = ISBN;
     }
 
     public BookItem() {
     }
 
     public BookItemDTO toDTO() {
-        int copiesInStock=storageBooks.getBookQuantityMap().get(this);
-        return new BookItemDTO(id, bookName, description, author, String.valueOf(publisher.getId()),
-                category.getCategoryName(), price, storageBooks.getId(), rating,ISBN,copiesInStock);
+        BookService bookService = ContextProvider.getBean(com.gmail.stepan1983.Service.BookServiceImpl.class);
+        int copiesInStock = storageBooks.getBookQuantityMap().get(this);
+        double avgRating = Math.round(((double)rating / bookService.getAvgRating()*2.0)*100)/100.0;
+        return new BookItemDTO(id, bookName, description, author, publisher.getPublisherName(),
+                category.getCategoryName(), price, storageBooks.getId(), avgRating, ISBN, copiesInStock);
     }
 
     public long getId() {

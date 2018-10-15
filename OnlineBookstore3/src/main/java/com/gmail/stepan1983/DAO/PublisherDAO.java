@@ -1,5 +1,6 @@
 package com.gmail.stepan1983.DAO;
 
+import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Publisher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,4 +12,7 @@ public interface PublisherDAO extends JpaRepository<Publisher,Long> {
 
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM Publisher u WHERE u.id = :id")
     boolean existsById(@Param("id") Long id);
+
+    @Query("SELECT p FROM Publisher p WHERE p.publisherName=:name")
+    Publisher getByName(@Param("name") String name);
 }

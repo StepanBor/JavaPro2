@@ -24,10 +24,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class MyRestController {
@@ -63,7 +60,7 @@ public class MyRestController {
 
     PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/userPage")
     public List<ClientDTO> adminPage(@RequestParam(required = false, defaultValue = "1") Integer page,
                                      @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
@@ -94,7 +91,7 @@ public class MyRestController {
         return clientDTOS;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/getUsers")
     public List<ClientDTO> getUsers() {
 
@@ -109,7 +106,7 @@ public class MyRestController {
         return clientDTOS;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/usersCount")
     public Long getTotalUsersCount() {
         HttpHeaders headers = new HttpHeaders();
@@ -119,7 +116,7 @@ public class MyRestController {
         return clientService.count();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/createNewUser", method = RequestMethod.POST)
     public ResponseEntity createNewUser(@RequestParam(required = false) MultipartFile photo,
                                         @RequestParam String login,
@@ -191,7 +188,7 @@ public class MyRestController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/orders")
     public List<OrderDTO> getUserOrders(@RequestParam(required = false) Long userId,
                                         @RequestParam(required = false, defaultValue = "1") Long page,
@@ -227,7 +224,7 @@ public class MyRestController {
         return ordersDTO;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/orderCount")
     public Long getTotalOrderCount() {
         HttpHeaders headers = new HttpHeaders();
@@ -236,7 +233,7 @@ public class MyRestController {
         return orderService.count();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/deleteUser")
     public ResponseEntity deleteUser(@RequestParam Long userId) {
         Client client = clientService.getById(userId);
@@ -245,7 +242,7 @@ public class MyRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
     public ResponseEntity saveOrder(@RequestBody OrderDTO orderDTO) {
 
@@ -263,7 +260,7 @@ public class MyRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/bookItems")
     public List<BookItemDTO> getBookItems(@RequestParam(required = false) Long bookId,
                                           @RequestParam(required = false) Long page,
@@ -292,13 +289,41 @@ public class MyRestController {
         return bookItemsDTO;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/bookItemsByParam")
+    public List<BookItemDTO> getBookItemsByParam(@RequestParam(required = false) String bookName,
+                                                 @RequestParam(required = false) String author,
+                                                 @RequestParam(required = false) String publisher,
+                                                 @RequestParam(required = false) String category) {
+
+        List<BookItem> bookItems = new ArrayList<>();
+
+        if (bookName != null) {
+            bookItems.add(bookService.getByBookName(bookName));
+        } else if (author != null) {
+            bookItems = bookService.getByAuthor(author);
+        } else if (publisher != null) {
+            bookItems = bookService.getByPublisher(publisher);
+        } else {
+            bookItems = bookService.getByCategory(category);
+        }
+
+        List<BookItemDTO> bookItemsDTO = new ArrayList<>();
+
+        for (BookItem bookItem : bookItems) {
+            bookItemsDTO.add(bookItem.toDTO());
+        }
+
+        return bookItemsDTO;
+    }
+
+    @CrossOrigin(origins = "*")
     @RequestMapping("/bookCount")
     public Long getTotalBookCount() {
         return bookService.count();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/saveBookItem", method = RequestMethod.POST)
     public ResponseEntity saveBookItem(@RequestBody BookItemDTO bookItemDTO) {
 
@@ -307,7 +332,7 @@ public class MyRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/deleteBookItem", method = RequestMethod.POST)
     public ResponseEntity deleteBookItem(@RequestBody Long bookItemId) {
         BookItem bookItem = bookService.getById(bookItemId);
@@ -315,13 +340,13 @@ public class MyRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/createNewBookItem", method = RequestMethod.POST)
     public ResponseEntity createNewBookItem(@RequestParam(required = false) MultipartFile cover,
                                             @RequestParam String bookName,
                                             @RequestParam String description,
                                             @RequestParam String author,
-                                            @RequestParam Long publisherId,
+                                            @RequestParam String publisherName,
 //                                            @RequestParam String publisherName,
 //                                            @RequestParam String publisherDescription,
 //                                            @RequestParam String publisherAdress,
@@ -340,7 +365,7 @@ public class MyRestController {
                 e.printStackTrace();
             }
         }
-        Publisher publisher = publisherService.getById(publisherId);
+        Publisher publisher = publisherService.getByName(publisherName);
         CategoryItem categoryItem = categoryService.getById(categoryId);
 
         if (updateBook) {
@@ -351,7 +376,7 @@ public class MyRestController {
             bookItem.setDescription(description);
             bookItem.setPrice(price);
             bookItem.setAuthor(author);
-            bookItem.setPublisher(publisher);
+            bookItem.setPublisher(publisherService.getByName(publisherName));
             bookItem.setCategory(categoryItem);
             if (cover != null) {
                 bookItem.setCover(bookCover);
@@ -369,16 +394,16 @@ public class MyRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/storageBook")
     public StorageBookDTO getStorageBook() {
         List<StorageBooks> storageBooksList = storageBooksService.findAll();
         StorageBookDTO storageBookDTO = storageBooksList.get(0).toStorageDTO();
-        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+storageBookDTO+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + storageBookDTO + ConsoleColors.RESET);
         return storageBookDTO;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/deleteOrder", method = RequestMethod.POST)
     public ResponseEntity deleteOrder(@RequestBody OrderDTO orderDTO) {
 
@@ -392,7 +417,7 @@ public class MyRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping("/createNewOrder")
     public ResponseEntity createNewOrder() {
 
@@ -409,7 +434,7 @@ public class MyRestController {
         return new ResponseEntity<>(order.getId(), HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/countOrdersByParam", method = RequestMethod.GET)
     public ResponseEntity countOrdersByParam(@RequestParam String paramName,
                                              @RequestParam String paramValue) {
@@ -418,7 +443,7 @@ public class MyRestController {
         return new ResponseEntity<>(orderService.countByParam(paramName, paramValue), HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/rates", method = RequestMethod.GET)
     public Rate getRates() {
 //        RestTemplate restTemplate = new RestTemplate();
@@ -430,7 +455,7 @@ public class MyRestController {
         return rateRetriever.getRate();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/tasks", method = RequestMethod.POST)
     public List<Task> updateTasks(@RequestBody TaskDTO taskDTO) {
 
@@ -445,15 +470,49 @@ public class MyRestController {
         return taskService.findByStatus("open");
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getTasks")
     public List<Task> getTasks() {
 
         return taskService.findByStatus("open");
     }
 
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    @RequestMapping(value = "/tasks")
-//    public closeTask()
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/getBookParameters")
+    public List<List<String>> getBookParameters() {
+
+        List<List<String>> result = new ArrayList<>();
+
+        List<String> categories = new ArrayList<>();
+        List<String> authorsList = new ArrayList<>();
+        Set<String> authorsSet = new HashSet<>();
+        List<String> publishers = new ArrayList<>();
+
+        List<BookItem> bookItems = bookService.findAll();
+        List<CategoryItem> categoryItems = categoryService.findAll();
+        List<Publisher> publishers1 = publisherService.findAll();
+
+        for (BookItem bookItem : bookItems) {
+            if (!authorsSet.contains(bookItem.getAuthor())) {
+                authorsSet.add(bookItem.getAuthor());
+            }
+        }
+        authorsList.addAll(authorsSet);
+
+        for (CategoryItem categoryItem : categoryItems) {
+            categories.add(categoryItem.getCategoryName());
+        }
+
+        for (Publisher publisher : publishers1) {
+            publishers.add(publisher.getPublisherName());
+        }
+
+        result.add(categories);
+        result.add(authorsList);
+        result.add(publishers);
+
+        return result;
+
+    }
 
 }
