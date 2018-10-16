@@ -123,4 +123,20 @@ public class ClientDTO {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    @Override
+    public String toString() {
+        return "ClientDTO{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", adress='" + adress + '\'' +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", role=" + role +
+                ", clientGroup='" + clientGroup + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}'+"\r\n";
+    }
 }

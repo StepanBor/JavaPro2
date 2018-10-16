@@ -1,36 +1,26 @@
 package com.gmail.stepan1983.model;
 
+import com.gmail.stepan1983.DTO.StorageBookDTO;
+
 import javax.persistence.*;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Entity
 @Table(name = "StorageBooks1")
 public class StorageBooks {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="stogrageBooksId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "stogrageBooksId")
     private long id;
 
-//    @OneToOne(cascade = CascadeType.PERSIST)
-////    @OneToOne
-//    private BookItem book;
-//    @OneToMany(cascade=CascadeType.ALL)
     @ElementCollection
-    @CollectionTable(name="BookStorage",
-            joinColumns=@JoinColumn(name="STORE"))
-    @Column(name="COPIES_IN_STOCK")
-    @MapKeyJoinColumn(name="Book", referencedColumnName="bookId")
-//
-//    @OneToMany(cascade=CascadeType.ALL)
-//    @JoinColumn(name="COPIES_IN_STOCK")
-//    @MapKeyJoinColumn(name="Book", referencedColumnName="bookId")
-    private Map<BookItem, Integer> bookQuantityMap=new TreeMap<>((BookItem bi1, BookItem bi2)->(int)(bi1.getId()-bi2.getId()));
+    @CollectionTable(name = "BookStorage",
+            joinColumns = @JoinColumn(name = "STORE"))
+    @Column(name = "COPIES_IN_STOCK")
+    @MapKeyJoinColumn(name = "Book", referencedColumnName = "bookId")
+    private Map<BookItem, Integer> bookQuantityMap = new HashMap<>();
 
-//    @OneToOne(cascade = CascadeType.PERSIST)
-////    @OneToOne
-//    private Stock stock;
 
     private String storageAddress;
 
@@ -39,15 +29,34 @@ public class StorageBooks {
 //    private Long bookQuantity;
 
     public StorageBooks(/*BookItem book, Long bookQuantity,*/ String storageAddress,
-                        String storagePhone) {
+                                                              String storagePhone) {
 //        this.book = book;
 //        this.bookQuantity = bookQuantity;
-        this.storageAddress=storageAddress;
-        this.storagePhone=storagePhone;
+        this.storageAddress = storageAddress;
+        this.storagePhone = storagePhone;
 
     }
 
     public StorageBooks() {
+    }
+
+    public StorageBookDTO toStorageDTO() {
+        StorageBookDTO storageBookDTO = new StorageBookDTO();
+
+        storageBookDTO.setId(id);
+        storageBookDTO.setStorageAddress(storageAddress);
+        storageBookDTO.setStoragePhone(storagePhone);
+        storageBookDTO.setStorageEntryList(new ArrayList<>());
+
+        Set<Map.Entry<BookItem,Integer>> mapEntrySet = bookQuantityMap.entrySet();
+
+        for (Map.Entry<BookItem, Integer> bookItemIntegerEntry : mapEntrySet) {
+            StorageBookDTO.StorageEntry storageEntry=
+                    storageBookDTO.new StorageEntry(bookItemIntegerEntry.getKey().getId(),bookItemIntegerEntry.getValue());
+            storageBookDTO.getStorageEntryList().add(storageEntry);
+        }
+
+        return storageBookDTO;
     }
 
     public long getId() {

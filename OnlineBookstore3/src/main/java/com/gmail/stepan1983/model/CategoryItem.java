@@ -2,6 +2,7 @@ package com.gmail.stepan1983.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Category1")
@@ -59,6 +60,21 @@ public class CategoryItem {
 
     public void setBooks(List<BookItem> books) {
         this.books = books;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CategoryItem)) return false;
+        CategoryItem that = (CategoryItem) o;
+        return getId() == that.getId() &&
+                Objects.equals(getCategoryName(), that.getCategoryName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getCategoryName());
     }
 
     @Override

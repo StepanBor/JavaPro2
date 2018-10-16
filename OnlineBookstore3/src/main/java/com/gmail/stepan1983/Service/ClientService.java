@@ -12,11 +12,17 @@ public interface ClientService {
 
     Client getByLogin(String login);
 
+    Client getByEmail(String email);
+
+    Client getByPhone(String phone);
+
     Client getById(Long id);
 
     boolean existsByLogin(String login);
 
     void updateClient(Client client);
+
+    void deleteClient(Client client);
 
     List<Client> findAll(Pageable pageable);
 

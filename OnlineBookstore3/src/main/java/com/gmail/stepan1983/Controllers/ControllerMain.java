@@ -1,9 +1,12 @@
 package com.gmail.stepan1983.Controllers;
 
 import com.gmail.stepan1983.DTO.ClientDTO;
+import com.gmail.stepan1983.Service.BookService;
 import com.gmail.stepan1983.Service.ClientGroupService;
 import com.gmail.stepan1983.Service.ClientService;
 import com.gmail.stepan1983.Service.OrderService;
+import com.gmail.stepan1983.config.ConsoleColors;
+import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.Order;
 import com.gmail.stepan1983.model.UserRole;
@@ -38,6 +41,9 @@ public class ControllerMain {
 
     @Autowired
     ClientGroupService clientGroupService;
+
+    @Autowired
+    BookService bookService;
 
 //    @RequestMapping("/")
 //    public String indexPage() {
@@ -78,6 +84,37 @@ public class ControllerMain {
         return new ResponseEntity<>(bytes, HttpStatus.OK);
 
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/cover/{coverId}")
+    public ResponseEntity<byte[]> getCoverBytes(@PathVariable("coverId") long id) {
+
+
+        BookItem bookItem =bookService.getById(id);
+        File file = bookItem.getCover();
+        byte[] bytes = null;
+        byte[] buffer = new byte[(int) file.length()];
+        try (InputStream in = new FileInputStream(file); ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            int read = 0;
+            while ((read = in.read(buffer)) > 0) {
+                baos.write(buffer, 0, read);
+            }
+            bytes = baos.toByteArray();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return new ResponseEntity<>(bytes, HttpStatus.OK);
+
+    }
+
+
+
 
     @RequestMapping(value = "/createAccaunt")
     public String createAccaunt() {

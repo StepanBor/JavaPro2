@@ -13,6 +13,8 @@ public interface PublisherService {
 
     Publisher getById(Long publisherId);
 
+    Publisher getByName(String publisherName);
+
     void updatePublisher(Publisher publisher);
 
     List<Publisher> findAll();

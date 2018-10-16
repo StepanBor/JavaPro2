@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -57,6 +59,16 @@ public class ClientServiceImpl implements ClientService {
     @Transactional(readOnly = true)
     public Client getByLogin(String login) {
         return clientDAO.getByLogin(login);
+    }
+
+    @Override
+    public Client getByEmail(String email) {
+        return clientDAO.getByEmail(email);
+    }
+
+    @Override
+    public Client getByPhone(String phone) {
+        return clientDAO.getByPhone(phone);
     }
 
     @Override
@@ -110,5 +122,20 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public boolean existsByLogin(String login) {
         return clientDAO.existsByLogin(login);
+    }
+
+    @Transactional
+    long countByParam(String paramName, String paramValue){
+        TypedQuery<Long> typedQuery=entityManager.createQuery("SELECT COUNT(c) FROM Client c WHERE c."+paramName+"=:parValue", Long.class);
+        typedQuery.setParameter("parValue",paramValue);
+        return typedQuery.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public void deleteClient(Client client) {
+        Client client1=entityManager.merge(client);
+        client1.setClientGroup(null);
+        entityManager.remove(client1);
     }
 }

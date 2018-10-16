@@ -17,7 +17,7 @@ public class Shipment {
 
     private String shipmentStatus;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Order order;
 
     public Shipment(String shippingAddress, String shipmentStatus, Order order) {

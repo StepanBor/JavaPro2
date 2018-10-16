@@ -2,6 +2,7 @@ package com.gmail.stepan1983.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Publisher1")
@@ -70,6 +71,21 @@ public class Publisher {
 
     public void setBooks(List<BookItem> books) {
         this.books = books;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Publisher)) return false;
+        Publisher publisher = (Publisher) o;
+        return getId() == publisher.getId() &&
+                Objects.equals(getPublisherName(), publisher.getPublisherName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getPublisherName());
     }
 
     @Override

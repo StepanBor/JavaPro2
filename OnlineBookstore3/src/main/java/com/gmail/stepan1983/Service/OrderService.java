@@ -9,11 +9,13 @@ import java.util.List;
 
 public interface OrderService {
 
-    void addOrder(Order order);
+    Order addOrder(Order order);
+
+    void deleteOrder(Order order);
 
     Order getById(Long bookId);
 
-    void updateOrder(Order order);
+    Order updateOrder(Order order);
 
     Page<Order> findAll(Pageable pageable);
 
@@ -26,4 +28,6 @@ public interface OrderService {
     long count();
 
     long count(Order orderExample);
+
+    long countByParam(String paramName, String paramValue);
 }

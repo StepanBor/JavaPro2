@@ -15,7 +15,10 @@ public interface ClientDAO extends JpaRepository<Client,Long> {
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM Client u WHERE u.login = :login")
     boolean existsByLogin(@Param("login") String login);
 
+    @Query("SELECT c FROM Client c WHERE c.email=:email")
+    Client getByEmail(@Param("email") String email);
 
-
+    @Query("SELECT c FROM Client c WHERE c.phone=:phone")
+    Client getByPhone(@Param("phone") String phone);
 
 }
