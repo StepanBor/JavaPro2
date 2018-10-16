@@ -451,7 +451,7 @@ public class MyRestController {
 //                ("http://apilayer.net/api/live?access_key=8742691146d4666a721d276747be45ab&currencies=UAH,USD,EUR,RUB",
 //                        String.class);
 
-
+        System.out.println(ConsoleColors.BLUE_UNDERLINED+rateRetriever.getRate()+ConsoleColors.RESET+"RRRRRRRRRRRRRRRRRRRRRRRRR");
         return rateRetriever.getRate();
     }
 

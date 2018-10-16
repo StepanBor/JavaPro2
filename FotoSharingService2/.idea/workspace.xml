@@ -48,8 +48,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="clientPage.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/clientPage.jsp">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
               <caret line="268" column="14" selection-start-line="268" selection-start-column="14" selection-end-line="268" selection-end-column="14" />
             </state>
           </provider>
