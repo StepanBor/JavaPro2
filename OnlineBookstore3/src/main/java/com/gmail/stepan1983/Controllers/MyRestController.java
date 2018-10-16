@@ -294,7 +294,8 @@ public class MyRestController {
     public List<BookItemDTO> getBookItemsByParam(@RequestParam(required = false) String bookName,
                                                  @RequestParam(required = false) String author,
                                                  @RequestParam(required = false) String publisher,
-                                                 @RequestParam(required = false) String category) {
+                                                 @RequestParam(required = false) String category,
+                                                 @RequestParam(required = false) String id) {
 
         List<BookItem> bookItems = new ArrayList<>();
 
@@ -304,16 +305,20 @@ public class MyRestController {
             bookItems = bookService.getByAuthor(author);
         } else if (publisher != null) {
             bookItems = bookService.getByPublisher(publisher);
+        } else if (id!=null) {
+            bookItems.add(bookService.getById(Long.valueOf(id)));
         } else {
             bookItems = bookService.getByCategory(category);
         }
 
         List<BookItemDTO> bookItemsDTO = new ArrayList<>();
 
+
+
         for (BookItem bookItem : bookItems) {
             bookItemsDTO.add(bookItem.toDTO());
         }
-
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+bookItemsDTO+ConsoleColors.RESET);
         return bookItemsDTO;
     }
 
@@ -451,7 +456,7 @@ public class MyRestController {
 //                ("http://apilayer.net/api/live?access_key=8742691146d4666a721d276747be45ab&currencies=UAH,USD,EUR,RUB",
 //                        String.class);
 
-        System.out.println(ConsoleColors.BLUE_UNDERLINED+rateRetriever.getRate()+ConsoleColors.RESET+"RRRRRRRRRRRRRRRRRRRRRRRRR");
+        System.out.println(ConsoleColors.BLUE_UNDERLINED + rateRetriever.getRate() + ConsoleColors.RESET + "RRRRRRRRRRRRRRRRRRRRRRRRR");
         return rateRetriever.getRate();
     }
 
