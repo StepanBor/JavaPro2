@@ -13,6 +13,7 @@ public class RateRetriever {
 
     @Cacheable("rates")
     public Rate getRate() {
+        System.out.println("RRRRRRRRRRRRRRRRRRRRR");
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Rate> response = restTemplate.getForEntity(URL, Rate.class);
         System.out.println(ConsoleColors.PURPLE+response.getBody()+ConsoleColors.RESET);
