@@ -29,7 +29,6 @@ public class MyRestController {
                                              @RequestParam(required = false, name = "columns[][search][value]") String[] searchColValue,
                                              @RequestParam(required = false, name = "columns[][search][regex]") Boolean[] isSearchRegex
                                              ) {
-        System.out.println(columnsData+"WWWWWWWWW");
         for (String data : columnsData) {
             System.out.println(data+"WWWWWWWWWWWWWW");
         }
