@@ -15,10 +15,10 @@ public interface BookDAO extends JpaRepository<BookItem,Long> {
     @Query("SELECT b FROM BookItem b WHERE b.author=:author")
     List<BookItem> getByAuthor(@Param("author") String author);
 
-    @Query("SELECT b FROM BookItem b WHERE b.category=:category")
+    @Query("SELECT b FROM BookItem b WHERE b.category.categoryName=:category")
     List<BookItem> getByCategory(@Param("category") String category);
 
-    @Query("SELECT b FROM BookItem b WHERE b.publisher=:publisher")
+    @Query("SELECT b FROM BookItem b WHERE b.publisher.publisherName=:publisher")
     List<BookItem> getByPublisher(@Param("publisher") String publisher);
 
     @Query("SELECT b FROM BookItem b WHERE b.bookName=:bookName")

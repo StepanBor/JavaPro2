@@ -266,10 +266,18 @@ public class MyRestController {
                                           @RequestParam(required = false) Long page,
                                           @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                           @RequestParam(required = false, defaultValue = "id") String sortBy,
-                                          @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
+                                          @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect,
+                                          @RequestParam(required = false) String sortDirect) {
+
+        boolean localSortDirect=sortDirection;
 
         if (changeSortDirect) {
             sortDirection = !sortDirection;
+            localSortDirect = sortDirection;
+        }
+
+        if (sortDirect != null) {
+            localSortDirect = sortDirect.equalsIgnoreCase("ASC") ? true : false;
         }
 
         List<BookItem> bookItems;
@@ -277,7 +285,7 @@ public class MyRestController {
         if (page == null) {
             bookItems = bookService.findAll();
         } else {
-            bookItems = bookService.findAll(page.intValue() - 1, itemsPerPage, sortBy, sortDirection);
+            bookItems = bookService.findAll(page.intValue() - 1, itemsPerPage, sortBy, localSortDirect);
         }
 
         List<BookItemDTO> bookItemsDTO = new ArrayList<>();
@@ -305,7 +313,7 @@ public class MyRestController {
             bookItems = bookService.getByAuthor(author);
         } else if (publisher != null) {
             bookItems = bookService.getByPublisher(publisher);
-        } else if (id!=null) {
+        } else if (id != null) {
             bookItems.add(bookService.getById(Long.valueOf(id)));
         } else {
             bookItems = bookService.getByCategory(category);
@@ -314,11 +322,10 @@ public class MyRestController {
         List<BookItemDTO> bookItemsDTO = new ArrayList<>();
 
 
-
         for (BookItem bookItem : bookItems) {
             bookItemsDTO.add(bookItem.toDTO());
         }
-        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+bookItemsDTO+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + bookItemsDTO + ConsoleColors.RESET);
         return bookItemsDTO;
     }
 
