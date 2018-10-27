@@ -72,6 +72,9 @@ public class FillDataBase {
     @Autowired
     ClientGroupDAO clientGroupDAO;
 
+    @Autowired
+    PasswordEncoder encoder;
+
 
     public FillDataBase() {
     }
@@ -101,7 +104,7 @@ public class FillDataBase {
             avatars.add(file);
         }
 
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
         File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
         List<File> bookCovers = new ArrayList<>();

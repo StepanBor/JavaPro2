@@ -1,5 +1,6 @@
 package com.gmail.stepan1983.DTO;
 
+import com.gmail.stepan1983.model.Client;
 import com.gmail.stepan1983.model.ClientGroup;
 import com.gmail.stepan1983.model.UserRole;
 
@@ -42,6 +43,7 @@ public class ClientDTO {
 
     public ClientDTO() {
     }
+
 
     public long getId() {
         return id;

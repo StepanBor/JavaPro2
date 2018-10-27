@@ -81,6 +81,4 @@ public class ClientGroupServiceImpl implements ClientGroupService {
         return clientGroupDAO.findByGroupName(clientGroupName);
     }
 
-
-
 }

@@ -24,7 +24,7 @@ import java.util.Optional;
 public class ClientServiceImpl implements ClientService {
 
 
-    @PersistenceContext
+    @Autowired
     EntityManager entityManager;
 
     @Autowired
@@ -37,14 +37,14 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public Client addClient(Client client) {
 
-        ClientGroup clientGroup=clientGroupService.findByGroupName("customers");
+        ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
 
-        if(client.getClientGroup()!=null) {
+        if (client.getClientGroup() != null) {
 
             clientGroup = clientGroupService.findByGroupName(client.getClientGroup().getGroupName());
 
-            if(clientGroup==null){
-                clientGroup=clientGroupService.findByGroupName("customers");
+            if (clientGroup == null) {
+                clientGroup = clientGroupService.findByGroupName("customers");
             }
 
         }
@@ -94,11 +94,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Transactional
     @Override
-    public List<Client> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection){
+    public List<Client> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection) {
 
-        Sort sort=new Sort(sortDirection?Sort.Direction.ASC:Sort.Direction.DESC,sortBy);
+        Sort sort = new Sort(sortDirection ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy);
 
-        Pageable pageable=PageRequest.of(page,itemsPerPage,sort);
+        Pageable pageable = PageRequest.of(page, itemsPerPage, sort);
 
         return clientDAO.findAll(pageable).getContent();
     }
@@ -124,17 +124,32 @@ public class ClientServiceImpl implements ClientService {
         return clientDAO.existsByLogin(login);
     }
 
+    @Override
+    public boolean existsById(Long id) {
+        return clientDAO.existsById(id);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return clientDAO.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByPhone(String phone) {
+        return clientDAO.existsByPhone(phone);
+    }
+
     @Transactional
-    long countByParam(String paramName, String paramValue){
-        TypedQuery<Long> typedQuery=entityManager.createQuery("SELECT COUNT(c) FROM Client c WHERE c."+paramName+"=:parValue", Long.class);
-        typedQuery.setParameter("parValue",paramValue);
+    public long countByParam(String paramName, String paramValue) {
+        TypedQuery<Long> typedQuery = entityManager.createQuery("SELECT COUNT(c) FROM Client c WHERE c." + paramName + "=:parValue", Long.class);
+        typedQuery.setParameter("parValue", paramValue);
         return typedQuery.getSingleResult();
     }
 
     @Override
     @Transactional
     public void deleteClient(Client client) {
-        Client client1=entityManager.merge(client);
+        Client client1 = entityManager.merge(client);
         client1.setClientGroup(null);
         entityManager.remove(client1);
     }

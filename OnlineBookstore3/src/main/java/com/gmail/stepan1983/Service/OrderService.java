@@ -25,6 +25,10 @@ public interface OrderService {
 
     List<Order> findByClient(Client client, Pageable pageable);
 
+    List<Order> findByClient(Client client);
+
+    boolean existById(Long id);
+
     long count();
 
     long count(Order orderExample);

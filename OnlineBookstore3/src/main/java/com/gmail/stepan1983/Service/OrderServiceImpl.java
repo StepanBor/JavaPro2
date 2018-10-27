@@ -106,6 +106,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> findByClient(Client client) {
+        return orderDAO.findByClient2(client);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public long count() {
         return orderDAO.count();
@@ -156,5 +161,10 @@ public class OrderServiceImpl implements OrderService {
             }
             bookService.updateBookItem(items.get(i));
         }
+    }
+
+    @Override
+    public boolean existById(Long id) {
+        return orderDAO.existsById(id);
     }
 }

@@ -4,6 +4,8 @@ import com.gmail.stepan1983.DTO.*;
 import com.gmail.stepan1983.Service.*;
 import com.gmail.stepan1983.config.ConsoleColors;
 import com.gmail.stepan1983.config.RateRetriever;
+import com.gmail.stepan1983.config.jwt.JwtProvider;
+import com.gmail.stepan1983.config.jwt.JwtResponse;
 import com.gmail.stepan1983.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -12,13 +14,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-import sun.security.provider.certpath.OCSPResponse;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,6 +33,12 @@ import java.util.*;
 public class MyRestController {
 
     private static boolean sortDirection;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtProvider jwtProvider;
 
     @Autowired
     ClientService clientService;
@@ -58,11 +67,12 @@ public class MyRestController {
     @Autowired
     StorageBooksService storageBooksService;
 
-    PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    @Autowired
+    PasswordEncoder encoder;
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/userPage")
-    public List<ClientDTO> adminPage(@RequestParam(required = false, defaultValue = "1") Integer page,
+    public List<ClientDTO> userPage(@RequestParam(required = false, defaultValue = "1") Integer page,
                                      @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                      @RequestParam(required = false) Long clientId,
                                      @RequestParam(required = false, defaultValue = "0") Long pageOrders,
@@ -168,24 +178,82 @@ public class MyRestController {
             }
             clientService.updateClient(client);
             message.add("client profile id " + client.getId() + " updated");
-            return new ResponseEntity(message, HttpStatus.OK);
-        } else if (clientService.getByLogin(login) != null) {
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } else if (clientService.existsByLogin(login)) {
             message.add("client with login \'" + login + "\' already exists");
-            return new ResponseEntity(message, HttpStatus.OK);
-        } else if (clientService.getByEmail(email) != null) {
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } else if (clientService.existsByEmail(email)) {
             message.add("client with email \'" + email + "\' already exists");
-            return new ResponseEntity(message, HttpStatus.OK);
-        } else if (clientService.getByPhone(phone) != null) {
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } else if (clientService.existsByPhone(phone)) {
             message.add("client with phone \'" + phone + "\' already exists");
-            return new ResponseEntity(message, HttpStatus.OK);
+            return new ResponseEntity<>(message, HttpStatus.OK);
         }
         ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
         Client newClient = new Client(login, encoder.encode(password), email, phone, address, name, lastname, UserRole.CUSTOMER, clientGroup, avatar);
 
         Client client = clientService.addClient(newClient);
         message.add("New user id is " + client.getId());
-        return new ResponseEntity(message, HttpStatus.OK);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/signin")
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
+
+        System.out.println(ConsoleColors.RED+loginRequest+ConsoleColors.RESET);
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getLogin(),
+                        loginRequest.getPassword()
+                )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = jwtProvider.generateJwtToken(authentication);
+        return ResponseEntity.ok(new JwtResponse(jwt));
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/deleteUser")
+    public ResponseEntity deleteUser(@RequestParam Long userId) {
+        Client client = clientService.getById(userId);
+
+        clientService.deleteClient(client);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/userInfo")
+    public ResponseEntity userInfo(@RequestParam String login,
+                                   @RequestHeader("Authorization") String token) {
+
+        Client client = clientService.getByLogin(login);
+        List<Order> userOrders = orderService.findByClient(client);
+        List<OrderDTO> userOrdersDTO=new ArrayList<>();
+        for (Order userOrder : userOrders) {
+            userOrdersDTO.add(userOrder.toDTO());
+        }
+        String username=jwtProvider.getUserNameFromJwtToken(token);
+
+
+        if(username.equalsIgnoreCase(client.getLogin())){
+            ClientInfo clientInfo=new ClientInfo(client.toDTO(),userOrdersDTO);
+            return new ResponseEntity<>(clientInfo,HttpStatus.OK);
+        }
+
+
+
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
+
+
+
+
+
 
 
     @CrossOrigin(origins = "*")
@@ -233,14 +301,7 @@ public class MyRestController {
         return orderService.count();
     }
 
-    @CrossOrigin(origins = "*")
-    @RequestMapping("/deleteUser")
-    public ResponseEntity deleteUser(@RequestParam Long userId) {
-        Client client = clientService.getById(userId);
 
-        clientService.deleteClient(client);
-        return new ResponseEntity(HttpStatus.OK);
-    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
@@ -259,6 +320,65 @@ public class MyRestController {
 //        }
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/deleteOrder", method = RequestMethod.POST)
+    public ResponseEntity deleteOrder(@RequestBody OrderDTO orderDTO) {
+
+        System.out.println(ConsoleColors.YELLOW + orderDTO + ConsoleColors.RESET);
+
+        Order order = orderDTO.toOrder();
+
+        System.out.println(ConsoleColors.RED + order + ConsoleColors.RESET);
+
+        orderService.deleteOrder(order);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/createNewOrder")
+    public ResponseEntity createNewOrder() {
+
+        Shipment shipment = new Shipment("", "unProcessed", null);
+        ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
+        Client client = new Client("default", "", "default", "default",
+                "default", "default", "default",
+                UserRole.CUSTOMER, clientGroup, new File("default"));
+        Order order = new Order(new ArrayList<BookItem>(), client, shipment, OrderStatus.unProcessed, new Date());
+        shipment.setOrder(order);
+//        clientService.addClient(client);
+        order = orderService.addOrder(order);
+        System.out.println(ConsoleColors.BLUE_UNDERLINED + order + ConsoleColors.RESET);
+        return new ResponseEntity<>(order.getId(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/submitOrder", method = RequestMethod.POST)
+    public ResponseEntity submitOrder(@RequestBody OrderDTO orderDTO) {
+
+        Order order = orderDTO.toOrder();
+
+//        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+order+ConsoleColors.RESET);
+
+        order = orderService.addOrder(order);
+
+        List<String> reply=new ArrayList<>();
+        reply.add("your order id is " + order.getId());
+        return new ResponseEntity<>(reply, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/countOrdersByParam", method = RequestMethod.GET)
+    public ResponseEntity countOrdersByParam(@RequestParam String paramName,
+                                             @RequestParam String paramValue) {
+
+        System.out.println(ConsoleColors.BLUE_UNDERLINED + orderService.countByParam(paramName, paramValue) + ConsoleColors.RESET);
+        return new ResponseEntity<>(orderService.countByParam(paramName, paramValue), HttpStatus.OK);
+    }
+
+
+
+
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/bookItems")
@@ -415,45 +535,6 @@ public class MyRestController {
         return storageBookDTO;
     }
 
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/deleteOrder", method = RequestMethod.POST)
-    public ResponseEntity deleteOrder(@RequestBody OrderDTO orderDTO) {
-
-        System.out.println(ConsoleColors.YELLOW + orderDTO + ConsoleColors.RESET);
-
-        Order order = orderDTO.toOrder();
-
-        System.out.println(ConsoleColors.RED + order + ConsoleColors.RESET);
-
-        orderService.deleteOrder(order);
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping("/createNewOrder")
-    public ResponseEntity createNewOrder() {
-
-        Shipment shipment = new Shipment("", "unProcessed", null);
-        ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
-        Client client = new Client("default", "", "default", "default",
-                "default", "default", "default",
-                UserRole.CUSTOMER, clientGroup, new File("default"));
-        Order order = new Order(new ArrayList<BookItem>(), client, shipment, OrderStatus.unProcessed, new Date());
-        shipment.setOrder(order);
-//        clientService.addClient(client);
-        order = orderService.addOrder(order);
-        System.out.println(ConsoleColors.BLUE_UNDERLINED + order + ConsoleColors.RESET);
-        return new ResponseEntity<>(order.getId(), HttpStatus.OK);
-    }
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/countOrdersByParam", method = RequestMethod.GET)
-    public ResponseEntity countOrdersByParam(@RequestParam String paramName,
-                                             @RequestParam String paramValue) {
-
-        System.out.println(ConsoleColors.BLUE_UNDERLINED + orderService.countByParam(paramName, paramValue) + ConsoleColors.RESET);
-        return new ResponseEntity<>(orderService.countByParam(paramName, paramValue), HttpStatus.OK);
-    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/rates", method = RequestMethod.GET)
@@ -526,5 +607,6 @@ public class MyRestController {
         return result;
 
     }
+
 
 }

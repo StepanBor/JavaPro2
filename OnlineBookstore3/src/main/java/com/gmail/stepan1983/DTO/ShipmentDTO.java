@@ -4,6 +4,7 @@ package com.gmail.stepan1983.DTO;
 import com.gmail.stepan1983.Service.ClientService;
 import com.gmail.stepan1983.Service.OrderService;
 import com.gmail.stepan1983.config.ContextProvider;
+import com.gmail.stepan1983.model.Order;
 import com.gmail.stepan1983.model.Shipment;
 
 public class ShipmentDTO {
@@ -26,8 +27,15 @@ public class ShipmentDTO {
     }
 
     public Shipment toShipment(){
-        Shipment tempShipment=new Shipment(shippingAddress,shipmentStatus,orderService.getById(order));
+        Order order1;
+        if(orderService.existById(order)){
+            order1=orderService.getById(order);
+        }else{
+            order1=new Order();
+        }
+        Shipment tempShipment=new Shipment(shippingAddress,shipmentStatus,order1);
         tempShipment.setId(id);
+        order1.setShipment(tempShipment);
         return tempShipment;
     }
 

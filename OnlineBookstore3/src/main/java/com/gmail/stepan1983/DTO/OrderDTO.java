@@ -2,12 +2,10 @@ package com.gmail.stepan1983.DTO;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gmail.stepan1983.Service.ClientGroupService;
 import com.gmail.stepan1983.Service.ClientService;
 import com.gmail.stepan1983.config.ContextProvider;
-import com.gmail.stepan1983.model.BookItem;
-import com.gmail.stepan1983.model.Order;
-import com.gmail.stepan1983.model.OrderStatus;
-import com.gmail.stepan1983.model.Shipment;
+import com.gmail.stepan1983.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
@@ -18,6 +16,7 @@ import java.util.List;
 public class OrderDTO {
 
     ClientService clientService=ContextProvider.getBean(com.gmail.stepan1983.Service.ClientServiceImpl.class);
+    ClientGroupService clientGroupService=ContextProvider.getBean(com.gmail.stepan1983.Service.ClientGroupServiceImpl.class);
 
     private long id;
 
@@ -81,7 +80,21 @@ public class OrderDTO {
             }
         }
 
-        Order order=new Order(orderListTemp,clientService.getById(client.getId()),
+        Client client1;
+
+        if(clientService.existsById(client.getId())){
+            client1=clientService.getById(client.getId());
+        }else if(clientService.existsByEmail(client.getEmail())){
+            client1=clientService.getByEmail(client.getEmail());
+        }else if(clientService.existsByPhone(client.getPhone())){
+            client1=clientService.getByPhone(client.getPhone());
+        } else {
+            client1=new Client(this.client.getLogin(),"default",this.client.getEmail(),
+                    this.client.getPhone(),this.client.getAdress(),this.client.getName(),
+                    this.client.getLastname(),UserRole.CUSTOMER,clientGroupService.findByGroupName("customers"),null);
+        }
+
+        Order order=new Order(orderListTemp,client1,
                 this.shipment.toShipment(),OrderStatus.valueOf(status),orderDate);
 
         order.getShipment().setOrder(order);
