@@ -73,11 +73,11 @@ public class MyRestController {
     @CrossOrigin(origins = "*")
     @RequestMapping("/userPage")
     public List<ClientDTO> userPage(@RequestParam(required = false, defaultValue = "1") Integer page,
-                                     @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
-                                     @RequestParam(required = false) Long clientId,
-                                     @RequestParam(required = false, defaultValue = "0") Long pageOrders,
-                                     @RequestParam(required = false, defaultValue = "id") String sortBy,
-                                     @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
+                                    @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
+                                    @RequestParam(required = false) Long clientId,
+                                    @RequestParam(required = false, defaultValue = "0") Long pageOrders,
+                                    @RequestParam(required = false, defaultValue = "id") String sortBy,
+                                    @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
 
         if (changeSortDirect) {
@@ -201,7 +201,7 @@ public class MyRestController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
 
-        System.out.println(ConsoleColors.RED+loginRequest+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED + loginRequest + ConsoleColors.RESET);
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -232,28 +232,21 @@ public class MyRestController {
 
         Client client = clientService.getByLogin(login);
         List<Order> userOrders = orderService.findByClient(client);
-        List<OrderDTO> userOrdersDTO=new ArrayList<>();
+        List<OrderDTO> userOrdersDTO = new ArrayList<>();
         for (Order userOrder : userOrders) {
             userOrdersDTO.add(userOrder.toDTO());
         }
-        String username=jwtProvider.getUserNameFromJwtToken(token);
+        String username = jwtProvider.getUserNameFromJwtToken(token);
 
 
-        if(username.equalsIgnoreCase(client.getLogin())){
-            ClientInfo clientInfo=new ClientInfo(client.toDTO(),userOrdersDTO);
-            return new ResponseEntity<>(clientInfo,HttpStatus.OK);
+        if (username.equalsIgnoreCase(client.getLogin())) {
+            ClientInfo clientInfo = new ClientInfo(client.toDTO(), userOrdersDTO);
+            return new ResponseEntity<>(clientInfo, HttpStatus.OK);
         }
-
 
 
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
-
-
-
-
-
-
 
 
     @CrossOrigin(origins = "*")
@@ -300,7 +293,6 @@ public class MyRestController {
 //        return new ResponseEntity<>(orderService.count(), headers, HttpStatus.OK);
         return orderService.count();
     }
-
 
 
     @CrossOrigin(origins = "*")
@@ -362,7 +354,7 @@ public class MyRestController {
 
         order = orderService.addOrder(order);
 
-        List<String> reply=new ArrayList<>();
+        List<String> reply = new ArrayList<>();
         reply.add("your order id is " + order.getId());
         return new ResponseEntity<>(reply, HttpStatus.OK);
     }
@@ -377,19 +369,16 @@ public class MyRestController {
     }
 
 
-
-
-
     @CrossOrigin(origins = "*")
     @RequestMapping("/bookItems")
     public List<BookItemDTO> getBookItems(@RequestParam(required = false) Long bookId,
-                                          @RequestParam(required = false) Long page,
+                                          @RequestParam(required = false, defaultValue = "1") Long page,
                                           @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                           @RequestParam(required = false, defaultValue = "id") String sortBy,
                                           @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect,
                                           @RequestParam(required = false) String sortDirect) {
 
-        boolean localSortDirect=sortDirection;
+        boolean localSortDirect = sortDirection;
 
         if (changeSortDirect) {
             sortDirection = !sortDirection;
@@ -397,7 +386,7 @@ public class MyRestController {
         }
 
         if (sortDirect != null) {
-            localSortDirect = sortDirect.equalsIgnoreCase("ASC") ? true : false;
+            localSortDirect = sortDirect.equalsIgnoreCase("ASC");
         }
 
         List<BookItem> bookItems;
@@ -419,34 +408,59 @@ public class MyRestController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/bookItemsByParam")
-    public List<BookItemDTO> getBookItemsByParam(@RequestParam(required = false) String bookName,
+    public BookItemsWithParamList getBookItemsByParam(@RequestParam(required = false) String bookName,
                                                  @RequestParam(required = false) String author,
                                                  @RequestParam(required = false) String publisher,
                                                  @RequestParam(required = false) String category,
-                                                 @RequestParam(required = false) String id) {
+                                                 @RequestParam(required = false) String id,
+                                                 @RequestParam(required = false, defaultValue = "1") Integer page,
+                                                 @RequestParam(required = false, defaultValue = "12") Integer itemsPerPage,
+                                                 @RequestParam(required = false, defaultValue = "id") String sortBy,
+                                                 @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
         List<BookItem> bookItems = new ArrayList<>();
 
         if (bookName != null) {
             bookItems.add(bookService.getByBookName(bookName));
         } else if (author != null) {
-            bookItems = bookService.getByAuthor(author);
+            bookItems.addAll(bookService.getByAuthor(author));
         } else if (publisher != null) {
-            bookItems = bookService.getByPublisher(publisher);
+            bookItems.addAll(bookService.getByPublisher(publisher));
         } else if (id != null) {
             bookItems.add(bookService.getById(Long.valueOf(id)));
         } else {
-            bookItems = bookService.getByCategory(category);
+            bookItems.addAll(bookService.getByCategory(category));
         }
+
+        bookItems.sort((BookItem b1, BookItem b2) -> {
+            if (sortBy.equalsIgnoreCase("bookName")) {
+                return b1.getBookName().compareToIgnoreCase(b2.getBookName());
+            }
+            if (sortBy.equalsIgnoreCase("author")) {
+                return b1.getAuthor().compareToIgnoreCase(b2.getAuthor());
+            }
+            if (sortBy.equalsIgnoreCase("publisher")) {
+                return b1.getPublisher().getPublisherName().compareToIgnoreCase(b2.getPublisher().getPublisherName());
+            }
+            if (sortBy.equalsIgnoreCase("category")) {
+                return b1.getCategory().getCategoryName().compareToIgnoreCase(b2.getCategory().getCategoryName());
+            } else {
+                return (b1.getRating() - b2.getRating());
+            }
+        });
 
         List<BookItemDTO> bookItemsDTO = new ArrayList<>();
 
+        for (int i = (page - 1) * itemsPerPage;
+             i < ((((page - 1) * itemsPerPage + itemsPerPage) > bookItems.size())
+                     ? bookItems.size() : ((page - 1) * itemsPerPage + itemsPerPage));
+             i++) {
 
-        for (BookItem bookItem : bookItems) {
-            bookItemsDTO.add(bookItem.toDTO());
+                bookItemsDTO.add(bookItems.get(i).toDTO());
         }
+
         System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + bookItemsDTO + ConsoleColors.RESET);
-        return bookItemsDTO;
+        return new BookItemsWithParamList(bookItemsDTO,bookItems.size());
     }
 
     @CrossOrigin(origins = "*")
