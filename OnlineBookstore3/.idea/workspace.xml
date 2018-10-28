@@ -69,8 +69,8 @@
       <file leaf-file-name="MyRestController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="449" lean-forward="true" selection-start-line="449" selection-end-line="449" />
+            <state relative-caret-position="4642">
+              <caret line="449" selection-start-line="449" selection-end-line="449" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#userPage#0;class#MyRestController#0" />
@@ -102,8 +102,8 @@
       <file leaf-file-name="BookItemsWithParamList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DTO/BookItemsWithParamList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="308">
+              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -264,7 +264,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -282,103 +282,11 @@
               <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-              <item name="DAO" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-              <item name="DTO" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="stepan1983" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -496,15 +404,15 @@
       <workItem from="1539972084871" duration="40280000" />
       <workItem from="1540657327280" duration="7852000" />
       <workItem from="1540734768200" duration="6158000" />
+      <workItem from="1540756265352" duration="679000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65994000" />
+    <option name="totallyTimeSpent" value="66673000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -523,12 +431,12 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.50883394" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.50883394" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32979977" />
       <window_info id="Persistence" order="2" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18367347" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18635875" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -800,9 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1012">
           <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -884,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DTO/BookItemsWithParamList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="308">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -901,8 +806,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="449" lean-forward="true" selection-start-line="449" selection-end-line="449" />
+        <state relative-caret-position="4642">
+          <caret line="449" selection-start-line="449" selection-end-line="449" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#userPage#0;class#MyRestController#0" />
