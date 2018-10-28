@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyRestController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyRestController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1819">
-              <caret line="458" column="59" selection-start-line="458" selection-start-column="59" selection-end-line="458" selection-end-column="59" />
+            <state relative-caret-position="17">
+              <caret line="449" lean-forward="true" selection-start-line="449" selection-end-line="449" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#userPage#0;class#MyRestController#0" />
@@ -86,8 +86,6 @@
                 <element signature="method#createNewOrder#0;class#MyRestController#0" />
                 <element signature="method#submitOrder#0;class#MyRestController#0" />
                 <element signature="method#getBookItems#0;class#MyRestController#0" />
-                <element signature="e#18817#18818#0" expanded="true" />
-                <element signature="e#18859#18860#0" expanded="true" />
                 <element signature="method#saveBookItem#0;class#MyRestController#0" />
                 <element signature="method#deleteBookItem#0;class#MyRestController#0" />
                 <element signature="method#createNewBookItem#0;class#MyRestController#0" />
@@ -101,21 +99,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookItemsWithParamList.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookItemsWithParamList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DTO/BookItemsWithParamList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
+            <state relative-caret-position="359">
               <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#474#475#0" expanded="true" />
-                <element signature="e#506#507#0" expanded="true" />
-                <element signature="e#564#565#0" expanded="true" />
-                <element signature="e#606#607#0" expanded="true" />
-                <element signature="e#651#652#0" expanded="true" />
-                <element signature="e#691#692#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-                <element signature="e#816#817#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,7 +114,7 @@
       <file leaf-file-name="List.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
+            <state relative-caret-position="11374">
               <caret line="540" column="38" selection-start-line="540" selection-start-column="15" selection-end-line="540" selection-end-column="40" />
             </state>
           </provider>
@@ -133,8 +123,8 @@
       <file leaf-file-name="BookServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/BookServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="892">
-              <caret line="91" column="33" lean-forward="true" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+            <state relative-caret-position="1386">
+              <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
               <folding>
                 <element signature="e#1494#1495#0" expanded="true" />
                 <element signature="e#1548#1549#0" expanded="true" />
@@ -176,18 +166,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
               <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JwtProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/jwt/JwtProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1012">
-              <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -286,7 +264,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -401,6 +378,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -517,11 +495,12 @@
       <workItem from="1539971756902" duration="144000" />
       <workItem from="1539972084871" duration="40280000" />
       <workItem from="1540657327280" duration="7852000" />
+      <workItem from="1540734768200" duration="6158000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59836000" />
+    <option name="totallyTimeSpent" value="65994000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -549,7 +528,7 @@
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32979977" />
       <window_info id="Persistence" order="2" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2094522" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18367347" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -575,13 +554,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.0.9.RELEASE/spring-data-jpa-2.0.9.RELEASE-sources.jar!/org/springframework/data/jpa/repository/query/QueryParameterSetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DAO/BookDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -821,10 +793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2002">
           <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
-          <folding>
-            <element signature="e#3016#3017#0" expanded="true" />
-            <element signature="e#3069#3070#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,8 +866,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Service/BookServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="892">
-          <caret line="91" column="33" lean-forward="true" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+        <state relative-caret-position="1386">
+          <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
           <folding>
             <element signature="e#1494#1495#0" expanded="true" />
             <element signature="e#1548#1549#0" expanded="true" />
@@ -909,15 +877,32 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
+        <state relative-caret-position="11374">
           <caret line="540" column="38" selection-start-line="540" selection-start-column="15" selection-end-line="540" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DTO/BookItemsWithParamList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/Set.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="458" column="59" selection-start-line="458" selection-start-column="59" selection-end-line="458" selection-end-column="59" />
+        <state relative-caret-position="17">
+          <caret line="449" lean-forward="true" selection-start-line="449" selection-end-line="449" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#userPage#0;class#MyRestController#0" />
@@ -933,8 +918,6 @@
             <element signature="method#createNewOrder#0;class#MyRestController#0" />
             <element signature="method#submitOrder#0;class#MyRestController#0" />
             <element signature="method#getBookItems#0;class#MyRestController#0" />
-            <element signature="e#18817#18818#0" expanded="true" />
-            <element signature="e#18859#18860#0" expanded="true" />
             <element signature="method#saveBookItem#0;class#MyRestController#0" />
             <element signature="method#deleteBookItem#0;class#MyRestController#0" />
             <element signature="method#createNewBookItem#0;class#MyRestController#0" />
@@ -943,24 +926,6 @@
             <element signature="method#updateTasks#0;class#MyRestController#0" />
             <element signature="method#getTasks#0;class#MyRestController#0" />
             <element signature="method#getBookParameters#0;class#MyRestController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/DTO/BookItemsWithParamList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#606#607#0" expanded="true" />
-            <element signature="e#651#652#0" expanded="true" />
-            <element signature="e#691#692#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#816#817#0" expanded="true" />
           </folding>
         </state>
       </provider>

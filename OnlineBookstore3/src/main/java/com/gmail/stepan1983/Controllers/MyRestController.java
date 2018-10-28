@@ -408,29 +408,45 @@ public class MyRestController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/bookItemsByParam")
-    public BookItemsWithParamList getBookItemsByParam(@RequestParam(required = false) String bookName,
-                                                 @RequestParam(required = false) String author,
-                                                 @RequestParam(required = false) String publisher,
-                                                 @RequestParam(required = false) String category,
-                                                 @RequestParam(required = false) String id,
-                                                 @RequestParam(required = false, defaultValue = "1") Integer page,
-                                                 @RequestParam(required = false, defaultValue = "12") Integer itemsPerPage,
-                                                 @RequestParam(required = false, defaultValue = "id") String sortBy,
-                                                 @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
+    public BookItemsWithParamList getBookItemsByParam(@RequestParam(required = false) String[] bookName,
+                                                      @RequestParam(required = false) String[] author,
+                                                      @RequestParam(required = false) String[] publisher,
+                                                      @RequestParam(required = false) String[] category,
+                                                      @RequestParam(required = false) String id,
+                                                      @RequestParam(required = false, defaultValue = "1") Integer page,
+                                                      @RequestParam(required = false, defaultValue = "12") Integer itemsPerPage,
+                                                      @RequestParam(required = false, defaultValue = "id") String sortBy,
+                                                      @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
-        List<BookItem> bookItems = new ArrayList<>();
+        Set<BookItem> bookItemsSet = new HashSet<>();
+
+//        System.out.println(ConsoleColors.RED+bookName[0]+author[0]+ConsoleColors.RESET);
 
         if (bookName != null) {
-            bookItems.add(bookService.getByBookName(bookName));
-        } else if (author != null) {
-            bookItems.addAll(bookService.getByAuthor(author));
-        } else if (publisher != null) {
-            bookItems.addAll(bookService.getByPublisher(publisher));
-        } else if (id != null) {
-            bookItems.add(bookService.getById(Long.valueOf(id)));
-        } else {
-            bookItems.addAll(bookService.getByCategory(category));
+            for (String s : bookName) {
+                bookItemsSet.add(bookService.getByBookName(s));
+            }
         }
+        if (author != null) {
+            for (String s : author) {
+                bookItemsSet.addAll(bookService.getByAuthor(s));
+            }
+        }
+        if (publisher != null) {
+            for (String s : publisher) {
+                bookItemsSet.addAll(bookService.getByPublisher(s));
+            }
+        }
+        if (id != null) {
+            bookItemsSet.add(bookService.getById(Long.valueOf(id)));
+        }
+        if (category != null) {
+            for (String s : category) {
+                bookItemsSet.addAll(bookService.getByCategory(s));
+            }
+        }
+
+        List<BookItem> bookItems=new ArrayList<>(bookItemsSet);
 
         bookItems.sort((BookItem b1, BookItem b2) -> {
             if (sortBy.equalsIgnoreCase("bookName")) {
@@ -456,11 +472,11 @@ public class MyRestController {
                      ? bookItems.size() : ((page - 1) * itemsPerPage + itemsPerPage));
              i++) {
 
-                bookItemsDTO.add(bookItems.get(i).toDTO());
+            bookItemsDTO.add(bookItems.get(i).toDTO());
         }
 
-        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + bookItemsDTO + ConsoleColors.RESET);
-        return new BookItemsWithParamList(bookItemsDTO,bookItems.size());
+//        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + bookItemsDTO + ConsoleColors.RESET);
+        return new BookItemsWithParamList(bookItemsDTO, bookItems.size());
     }
 
     @CrossOrigin(origins = "*")
