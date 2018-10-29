@@ -16,9 +16,9 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
-@Configuration
-@EnableWebSecurity
-@ComponentScan("com.gmail.stepan1983")
+//@Configuration
+//@EnableWebSecurity
+//@ComponentScan("com.gmail.stepan1983")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -38,8 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
+        http.csrf().disable()
                 .authorizeRequests()
 //                .antMatchers("/").hasAnyRole("USER", "ADMIN")
 //                .antMatchers("/adminPage").hasRole("ADMIN")

@@ -20,6 +20,12 @@ public interface ClientService {
 
     boolean existsByLogin(String login);
 
+    boolean existsById(Long id);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByPhone(String phone);
+
     void updateClient(Client client);
 
     void deleteClient(Client client);
