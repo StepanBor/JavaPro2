@@ -3,10 +3,15 @@ package com.gmail.stepan1983.Controllers;
 import com.gmail.stepan1983.DTO.*;
 import com.gmail.stepan1983.Service.*;
 import com.gmail.stepan1983.config.ConsoleColors;
+import com.gmail.stepan1983.config.FillDataBase;
 import com.gmail.stepan1983.config.RateRetriever;
 import com.gmail.stepan1983.config.jwt.JwtProvider;
 import com.gmail.stepan1983.config.jwt.JwtResponse;
 import com.gmail.stepan1983.model.*;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -23,11 +28,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 @RestController
 public class MyRestController {
@@ -69,6 +73,9 @@ public class MyRestController {
 
     @Autowired
     PasswordEncoder encoder;
+
+    @Autowired
+    FillDataBase fillDataBase;
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/userPage")
@@ -446,7 +453,7 @@ public class MyRestController {
             }
         }
 
-        List<BookItem> bookItems=new ArrayList<>(bookItemsSet);
+        List<BookItem> bookItems = new ArrayList<>(bookItemsSet);
 
         bookItems.sort((BookItem b1, BookItem b2) -> {
             if (sortBy.equalsIgnoreCase("bookName")) {
@@ -641,9 +648,103 @@ public class MyRestController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/addBooks")
     public ResponseEntity addBooks(@RequestParam() MultipartFile table,
-                                   @RequestParam() MultipartFile covers){
-        
+                                   @RequestParam() MultipartFile covers) {
+
+        File coversZip = new File(covers.getOriginalFilename());
+        File bookItemsExcell = new File(table.getOriginalFilename());
+        try (OutputStream os = new FileOutputStream(coversZip);
+        OutputStream os2= new FileOutputStream(bookItemsExcell)) {
+            os.write(covers.getBytes());
+            os2.write(table.getBytes());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<File> coversList = new ArrayList<>();
+        byte[] buffer = new byte[1024];
+        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(coversZip))) {
+            ZipEntry zipEntry = zis.getNextEntry();
+            while (zipEntry != null) {
+                File newFile = new File(zipEntry.getName());
+                FileOutputStream fos = new FileOutputStream(newFile);
+                int len;
+                while ((len = zis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+                fos.close();
+                coversList.add(newFile);
+                zipEntry = zis.getNextEntry();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<BookItem> bookItemList = readFromExcel(bookItemsExcell, coversList);
+        StorageBooks storageBooks=storageBooksService.findAll().get(0);
+
+        for (BookItem bookItem : bookItemList) {
+            bookItem.setStorageBooks(storageBooks);
+            storageBooks.getBookQuantityMap().put(bookItem,10);
+            bookService.addBookItem(bookItem);
+
+        }
+
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    public List<BookItem> readFromExcel(File excelFile, List<File> covers) {
+
+        Set<CategoryItem> categoryItemSet = new HashSet<>();
+        List<BookItem> bookList = new ArrayList<>();
+        Set<Publisher> publisherSet = new HashSet<>();
+
+        try (InputStream is = new FileInputStream(excelFile)) {
+            HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
+//            HSSFSheet hssfSheet=hssfWorkbook.getSheet("bookforsite");
+            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
+            for (Row cells : hssfSheet) {
+                if (cells.getRowNum() == 0) {
+                    continue;
+                }
+                Publisher tempPublisher = new Publisher();
+                tempPublisher.setPublisherName(cells.getCell(3).getStringCellValue());
+                publisherSet.add(tempPublisher);
+                for (Publisher publisher : publisherSet) {
+                    if (publisher.getPublisherName().equals(cells.getCell(3).getStringCellValue())) {
+                        tempPublisher = publisher;
+                    }
+                }
+
+                CategoryItem tempCategory = new CategoryItem();
+                tempCategory.setCategoryName(cells.getCell(4).getStringCellValue());
+                categoryItemSet.add(tempCategory);
+                for (CategoryItem categoryItem : categoryItemSet) {
+                    if (categoryItem.getCategoryName().equalsIgnoreCase(cells.getCell(4).getStringCellValue())) {
+                        tempCategory = categoryItem;
+                    }
+                }
+                BookItem tempBook = new BookItem();
+                tempBook.setBookName(cells.getCell(0).getStringCellValue());
+                tempBook.setDescription(cells.getCell(1).getStringCellValue());
+                tempBook.setAuthor(cells.getCell(2).getStringCellValue());
+                tempBook.setPublisher(tempPublisher);
+//                tempPublisher.getBooks().add(tempBook);
+                tempBook.setCategory(tempCategory);
+                tempBook.setPrice(cells.getCell(5).getNumericCellValue());
+                for (File cover : covers) {
+                    if (cover.getName().equalsIgnoreCase(cells.getCell(6).getStringCellValue()))
+                        tempBook.setCover(cover);
+                }
+
+                tempBook.setISBN(cells.getCell(7).getStringCellValue());
+                bookList.add(tempBook);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bookList;
     }
 
 }

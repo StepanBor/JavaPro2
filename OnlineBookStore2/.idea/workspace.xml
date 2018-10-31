@@ -60,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpringSecurityInit.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SpringSecurityInit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/SpringSecurityInit.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
@@ -123,10 +123,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppConfig.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="747">
+            <state relative-caret-position="1298">
               <caret line="82" selection-start-line="82" selection-end-line="82" />
             </state>
           </provider>
@@ -135,7 +135,7 @@
       <file leaf-file-name="MyRestController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="528">
               <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
             </state>
           </provider>
@@ -238,6 +238,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -330,9 +331,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -515,11 +515,12 @@
       <workItem from="1539797943853" duration="57000" />
       <workItem from="1539842323310" duration="4000" />
       <workItem from="1540549768965" duration="485000" />
+      <workItem from="1541010283041" duration="157000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142413000" />
+    <option name="totallyTimeSpent" value="142570000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -538,6 +539,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.3297062" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.32979977" />
@@ -546,18 +548,17 @@
       <window_info anchor="bottom" id="Run" order="15" weight="0.38633686" />
       <window_info anchor="bottom" id="Spring" order="6" weight="0.32979977" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3297062" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2207304" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22395274" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.32979977" />
+      <window_info anchor="bottom" id="Find" order="10" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.3297062" />
       <window_info anchor="bottom" id="Message" order="9" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="10" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -807,13 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/SpringSecurityInit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/SecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
@@ -864,15 +858,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/Controllers/MyRestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="528">
           <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
+        <state relative-caret-position="1298">
           <caret line="82" selection-start-line="82" selection-end-line="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/SpringSecurityInit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
