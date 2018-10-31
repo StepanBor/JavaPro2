@@ -82,8 +82,8 @@ public class FillDataBase {
     @PostConstruct
 //    @Transactional
     public void fillData() {
-        File excelFile = new File("f:\\Drive\\Литература\\Java\\books111018\\Books111018.xls");
-//        File excelFile = new File("d:\\GoogleDrive\\Литература\\Java\\books111018\\Books111018.xls");
+//        File excelFile = new File("f:\\Drive\\Литература\\Java\\books111018\\Books111018.xls");
+        File excelFile = new File("d:\\GoogleDrive\\Литература\\Java\\books111018\\Books111018.xls");
 
         List<BookItem> bookItemList = readFromExcel(excelFile);
         Date today = new Date();
@@ -99,8 +99,8 @@ public class FillDataBase {
         List<File> avatars = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
 
-            File file = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
-//            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+//            File file = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
             avatars.add(file);
         }
 
@@ -252,8 +252,8 @@ public class FillDataBase {
 //                tempPublisher.getBooks().add(tempBook);
                 tempBook.setCategory(tempCategory);
                 tempBook.setPrice(cells.getCell(5).getNumericCellValue());
-                tempBook.setCover(new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
-//                tempBook.setCover(new File("d:\\GoogleDrive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
+//                tempBook.setCover(new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
+                tempBook.setCover(new File("d:\\GoogleDrive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
                 tempBook.setISBN(cells.getCell(7).getStringCellValue());
                 bookList.add(tempBook);
 
