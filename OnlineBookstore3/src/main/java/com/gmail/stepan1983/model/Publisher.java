@@ -78,14 +78,13 @@ public class Publisher {
         if (this == o) return true;
         if (!(o instanceof Publisher)) return false;
         Publisher publisher = (Publisher) o;
-        return getId() == publisher.getId() &&
-                Objects.equals(getPublisherName(), publisher.getPublisherName());
+        return Objects.equals(getPublisherName(), publisher.getPublisherName());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getPublisherName());
+        return Objects.hash(getPublisherName());
     }
 
     @Override

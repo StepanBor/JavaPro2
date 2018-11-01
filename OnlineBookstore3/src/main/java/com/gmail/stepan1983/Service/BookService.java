@@ -13,6 +13,8 @@ public interface BookService {
 
     BookItem addBookItem(BookItem bookItem);
 
+    void addBookList(List<BookItem> bookList);
+
     BookItem getById(Long bookId);
 
     List<BookItem> getByAuthor(String author);

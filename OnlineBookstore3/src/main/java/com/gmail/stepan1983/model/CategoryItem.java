@@ -67,14 +67,13 @@ public class CategoryItem {
         if (this == o) return true;
         if (!(o instanceof CategoryItem)) return false;
         CategoryItem that = (CategoryItem) o;
-        return getId() == that.getId() &&
-                Objects.equals(getCategoryName(), that.getCategoryName());
+        return Objects.equals(getCategoryName(), that.getCategoryName());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getCategoryName());
+        return Objects.hash(getCategoryName());
     }
 
     @Override

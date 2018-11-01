@@ -23,7 +23,7 @@ public class BookItem {
 
     private String bookName;
 
-    @Column(length=2000)
+    @Column(length=15000)
     private String description;
 
     private String author;

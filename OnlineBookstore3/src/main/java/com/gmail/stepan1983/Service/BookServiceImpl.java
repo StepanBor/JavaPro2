@@ -43,6 +43,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
+    public void addBookList(List<BookItem> bookList) {
+        for (BookItem bookItem : bookList) {
+            entityManager.merge(bookItem);
+        }
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public BookItem getById(Long bookId) {
         return bookDAO.getOne(bookId);

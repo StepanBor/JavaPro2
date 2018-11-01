@@ -646,11 +646,12 @@ public class MyRestController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/addBooks")
+    @RequestMapping(value = "/addBooks",  method = RequestMethod.POST)
     public ResponseEntity addBooks(@RequestParam() MultipartFile table,
                                    @RequestParam() MultipartFile covers) {
 
         File coversZip = new File(covers.getOriginalFilename());
+        System.out.println(ConsoleColors.RED+coversZip.getName()+ConsoleColors.RESET);
         File bookItemsExcell = new File(table.getOriginalFilename());
         try (OutputStream os = new FileOutputStream(coversZip);
         OutputStream os2= new FileOutputStream(bookItemsExcell)) {
@@ -678,16 +679,21 @@ public class MyRestController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        for (File file : coversList) {
+//            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+file.getName()+ConsoleColors.RESET);
+//        }
 
         List<BookItem> bookItemList = readFromExcel(bookItemsExcell, coversList);
+
         StorageBooks storageBooks=storageBooksService.findAll().get(0);
+
 
         for (BookItem bookItem : bookItemList) {
             bookItem.setStorageBooks(storageBooks);
             storageBooks.getBookQuantityMap().put(bookItem,10);
-            bookService.addBookItem(bookItem);
-
         }
+
+        bookService.addBookList(bookItemList);
 
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -703,40 +709,70 @@ public class MyRestController {
 //            HSSFSheet hssfSheet=hssfWorkbook.getSheet("bookforsite");
             HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
             for (Row cells : hssfSheet) {
+                BookItem tempBook = new BookItem();
+                tempBook.setBookName(cells.getCell(0).getStringCellValue());
+
                 if (cells.getRowNum() == 0) {
                     continue;
                 }
+
+                if (tempBook.getBookName().equals("")){
+                    continue;
+                }
+
                 Publisher tempPublisher = new Publisher();
                 tempPublisher.setPublisherName(cells.getCell(3).getStringCellValue());
-                publisherSet.add(tempPublisher);
-                for (Publisher publisher : publisherSet) {
-                    if (publisher.getPublisherName().equals(cells.getCell(3).getStringCellValue())) {
-                        tempPublisher = publisher;
+//                publisherSet.add(tempPublisher);
+//                for (Publisher publisher : publisherSet) {
+//                    if (publisher.getPublisherName().equals(cells.getCell(3).getStringCellValue())) {
+//                        tempPublisher = publisher;
+//                    }
+//                }
+                if(!publisherSet.add(tempPublisher)){
+                    for (Publisher publisher : publisherSet) {
+                        if(publisher.equals(tempPublisher)){
+                            tempPublisher=publisher;
+                        }
                     }
                 }
 
                 CategoryItem tempCategory = new CategoryItem();
                 tempCategory.setCategoryName(cells.getCell(4).getStringCellValue());
-                categoryItemSet.add(tempCategory);
-                for (CategoryItem categoryItem : categoryItemSet) {
-                    if (categoryItem.getCategoryName().equalsIgnoreCase(cells.getCell(4).getStringCellValue())) {
-                        tempCategory = categoryItem;
+//                categoryItemSet.add(tempCategory);
+//                for (CategoryItem categoryItem : categoryItemSet) {
+//                    if (categoryItem.getCategoryName().equalsIgnoreCase(cells.getCell(4).getStringCellValue())) {
+//                        tempCategory = categoryItem;
+//                    }
+//                }
+                if(!categoryItemSet.add(tempCategory)){
+                    for (CategoryItem categoryItem : categoryItemSet) {
+                        if(categoryItem.equals(tempCategory)){
+                            tempCategory=categoryItem;
+                        }
                     }
                 }
-                BookItem tempBook = new BookItem();
-                tempBook.setBookName(cells.getCell(0).getStringCellValue());
+
+
                 tempBook.setDescription(cells.getCell(1).getStringCellValue());
                 tempBook.setAuthor(cells.getCell(2).getStringCellValue());
                 tempBook.setPublisher(tempPublisher);
 //                tempPublisher.getBooks().add(tempBook);
                 tempBook.setCategory(tempCategory);
                 tempBook.setPrice(cells.getCell(5).getNumericCellValue());
+                String coverFileName=cells.getCell(6).getStringCellValue();
+
                 for (File cover : covers) {
-                    if (cover.getName().equalsIgnoreCase(cells.getCell(6).getStringCellValue()))
+                    System.out.println(ConsoleColors.RED+cover.getName()+ConsoleColors.RESET);
+                    if (cover.getName().equalsIgnoreCase(coverFileName)){
+
+
                         tempBook.setCover(cover);
+                    }
+
                 }
 
                 tempBook.setISBN(cells.getCell(7).getStringCellValue());
+                tempBook.setRating(0);
                 bookList.add(tempBook);
 
             }
@@ -744,6 +780,8 @@ public class MyRestController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+categoryItemSet+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+publisherSet+ConsoleColors.RESET);
         return bookList;
     }
 
