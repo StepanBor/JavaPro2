@@ -65,6 +65,7 @@ public class BookItem {
     }
 
     public BookItem() {
+
     }
 
     public BookItemDTO toDTO() {
@@ -182,7 +183,7 @@ public class BookItem {
         return "BookItem{" +
                 "id=" + id +
                 ", bookName='" + bookName + '\'' +
-                ", description='" + description + '\'' +
+//                ", description='" + description + '\'' +
                 ", author='" + author + '\'' +
                 ", raiting=" + rating +
                 ", publisher=" + publisher +

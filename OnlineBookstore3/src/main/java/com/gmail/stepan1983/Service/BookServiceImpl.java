@@ -2,6 +2,8 @@ package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.DAO.*;
 import com.gmail.stepan1983.model.BookItem;
+import com.gmail.stepan1983.model.CategoryItem;
+import com.gmail.stepan1983.model.Publisher;
 import com.gmail.stepan1983.model.StorageBooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -35,6 +39,15 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private StorageBooksDAO storageBooksDAO;
 
+    @Autowired
+    PublisherService publisherService;
+
+    @Autowired
+    CategoryService categoryService;
+
+    @Autowired
+    StorageBooksService storageBooksService;
+
     @Override
     @Transactional
     public BookItem addBookItem(BookItem bookItem) {
@@ -45,9 +58,40 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public void addBookList(List<BookItem> bookList) {
+        Set<Publisher> publisherSet = new HashSet<>();
+        Set<CategoryItem> categoryItemSet = new HashSet<>();
+        StorageBooks storageBooks = storageBooksService.findAll().get(0);
+
         for (BookItem bookItem : bookList) {
+//            entityManager.persist(bookItem);
+
+            Publisher tempPublisher = publisherService.getByName(bookItem.getPublisher().getPublisherName());
+            if (tempPublisher == null) {
+                tempPublisher = bookItem.getPublisher();
+                tempPublisher = publisherService.addPublisher(tempPublisher);
+            }
+            CategoryItem tempCategoryItem = categoryService.getByName(bookItem.getCategory().getCategoryName());
+            if (tempCategoryItem == null) {
+                tempCategoryItem = bookItem.getCategory();
+                tempCategoryItem = categoryService.addCategoryItem(tempCategoryItem);
+            }
+            publisherSet.add(tempPublisher);
+            categoryItemSet.add(tempCategoryItem);
+            bookItem.setPublisher(tempPublisher);
+            bookItem.setCategory(tempCategoryItem);
+            tempPublisher.getBooks().add(bookItem);
+            tempCategoryItem.getBooks().add(bookItem);
+            entityManager.persist(bookItem);
+//            entityManager.flush();
+
+        }
+        for (BookItem bookItem : bookList) {
+            bookItem.setStorageBooks(storageBooks);
+            storageBooks.getBookQuantityMap().put(bookItem, 10);
             entityManager.merge(bookItem);
         }
+
+
     }
 
     @Override
@@ -79,13 +123,13 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public BookItem updateBookItem(BookItem bookItem) {
-       return entityManager.merge(bookItem);
+        return entityManager.merge(bookItem);
     }
 
     @Override
     @Transactional
     public void deleteBookItem(BookItem bookItem) {
-        BookItem temp=entityManager.merge(bookItem);
+        BookItem temp = entityManager.merge(bookItem);
         entityManager.remove(temp);
     }
 
@@ -96,7 +140,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @Transactional (readOnly = true)
+    @Transactional(readOnly = true)
     public List<BookItem> findAll(Integer page, Integer itemsPerPage, String sortBy, boolean sortDirection) {
 
         Sort sort = new Sort(sortDirection ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy);
@@ -118,10 +162,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Transactional
-    public Double getAvgRating(){
+    public Double getAvgRating() {
 
-        TypedQuery<Double> avgRating=entityManager.createQuery("Select avg(s.rating) from BookItem s",Double.class);
+        TypedQuery<Double> avgRating = entityManager.createQuery("Select avg(s.rating) from BookItem s", Double.class);
 
         return avgRating.getSingleResult();
+    }
+
+    @Transactional
+    public void setStorageBook(BookItem book){
+        StorageBooks storageBooks=storageBooksService.findAll().get(0);
+        book.setStorageBooks(storageBooks);
+        storageBooks.getBookQuantityMap().put(book,10);
+        entityManager.merge(storageBooks);
     }
 }

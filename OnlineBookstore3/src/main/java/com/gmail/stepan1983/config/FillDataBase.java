@@ -84,8 +84,8 @@ public class FillDataBase {
     @PostConstruct
 //    @Transactional
     public void fillData() {
-        File excelFile = new File("f:\\Drive\\Литература\\Java\\books111018\\Books111018.xls");
-//        File excelFile = new File("d:\\GoogleDrive\\Литература\\Java\\books111018\\Books111018.xls");
+//        File excelFile = new File("f:\\Drive\\Литература\\Java\\books111018\\Books111018.xls");
+        File excelFile = new File("d:\\GoogleDrive\\Литература\\Java\\books111018\\Books111018.xls");
 
         List<BookItem> bookItemList = readFromExcel(excelFile);
         Date today = new Date();
@@ -251,11 +251,13 @@ public class FillDataBase {
                 tempBook.setDescription(cells.getCell(1).getStringCellValue());
                 tempBook.setAuthor(cells.getCell(2).getStringCellValue());
                 tempBook.setPublisher(tempPublisher);
+                tempPublisher.getBooks().add(tempBook);
 //                tempPublisher.getBooks().add(tempBook);
                 tempBook.setCategory(tempCategory);
+                tempCategory.getBooks().add(tempBook);
                 tempBook.setPrice(cells.getCell(5).getNumericCellValue());
-                tempBook.setCover(new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
-//                tempBook.setCover(new File("d:\\GoogleDrive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
+//                tempBook.setCover(new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
+                tempBook.setCover(new File("d:\\GoogleDrive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
                 tempBook.setISBN(cells.getCell(7).getStringCellValue());
                 bookList.add(tempBook);
 

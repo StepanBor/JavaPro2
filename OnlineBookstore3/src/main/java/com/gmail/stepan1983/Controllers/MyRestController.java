@@ -426,8 +426,9 @@ public class MyRestController {
                                                       @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
         Set<BookItem> bookItemsSet = new HashSet<>();
+        int sortDirection=changeSortDirect?-1:1;
 
-//        System.out.println(ConsoleColors.RED+bookName[0]+author[0]+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED+changeSortDirect+ConsoleColors.RESET);
 
         if (bookName != null) {
             for (String s : bookName) {
@@ -456,6 +457,8 @@ public class MyRestController {
         List<BookItem> bookItems = new ArrayList<>(bookItemsSet);
 
         bookItems.sort((BookItem b1, BookItem b2) -> {
+//            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+sortBy+ConsoleColors.RESET);
+//            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+sortDirection+ConsoleColors.RESET);
             if (sortBy.equalsIgnoreCase("bookName")) {
                 return b1.getBookName().compareToIgnoreCase(b2.getBookName());
             }
@@ -472,7 +475,13 @@ public class MyRestController {
             }
         });
 
+//        bookItems.sort(new BookComparator(sortBy,sortDirection));
+
+
         List<BookItemDTO> bookItemsDTO = new ArrayList<>();
+        for (BookItem bookItem : bookItems) {
+            System.out.println(ConsoleColors.RED+bookItem+ConsoleColors.RESET);
+        }
 
         for (int i = (page - 1) * itemsPerPage;
              i < ((((page - 1) * itemsPerPage + itemsPerPage) > bookItems.size())
@@ -688,10 +697,10 @@ public class MyRestController {
         StorageBooks storageBooks=storageBooksService.findAll().get(0);
 
 
-        for (BookItem bookItem : bookItemList) {
-            bookItem.setStorageBooks(storageBooks);
-            storageBooks.getBookQuantityMap().put(bookItem,10);
-        }
+//        for (BookItem bookItem : bookItemList) {
+//            bookItem.setStorageBooks(storageBooks);
+//            storageBooks.getBookQuantityMap().put(bookItem,10);
+//        }
 
         bookService.addBookList(bookItemList);
 

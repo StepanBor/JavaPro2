@@ -1,6 +1,7 @@
 package com.gmail.stepan1983.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +29,7 @@ public class CategoryItem {
     }
 
     public CategoryItem() {
+        this.books=new ArrayList<>();
     }
 
     public long getId() {
