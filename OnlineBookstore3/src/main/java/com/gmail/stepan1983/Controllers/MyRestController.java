@@ -138,6 +138,7 @@ public class MyRestController {
                                         @RequestParam String email,
                                         @RequestParam String phone,
                                         @RequestParam(required = false) String address,
+                                        @RequestParam(required = false, defaultValue = "CUSTOMER") String userRole,
                                         @RequestParam(required = false) String name,
                                         @RequestParam(required = false) String lastname,
                                         @RequestParam(required = false) String password,
@@ -195,7 +196,7 @@ public class MyRestController {
             return new ResponseEntity<>(message, HttpStatus.OK);
         }
         ClientGroup clientGroup = clientGroupService.findByGroupName("customers");
-        Client newClient = new Client(login, encoder.encode(password), email, phone, address, name, lastname, UserRole.CUSTOMER, clientGroup, avatar);
+        Client newClient = new Client(login, encoder.encode(password), email, phone, address, name, lastname, UserRole.valueOf(userRole.toUpperCase()), clientGroup, avatar);
 
         Client client = clientService.addClient(newClient);
         message.add("New user id is " + client.getId());
@@ -470,21 +471,25 @@ public class MyRestController {
                                                       @RequestParam(required = false, defaultValue = "id") String sortBy,
                                                       @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
-        int sortDirection = changeSortDirect ? -1 : 1;
+        if(changeSortDirect){
+            sortDirection=!sortDirection;
+        }
+
+        int sortDirection1 = sortDirection ? -1 : 1;
         Set<BookItem> bookItemsSet = new TreeSet<>((BookItem b1, BookItem b2) -> {
             if (sortBy.equalsIgnoreCase("bookName")) {
-                return b1.getBookName().compareToIgnoreCase(b2.getBookName()) * sortDirection;
+                return b1.getBookName().compareToIgnoreCase(b2.getBookName()) * sortDirection1;
             }
             if (sortBy.equalsIgnoreCase("author")) {
-                return b1.getAuthor().compareToIgnoreCase(b2.getAuthor()) * sortDirection;
+                return b1.getAuthor().compareToIgnoreCase(b2.getAuthor()) * sortDirection1;
             }
             if (sortBy.equalsIgnoreCase("publisher")) {
-                return b1.getPublisher().getPublisherName().compareToIgnoreCase(b2.getPublisher().getPublisherName()) * sortDirection;
+                return b1.getPublisher().getPublisherName().compareToIgnoreCase(b2.getPublisher().getPublisherName()) * sortDirection1;
             }
             if (sortBy.equalsIgnoreCase("category")) {
-                return b1.getCategory().getCategoryName().compareToIgnoreCase(b2.getCategory().getCategoryName()) * sortDirection;
+                return b1.getCategory().getCategoryName().compareToIgnoreCase(b2.getCategory().getCategoryName()) * sortDirection1;
             } else {
-                return (b1.getRating() - b2.getRating()) * sortDirection;
+                return (b1.getRating() - b2.getRating()) * sortDirection1;
             }
         });
 

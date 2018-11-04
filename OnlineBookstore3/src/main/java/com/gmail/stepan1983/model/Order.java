@@ -77,7 +77,7 @@ public class Order {
         }
 
 
-        return new OrderDTO(id,orderListDTO, orderPrice, client.toDTO(),
+        return new OrderDTO(id,orderListDTO, Math.floor(orderPrice*100)/100, client.toDTO(),
                 shipment.toDTO(), status.toString(), orderDate/*, orderMap*/);
     }
 
