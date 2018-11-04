@@ -4,6 +4,7 @@ import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.Publisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -20,5 +21,7 @@ public interface PublisherService {
     List<Publisher> findAll();
 
     long count();
+
+    boolean existsByName(String name);
 
 }

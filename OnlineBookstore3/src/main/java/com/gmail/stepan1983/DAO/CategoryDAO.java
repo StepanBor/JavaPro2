@@ -14,5 +14,8 @@ public interface CategoryDAO extends JpaRepository<CategoryItem,Long> {
     @Query("SELECT c FROM CategoryItem c WHERE c.categoryName=:name")
     CategoryItem getByName(@Param("name") String name);
 
+    @Query("SELECT CASE WHEN COUNT(c) > 0 THEN true ELSE false END FROM CategoryItem c WHERE c.categoryName = :name")
+    boolean existsByName(@Param("name") String name);
+
 
 }

@@ -9,6 +9,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -84,8 +85,14 @@ public class FillDataBase {
     @PostConstruct
 //    @Transactional
     public void fillData() {
+        File excelFile=new File("");
+        try {
+            excelFile=new ClassPathResource("/bookItems/Books111018.xls").getFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        File excelFile = new File("f:\\Drive\\Литература\\Java\\books111018\\Books111018.xls");
-        File excelFile = new File("d:\\GoogleDrive\\Литература\\Java\\books111018\\Books111018.xls");
+//        File excelFile = new File("d:\\GoogleDrive\\Литература\\Java\\books111018\\Books111018.xls");
 
         List<BookItem> bookItemList = readFromExcel(excelFile);
         Date today = new Date();
@@ -102,18 +109,24 @@ public class FillDataBase {
         for (int i = 0; i < 11; i++) {
 
 //            File file = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
-            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+//            File file = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\avatar-" + i + ".jpg");
+            File file = null;
+            try {
+                file = new ClassPathResource("/avatars/avatar-" + i + ".jpg").getFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             avatars.add(file);
         }
 
 //        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
-        List<File> bookCovers = new ArrayList<>();
-        for (int i = 0; i < 14; i++) {
-            File file = new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\" + (i + 1) + ".jpg");
-            bookCovers.add(file);
-        }
+//        File image = new File("C:\\Users\\borysenko\\Documents\\GitHub\\JavaPro\\JavaPro\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
+//        List<File> bookCovers = new ArrayList<>();
+//        for (int i = 0; i < 14; i++) {
+//            File file = new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\" + (i + 1) + ".jpg");
+//            bookCovers.add(file);
+//        }
 
 
 //        File image = new File("C:\\Users\\HOME\\Documents\\git\\JavaPro3\\JavaPro2\\OnlineBookStore2\\src\\main\\webapp\\static\\images\\12274312_1719690841584330_6387016554043425967_n.jpg");
@@ -256,8 +269,10 @@ public class FillDataBase {
                 tempBook.setCategory(tempCategory);
                 tempCategory.getBooks().add(tempBook);
                 tempBook.setPrice(cells.getCell(5).getNumericCellValue());
+                File tempCover=new ClassPathResource("/bookItems/"+cells.getCell(6).getStringCellValue()).getFile();
 //                tempBook.setCover(new File("f:\\Drive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
-                tempBook.setCover(new File("d:\\GoogleDrive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
+                tempBook.setCover(tempCover);
+//                tempBook.setCover(new File("d:\\GoogleDrive\\Литература\\Java\\Картинки для книг\\" + cells.getCell(6).getStringCellValue()));
                 tempBook.setISBN(cells.getCell(7).getStringCellValue());
                 bookList.add(tempBook);
 

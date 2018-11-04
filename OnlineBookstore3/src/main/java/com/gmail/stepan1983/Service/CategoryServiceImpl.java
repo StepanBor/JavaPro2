@@ -41,4 +41,9 @@ public class CategoryServiceImpl implements CategoryService {
     public long count() {
         return categoryDAO.count();
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        return categoryDAO.existsByName(name);
+    }
 }

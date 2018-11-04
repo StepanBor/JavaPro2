@@ -49,4 +49,9 @@ public class PublisherServiceImpl implements PublisherService {
     public long count() {
         return publisherDAO.count();
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        return publisherDAO.existsByName(name);
+    }
 }

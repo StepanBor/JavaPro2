@@ -24,4 +24,10 @@ public interface BookDAO extends JpaRepository<BookItem,Long> {
     @Query("SELECT b FROM BookItem b WHERE b.bookName=:bookName")
     BookItem getByBookName(@Param("bookName") String bookName);
 
+    @Query("SELECT CASE WHEN COUNT(b) > 0 THEN true ELSE false END FROM BookItem b WHERE b.bookName = :bookName")
+    boolean existsByBookName(@Param("bookName") String bookName);
+
+    @Query("SELECT CASE WHEN COUNT(b) > 0 THEN true ELSE false END FROM BookItem b WHERE b.id = :id")
+    boolean existsById(@Param("id") Long id);
+
 }

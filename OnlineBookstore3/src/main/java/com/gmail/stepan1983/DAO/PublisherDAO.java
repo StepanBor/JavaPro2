@@ -15,4 +15,7 @@ public interface PublisherDAO extends JpaRepository<Publisher,Long> {
 
     @Query("SELECT p FROM Publisher p WHERE p.publisherName=:name")
     Publisher getByName(@Param("name") String name);
+
+    @Query("SELECT CASE WHEN COUNT(p) > 0 THEN true ELSE false END FROM Publisher p WHERE p.publisherName = :name")
+    boolean existsByName(@Param("name") String name);
 }

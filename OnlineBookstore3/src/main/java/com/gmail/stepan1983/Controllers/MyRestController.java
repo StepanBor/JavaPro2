@@ -15,13 +15,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -209,19 +207,66 @@ public class MyRestController {
     public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
 
         System.out.println(ConsoleColors.RED + loginRequest + ConsoleColors.RESET);
-
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getLogin(),
-                        loginRequest.getPassword()
-                )
-        );
+        Authentication authentication=null;
+        try {
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getLogin(),
+                            loginRequest.getPassword()
+                    )
+            );
+        } catch (AuthenticationException e){
+            return new ResponseEntity<>("wrong credentials", HttpStatus.UNAUTHORIZED);
+//            e.printStackTrace();
+        }
+        System.out.println(ConsoleColors.RED + authentication + ConsoleColors.RESET);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateJwtToken(authentication);
         return ResponseEntity.ok(new JwtResponse(jwt));
     }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/signinAdmin")
+    public ResponseEntity<?> authenticateAdmin(@RequestBody LoginForm loginRequest) {
+
+        System.out.println(ConsoleColors.RED + loginRequest + ConsoleColors.RESET);
+        Authentication authentication=null;
+        try {
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getLogin(),
+                            loginRequest.getPassword()
+                    )
+            );
+        } catch (AuthenticationException e){
+            return new ResponseEntity<>("wrong credentials", HttpStatus.UNAUTHORIZED);
+//            e.printStackTrace();
+        }
+        for (Object o : authentication.getAuthorities()) {
+            if(o.toString().equalsIgnoreCase("ROLE_ADMIN")||
+                    o.toString().equalsIgnoreCase("ROLE_MANAGER")){
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String jwt = jwtProvider.generateJwtToken(authentication);
+                return ResponseEntity.ok(new JwtResponse(jwt));
+            }
+        }
+
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + authentication + ConsoleColors.RESET);
+        System.out.println();
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + authentication.getAuthorities()+ ConsoleColors.RESET);
+        System.out.println();
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + (authentication.getAuthorities().contains("ROLE_ADMIN")||
+                authentication.getAuthorities().contains("ROLE_MANAGER")) + ConsoleColors.RESET);
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//
+//        String jwt = jwtProvider.generateJwtToken(authentication);
+//        return ResponseEntity.ok(new JwtResponse(jwt));
+        return new ResponseEntity<>("wrong credentials", HttpStatus.UNAUTHORIZED);
+    }
+
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/deleteUser")
@@ -425,10 +470,26 @@ public class MyRestController {
                                                       @RequestParam(required = false, defaultValue = "id") String sortBy,
                                                       @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
-        Set<BookItem> bookItemsSet = new HashSet<>();
-        int sortDirection=changeSortDirect?-1:1;
+        int sortDirection = changeSortDirect ? -1 : 1;
+        Set<BookItem> bookItemsSet = new TreeSet<>((BookItem b1, BookItem b2) -> {
+            if (sortBy.equalsIgnoreCase("bookName")) {
+                return b1.getBookName().compareToIgnoreCase(b2.getBookName()) * sortDirection;
+            }
+            if (sortBy.equalsIgnoreCase("author")) {
+                return b1.getAuthor().compareToIgnoreCase(b2.getAuthor()) * sortDirection;
+            }
+            if (sortBy.equalsIgnoreCase("publisher")) {
+                return b1.getPublisher().getPublisherName().compareToIgnoreCase(b2.getPublisher().getPublisherName()) * sortDirection;
+            }
+            if (sortBy.equalsIgnoreCase("category")) {
+                return b1.getCategory().getCategoryName().compareToIgnoreCase(b2.getCategory().getCategoryName()) * sortDirection;
+            } else {
+                return (b1.getRating() - b2.getRating()) * sortDirection;
+            }
+        });
 
-        System.out.println(ConsoleColors.RED+changeSortDirect+ConsoleColors.RESET);
+
+        System.out.println(ConsoleColors.RED + changeSortDirect + ConsoleColors.RESET);
 
         if (bookName != null) {
             for (String s : bookName) {
@@ -453,34 +514,17 @@ public class MyRestController {
                 bookItemsSet.addAll(bookService.getByCategory(s));
             }
         }
-
+        for (BookItem bookItem : bookItemsSet) {
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + bookItem + ConsoleColors.RESET);
+        }
         List<BookItem> bookItems = new ArrayList<>(bookItemsSet);
-
-        bookItems.sort((BookItem b1, BookItem b2) -> {
-//            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+sortBy+ConsoleColors.RESET);
-//            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+sortDirection+ConsoleColors.RESET);
-            if (sortBy.equalsIgnoreCase("bookName")) {
-                return b1.getBookName().compareToIgnoreCase(b2.getBookName());
-            }
-            if (sortBy.equalsIgnoreCase("author")) {
-                return b1.getAuthor().compareToIgnoreCase(b2.getAuthor());
-            }
-            if (sortBy.equalsIgnoreCase("publisher")) {
-                return b1.getPublisher().getPublisherName().compareToIgnoreCase(b2.getPublisher().getPublisherName());
-            }
-            if (sortBy.equalsIgnoreCase("category")) {
-                return b1.getCategory().getCategoryName().compareToIgnoreCase(b2.getCategory().getCategoryName());
-            } else {
-                return (b1.getRating() - b2.getRating());
-            }
-        });
-
-//        bookItems.sort(new BookComparator(sortBy,sortDirection));
 
 
         List<BookItemDTO> bookItemsDTO = new ArrayList<>();
+
+
         for (BookItem bookItem : bookItems) {
-            System.out.println(ConsoleColors.RED+bookItem+ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED + bookItem + ConsoleColors.RESET);
         }
 
         for (int i = (page - 1) * itemsPerPage;
@@ -491,7 +535,6 @@ public class MyRestController {
             bookItemsDTO.add(bookItems.get(i).toDTO());
         }
 
-//        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + bookItemsDTO + ConsoleColors.RESET);
         return new BookItemsWithParamList(bookItemsDTO, bookItems.size());
     }
 
@@ -512,8 +555,14 @@ public class MyRestController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/deleteBookItem", method = RequestMethod.POST)
-    public ResponseEntity deleteBookItem(@RequestBody Long bookItemId) {
-        BookItem bookItem = bookService.getById(bookItemId);
+    public ResponseEntity deleteBookItem(@RequestBody BookItemDTO bookToDelete) {
+        BookItem bookItem;
+        try {
+            bookItem = bookService.getById(bookToDelete.getId());
+        } catch (javax.persistence.EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         bookService.deleteBookItem(bookItem);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -528,7 +577,7 @@ public class MyRestController {
 //                                            @RequestParam String publisherName,
 //                                            @RequestParam String publisherDescription,
 //                                            @RequestParam String publisherAdress,
-                                            @RequestParam(required = false) Long categoryId,
+                                            @RequestParam(required = false) String categoryName,
                                             @RequestParam(required = false) Double price,
                                             @RequestParam(required = false) String ISBN,
                                             @RequestParam(required = false, defaultValue = "false") Boolean updateBook,
@@ -537,6 +586,7 @@ public class MyRestController {
         File bookCover = new File("cover");
         if (cover != null) {
             bookCover = new File(cover.getName());
+            System.out.println(ConsoleColors.RED + cover.getName() + ConsoleColors.RESET);
             try (OutputStream os = new FileOutputStream(bookCover)) {
                 os.write(cover.getBytes());
             } catch (IOException e) {
@@ -544,7 +594,7 @@ public class MyRestController {
             }
         }
         Publisher publisher = publisherService.getByName(publisherName);
-        CategoryItem categoryItem = categoryService.getById(categoryId);
+        CategoryItem categoryItem = categoryService.getByName(categoryName);
 
         if (updateBook) {
             BookItem bookItem = bookService.getById(id);
@@ -554,8 +604,24 @@ public class MyRestController {
             bookItem.setDescription(description);
             bookItem.setPrice(price);
             bookItem.setAuthor(author);
+
+            if (bookItem.getPublisher().getId() != publisher.getId()) {
+                Publisher tempPublisher = bookItem.getPublisher();
+                tempPublisher.getBooks().remove(bookItem);
+                bookItem.setPublisher(publisher);
+                publisherService.updatePublisher(publisher);
+            }
+
+            if (bookItem.getCategory().getId() != categoryItem.getId()) {
+                CategoryItem tempCategory = bookItem.getCategory();
+                tempCategory.getBooks().remove(bookItem);
+                bookItem.setCategory(categoryItem);
+                categoryService.updateCategory(tempCategory);
+            }
+
             bookItem.setPublisher(publisherService.getByName(publisherName));
             bookItem.setCategory(categoryItem);
+
             if (cover != null) {
                 bookItem.setCover(bookCover);
             }
@@ -568,9 +634,50 @@ public class MyRestController {
         BookItem newBookItem = new BookItem(bookName, description, author, publisher,
                 categoryItem, price, new StorageBooks(), bookCover, 0, ISBN);
 
-        bookService.updateBookItem(newBookItem);
+        bookService.addBookItem(newBookItem);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/createNewPublisher", method = RequestMethod.POST)
+    public ResponseEntity createNewPublisher(@RequestParam String publisherName,
+                                             @RequestParam String publisherDescription,
+                                             @RequestParam String publisherAddress) {
+
+
+        if (publisherService.existsByName(publisherName)) {
+            Publisher publisher = publisherService.getByName(publisherName);
+            publisher.setDescription(publisherDescription);
+            publisher.setPublisherAdress(publisherAddress);
+            publisherService.updatePublisher(publisher);
+        } else {
+            Publisher publisher = new Publisher(publisherName, publisherAddress, publisherDescription, new ArrayList<BookItem>());
+            publisherService.addPublisher(publisher);
+        }
+
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/createNewCategory", method = RequestMethod.POST)
+    public ResponseEntity createNewCategoryItem(@RequestParam String categoryName,
+                                                @RequestParam String categoryDescription) {
+
+
+        if (categoryService.existsByName(categoryName)) {
+            CategoryItem categoryItem = categoryService.getByName(categoryName);
+            categoryItem.setDescription(categoryDescription);
+            categoryService.updateCategory(categoryItem);
+        } else {
+            CategoryItem categoryItem = new CategoryItem(categoryName, categoryDescription, new ArrayList<BookItem>());
+            categoryService.addCategoryItem(categoryItem);
+        }
+
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/storageBook")
@@ -585,10 +692,6 @@ public class MyRestController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/rates", method = RequestMethod.GET)
     public Rate getRates() {
-//        RestTemplate restTemplate = new RestTemplate();
-//        ResponseEntity<String> response = restTemplate.getForEntity
-//                ("http://apilayer.net/api/live?access_key=8742691146d4666a721d276747be45ab&currencies=UAH,USD,EUR,RUB",
-//                        String.class);
 
         System.out.println(ConsoleColors.BLUE_UNDERLINED + rateRetriever.getRate() + ConsoleColors.RESET);
         return rateRetriever.getRate();
@@ -655,15 +758,15 @@ public class MyRestController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/addBooks",  method = RequestMethod.POST)
+    @RequestMapping(value = "/addBooks", method = RequestMethod.POST)
     public ResponseEntity addBooks(@RequestParam() MultipartFile table,
                                    @RequestParam() MultipartFile covers) {
 
         File coversZip = new File(covers.getOriginalFilename());
-        System.out.println(ConsoleColors.RED+coversZip.getName()+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED + coversZip.getName() + ConsoleColors.RESET);
         File bookItemsExcell = new File(table.getOriginalFilename());
         try (OutputStream os = new FileOutputStream(coversZip);
-        OutputStream os2= new FileOutputStream(bookItemsExcell)) {
+             OutputStream os2 = new FileOutputStream(bookItemsExcell)) {
             os.write(covers.getBytes());
             os2.write(table.getBytes());
 
@@ -688,19 +791,11 @@ public class MyRestController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        for (File file : coversList) {
-//            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+file.getName()+ConsoleColors.RESET);
-//        }
 
         List<BookItem> bookItemList = readFromExcel(bookItemsExcell, coversList);
 
-        StorageBooks storageBooks=storageBooksService.findAll().get(0);
+        StorageBooks storageBooks = storageBooksService.findAll().get(0);
 
-
-//        for (BookItem bookItem : bookItemList) {
-//            bookItem.setStorageBooks(storageBooks);
-//            storageBooks.getBookQuantityMap().put(bookItem,10);
-//        }
 
         bookService.addBookList(bookItemList);
 
@@ -715,7 +810,6 @@ public class MyRestController {
 
         try (InputStream is = new FileInputStream(excelFile)) {
             HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
-//            HSSFSheet hssfSheet=hssfWorkbook.getSheet("bookforsite");
             HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
             for (Row cells : hssfSheet) {
                 BookItem tempBook = new BookItem();
@@ -725,38 +819,26 @@ public class MyRestController {
                     continue;
                 }
 
-                if (tempBook.getBookName().equals("")){
+                if (tempBook.getBookName().equals("")) {
                     continue;
                 }
 
                 Publisher tempPublisher = new Publisher();
                 tempPublisher.setPublisherName(cells.getCell(3).getStringCellValue());
-//                publisherSet.add(tempPublisher);
-//                for (Publisher publisher : publisherSet) {
-//                    if (publisher.getPublisherName().equals(cells.getCell(3).getStringCellValue())) {
-//                        tempPublisher = publisher;
-//                    }
-//                }
-                if(!publisherSet.add(tempPublisher)){
+                if (!publisherSet.add(tempPublisher)) {
                     for (Publisher publisher : publisherSet) {
-                        if(publisher.equals(tempPublisher)){
-                            tempPublisher=publisher;
+                        if (publisher.equals(tempPublisher)) {
+                            tempPublisher = publisher;
                         }
                     }
                 }
 
                 CategoryItem tempCategory = new CategoryItem();
                 tempCategory.setCategoryName(cells.getCell(4).getStringCellValue());
-//                categoryItemSet.add(tempCategory);
-//                for (CategoryItem categoryItem : categoryItemSet) {
-//                    if (categoryItem.getCategoryName().equalsIgnoreCase(cells.getCell(4).getStringCellValue())) {
-//                        tempCategory = categoryItem;
-//                    }
-//                }
-                if(!categoryItemSet.add(tempCategory)){
+                if (!categoryItemSet.add(tempCategory)) {
                     for (CategoryItem categoryItem : categoryItemSet) {
-                        if(categoryItem.equals(tempCategory)){
-                            tempCategory=categoryItem;
+                        if (categoryItem.equals(tempCategory)) {
+                            tempCategory = categoryItem;
                         }
                     }
                 }
@@ -765,19 +847,15 @@ public class MyRestController {
                 tempBook.setDescription(cells.getCell(1).getStringCellValue());
                 tempBook.setAuthor(cells.getCell(2).getStringCellValue());
                 tempBook.setPublisher(tempPublisher);
-//                tempPublisher.getBooks().add(tempBook);
                 tempBook.setCategory(tempCategory);
                 tempBook.setPrice(cells.getCell(5).getNumericCellValue());
-                String coverFileName=cells.getCell(6).getStringCellValue();
+                String coverFileName = cells.getCell(6).getStringCellValue();
 
                 for (File cover : covers) {
-                    System.out.println(ConsoleColors.RED+cover.getName()+ConsoleColors.RESET);
-                    if (cover.getName().equalsIgnoreCase(coverFileName)){
-
-
+                    System.out.println(ConsoleColors.RED + cover.getName() + ConsoleColors.RESET);
+                    if (cover.getName().equalsIgnoreCase(coverFileName)) {
                         tempBook.setCover(cover);
                     }
-
                 }
 
                 tempBook.setISBN(cells.getCell(7).getStringCellValue());
@@ -789,9 +867,69 @@ public class MyRestController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+categoryItemSet+ConsoleColors.RESET);
-        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+publisherSet+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + categoryItemSet + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + publisherSet + ConsoleColors.RESET);
         return bookList;
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/photo/{photoId}")
+    public ResponseEntity<byte[]> getPhotoBytes(@PathVariable("photoId") Long id) {
+
+        Client client;
+        try {
+            client = clientService.getById(id);
+        } catch (javax.persistence.EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        File file = client.getAvatar();
+
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+//        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+        return new ResponseEntity<>(getBytes(file), HttpStatus.OK);
+
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/cover/{coverId}")
+    public ResponseEntity<byte[]> getCoverBytes(@PathVariable("coverId") Long id) {
+
+        BookItem bookItem;
+        try {
+            bookItem = bookService.getById(id);
+        } catch (javax.persistence.EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        File file = bookItem.getCover();
+
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return new ResponseEntity<>(getBytes(file), HttpStatus.OK);
+
+    }
+
+    public byte[] getBytes(File file) {
+        byte[] bytes = null;
+        byte[] buffer = new byte[(int) file.length()];
+        try (InputStream in = new FileInputStream(file); ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            int read = 0;
+            while ((read = in.read(buffer)) > 0) {
+                baos.write(buffer, 0, read);
+            }
+            bytes = baos.toByteArray();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.DAO.*;
+import com.gmail.stepan1983.config.ConsoleColors;
 import com.gmail.stepan1983.model.BookItem;
 import com.gmail.stepan1983.model.CategoryItem;
 import com.gmail.stepan1983.model.Publisher;
@@ -51,6 +52,32 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public BookItem addBookItem(BookItem bookItem) {
+
+        StorageBooks storageBooks = storageBooksService.findAll().get(0);
+
+        if (bookDAO.existsByBookName(bookItem.getBookName())) {
+            return bookDAO.getByBookName(bookItem.getBookName());
+        }
+
+        Publisher tempPublisher = publisherService.getByName(bookItem.getPublisher().getPublisherName());
+        if (tempPublisher == null) {
+            tempPublisher = bookItem.getPublisher();
+            tempPublisher = publisherService.addPublisher(tempPublisher);
+        }
+        CategoryItem tempCategoryItem = categoryService.getByName(bookItem.getCategory().getCategoryName());
+        if (tempCategoryItem == null) {
+            tempCategoryItem = bookItem.getCategory();
+            tempCategoryItem = categoryService.addCategoryItem(tempCategoryItem);
+        }
+
+        bookItem.setPublisher(tempPublisher);
+        bookItem.setCategory(tempCategoryItem);
+        tempPublisher.getBooks().add(bookItem);
+        tempCategoryItem.getBooks().add(bookItem);
+        entityManager.persist(bookItem);
+        bookItem.setStorageBooks(storageBooks);
+        storageBooks.getBookQuantityMap().put(bookItem, 10);
+
         return entityManager.merge(bookItem);
 
     }
@@ -62,8 +89,12 @@ public class BookServiceImpl implements BookService {
         Set<CategoryItem> categoryItemSet = new HashSet<>();
         StorageBooks storageBooks = storageBooksService.findAll().get(0);
 
-        for (BookItem bookItem : bookList) {
-//            entityManager.persist(bookItem);
+        for (int i = 0; i < bookList.size(); i++) {
+            BookItem bookItem = bookList.get(i);
+
+            if (bookDAO.existsByBookName(bookItem.getBookName())) {
+                continue;
+            }
 
             Publisher tempPublisher = publisherService.getByName(bookItem.getPublisher().getPublisherName());
             if (tempPublisher == null) {
@@ -77,21 +108,16 @@ public class BookServiceImpl implements BookService {
             }
             publisherSet.add(tempPublisher);
             categoryItemSet.add(tempCategoryItem);
+
             bookItem.setPublisher(tempPublisher);
             bookItem.setCategory(tempCategoryItem);
             tempPublisher.getBooks().add(bookItem);
             tempCategoryItem.getBooks().add(bookItem);
             entityManager.persist(bookItem);
-//            entityManager.flush();
-
-        }
-        for (BookItem bookItem : bookList) {
             bookItem.setStorageBooks(storageBooks);
             storageBooks.getBookQuantityMap().put(bookItem, 10);
             entityManager.merge(bookItem);
         }
-
-
     }
 
     @Override
@@ -130,6 +156,8 @@ public class BookServiceImpl implements BookService {
     @Transactional
     public void deleteBookItem(BookItem bookItem) {
         BookItem temp = entityManager.merge(bookItem);
+        temp.getPublisher().getBooks().remove(temp);
+        temp.getCategory().getBooks().remove(temp);
         entityManager.remove(temp);
     }
 
@@ -170,10 +198,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Transactional
-    public void setStorageBook(BookItem book){
-        StorageBooks storageBooks=storageBooksService.findAll().get(0);
+    public void setStorageBook(BookItem book) {
+        StorageBooks storageBooks = storageBooksService.findAll().get(0);
         book.setStorageBooks(storageBooks);
-        storageBooks.getBookQuantityMap().put(book,10);
+        storageBooks.getBookQuantityMap().put(book, 10);
         entityManager.merge(storageBooks);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return bookDAO.existsById(id);
     }
 }

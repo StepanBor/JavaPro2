@@ -38,4 +38,6 @@ public interface BookService {
     long count();
 
     Double getAvgRating();
+
+    boolean existsById(Long id);
 }

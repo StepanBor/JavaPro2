@@ -2,6 +2,7 @@ package com.gmail.stepan1983.Service;
 
 import com.gmail.stepan1983.model.CategoryItem;
 import com.gmail.stepan1983.model.Publisher;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface CategoryService {
     List<CategoryItem> findAll();
 
     CategoryItem getByName(String name);
+
+    boolean existsByName(String name);
 
     long count();
 }
