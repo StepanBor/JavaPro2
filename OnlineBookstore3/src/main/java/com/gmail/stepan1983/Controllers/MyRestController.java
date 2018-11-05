@@ -208,7 +208,7 @@ public class MyRestController {
     public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
 
         System.out.println(ConsoleColors.RED + loginRequest + ConsoleColors.RESET);
-        Authentication authentication=null;
+        Authentication authentication = null;
         try {
             authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -216,7 +216,7 @@ public class MyRestController {
                             loginRequest.getPassword()
                     )
             );
-        } catch (AuthenticationException e){
+        } catch (AuthenticationException e) {
             return new ResponseEntity<>("wrong credentials", HttpStatus.UNAUTHORIZED);
 //            e.printStackTrace();
         }
@@ -233,7 +233,7 @@ public class MyRestController {
     public ResponseEntity<?> authenticateAdmin(@RequestBody LoginForm loginRequest) {
 
         System.out.println(ConsoleColors.RED + loginRequest + ConsoleColors.RESET);
-        Authentication authentication=null;
+        Authentication authentication = null;
         try {
             authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -241,13 +241,13 @@ public class MyRestController {
                             loginRequest.getPassword()
                     )
             );
-        } catch (AuthenticationException e){
+        } catch (AuthenticationException e) {
             return new ResponseEntity<>("wrong credentials", HttpStatus.UNAUTHORIZED);
 //            e.printStackTrace();
         }
         for (Object o : authentication.getAuthorities()) {
-            if(o.toString().equalsIgnoreCase("ROLE_ADMIN")||
-                    o.toString().equalsIgnoreCase("ROLE_MANAGER")){
+            if (o.toString().equalsIgnoreCase("ROLE_ADMIN") ||
+                    o.toString().equalsIgnoreCase("ROLE_MANAGER")) {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 String jwt = jwtProvider.generateJwtToken(authentication);
                 return ResponseEntity.ok(new JwtResponse(jwt));
@@ -256,9 +256,9 @@ public class MyRestController {
 
         System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + authentication + ConsoleColors.RESET);
         System.out.println();
-        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + authentication.getAuthorities()+ ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + authentication.getAuthorities() + ConsoleColors.RESET);
         System.out.println();
-        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + (authentication.getAuthorities().contains("ROLE_ADMIN")||
+        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + (authentication.getAuthorities().contains("ROLE_ADMIN") ||
                 authentication.getAuthorities().contains("ROLE_MANAGER")) + ConsoleColors.RESET);
 //
 //        SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -304,12 +304,21 @@ public class MyRestController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/orders")
-    public List<OrderDTO> getUserOrders(@RequestParam(required = false) Long userId,
+    public ResponseEntity getUserOrders(@RequestParam(required = false) Long userId,
                                         @RequestParam(required = false, defaultValue = "1") Long page,
                                         @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                         @RequestParam(required = false, defaultValue = "id") String sortBy,
                                         @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect,
-                                        @RequestParam(required = false, defaultValue = "false") Boolean allOrders) {
+                                        @RequestParam(required = false, defaultValue = "false") Boolean allOrders,
+                                        @RequestHeader("Authorization") String token) {
+
+        String username = jwtProvider.getUserNameFromJwtToken(token);
+
+        Client client1 = clientService.getByLogin(username);
+        if (client1.getRole().toString().equalsIgnoreCase("ROLE_CUSTOMER") & (userId == null || client1.getId() != userId)) {
+
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
 
         if (changeSortDirect) {
             sortDirection = !sortDirection;
@@ -335,7 +344,7 @@ public class MyRestController {
 
         HttpHeaders headers = new HttpHeaders();
 
-        return ordersDTO;
+        return new ResponseEntity(ordersDTO, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "*")
@@ -471,27 +480,12 @@ public class MyRestController {
                                                       @RequestParam(required = false, defaultValue = "id") String sortBy,
                                                       @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect) {
 
-        if(changeSortDirect){
-            sortDirection=!sortDirection;
+        if (changeSortDirect) {
+            sortDirection = !sortDirection;
         }
 
         int sortDirection1 = sortDirection ? -1 : 1;
-        Set<BookItem> bookItemsSet = new TreeSet<>((BookItem b1, BookItem b2) -> {
-            if (sortBy.equalsIgnoreCase("bookName")) {
-                return b1.getBookName().compareToIgnoreCase(b2.getBookName()) * sortDirection1;
-            }
-            if (sortBy.equalsIgnoreCase("author")) {
-                return b1.getAuthor().compareToIgnoreCase(b2.getAuthor()) * sortDirection1;
-            }
-            if (sortBy.equalsIgnoreCase("publisher")) {
-                return b1.getPublisher().getPublisherName().compareToIgnoreCase(b2.getPublisher().getPublisherName()) * sortDirection1;
-            }
-            if (sortBy.equalsIgnoreCase("category")) {
-                return b1.getCategory().getCategoryName().compareToIgnoreCase(b2.getCategory().getCategoryName()) * sortDirection1;
-            } else {
-                return (b1.getRating() - b2.getRating()) * sortDirection1;
-            }
-        });
+        Set<BookItem> bookItemsSet = new HashSet<>();
 
 
         System.out.println(ConsoleColors.RED + changeSortDirect + ConsoleColors.RESET);
@@ -524,6 +518,23 @@ public class MyRestController {
         }
         List<BookItem> bookItems = new ArrayList<>(bookItemsSet);
 
+        bookItems.sort((BookItem b1, BookItem b2) -> {
+            if (sortBy.equalsIgnoreCase("bookName")) {
+                return b1.getBookName().compareToIgnoreCase(b2.getBookName()) * sortDirection1;
+            }
+            if (sortBy.equalsIgnoreCase("author")) {
+                return b1.getAuthor().compareToIgnoreCase(b2.getAuthor()) * sortDirection1;
+            }
+            if (sortBy.equalsIgnoreCase("publisher")) {
+                return b1.getPublisher().getPublisherName().compareToIgnoreCase(b2.getPublisher().getPublisherName()) * sortDirection1;
+            }
+            if (sortBy.equalsIgnoreCase("category")) {
+                return b1.getCategory().getCategoryName().compareToIgnoreCase(b2.getCategory().getCategoryName()) * sortDirection1;
+            } else {
+                return (b1.getRating() - b2.getRating()) * sortDirection1;
+            }
+        });
+
 
         List<BookItemDTO> bookItemsDTO = new ArrayList<>();
 
@@ -538,6 +549,10 @@ public class MyRestController {
              i++) {
 
             bookItemsDTO.add(bookItems.get(i).toDTO());
+        }
+
+        for (BookItemDTO bookItem : bookItemsDTO) {
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + bookItem + ConsoleColors.RESET);
         }
 
         return new BookItemsWithParamList(bookItemsDTO, bookItems.size());
