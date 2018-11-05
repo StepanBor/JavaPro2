@@ -309,20 +309,19 @@ public class MyRestController {
                                         @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                         @RequestParam(required = false, defaultValue = "id") String sortBy,
                                         @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect,
-                                        @RequestParam(required = false, defaultValue = "false") Boolean allOrders,
-                                        @RequestHeader("Authorization") String token) {
+                                        @RequestParam(required = false, defaultValue = "false") Boolean allOrders) {
 
-        String username = jwtProvider.getUserNameFromJwtToken(token);
-
-        Client client1 = clientService.getByLogin(username);
-        if (client1.getRole().toString().equalsIgnoreCase("ROLE_CUSTOMER") & (userId == null || client1.getId() != userId)) {
-
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        if (changeSortDirect) {
-            sortDirection = !sortDirection;
-        }
+//        String username = jwtProvider.getUserNameFromJwtToken(token);
+//
+//        Client client1 = clientService.getByLogin(username);
+//        if (client1.getRole().toString().equalsIgnoreCase("ROLE_CUSTOMER") & (userId == null || client1.getId() != userId)) {
+//
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
+//
+//        if (changeSortDirect) {
+//            sortDirection = !sortDirection;
+//        }
 
         List<Order> orders;
         if (allOrders) {
