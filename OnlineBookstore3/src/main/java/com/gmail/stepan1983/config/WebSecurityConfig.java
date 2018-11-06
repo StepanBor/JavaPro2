@@ -62,12 +62,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
                 .authorizeRequests()
 //                .antMatchers("/").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/orders").hasAnyRole("ADMIN","USER","MANAGER")
-                .antMatchers("/userPage","/usersCount").hasAnyRole("ADMIN","MANAGER")
-                .antMatchers("/","/static/**","/bookItems","/bookItemsByParam").permitAll()
+                .antMatchers("/userPage","/usersCount","/addBooks","countOrdersByParam","/createNewBookItem",
+                        "/createNewCategory","/createNewPublisher","/deleteBookItem","/deleteOrder","/deleteUser",
+                        "/getTasks","/orderCount","/usersCount","/getUsers","/saveBookItem","/saveOrder","/tasks").hasAnyRole("ADMIN","MANAGER")
+                .antMatchers("/","/static/**","/bookItems","/bookItemsByParam","/createNewUser",
+                        "/getBookParameters","/cover/{coverId}","/photo/{photoId}","/rates","/storageBook","/bookCount",
+                        "/submitOrder").permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/unauthorized")
                 .and().

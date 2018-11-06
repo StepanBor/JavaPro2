@@ -309,7 +309,12 @@ public class MyRestController {
                                         @RequestParam(required = false, defaultValue = "6") Integer itemsPerPage,
                                         @RequestParam(required = false, defaultValue = "id") String sortBy,
                                         @RequestParam(required = false, defaultValue = "false") Boolean changeSortDirect,
-                                        @RequestParam(required = false, defaultValue = "false") Boolean allOrders) {
+                                        @RequestParam(required = false, defaultValue = "false") Boolean allOrders
+                                       /* @RequestHeader(value = "Authorization", required = false) String token*/) {
+
+//        if(token!=null){
+//            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT+token+ConsoleColors.RESET);
+//        }
 
 //        String username = jwtProvider.getUserNameFromJwtToken(token);
 //
@@ -319,9 +324,9 @@ public class MyRestController {
 //            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 //        }
 //
-//        if (changeSortDirect) {
-//            sortDirection = !sortDirection;
-//        }
+        if (changeSortDirect) {
+            sortDirection = !sortDirection;
+        }
 
         List<Order> orders;
         if (allOrders) {
