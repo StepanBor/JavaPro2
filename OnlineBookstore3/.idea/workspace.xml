@@ -45,8 +45,17 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="112" column="35" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+            <state relative-caret-position="695">
+              <caret line="128" column="10" lean-forward="true" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JwtAuthEntryPoint.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/jwt/JwtAuthEntryPoint.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -139,6 +148,13 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="MavenProjectNavigator">
     <treeState>
       <expand>
@@ -165,6 +181,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,8 +219,11 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="AndroidView" />
       <pane id="Scope" />
+=======
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -239,7 +260,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.Heroku Deploy">
+  <component name="RunManager" selected="Spring Boot.Application">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -353,24 +374,31 @@
       <workItem from="1541486896942" duration="10511000" />
       <workItem from="1541529531428" duration="6222000" />
       <workItem from="1541570809356" duration="7651000" />
+<<<<<<< HEAD
       <workItem from="1541678816735" duration="15000" />
+=======
+      <workItem from="1541619093729" duration="2607000" />
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="123666000" />
+=======
+    <option name="totallyTimeSpent" value="126258000" />
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32979977" />
-      <window_info anchor="right" auto_hide="true" id="Maven Projects" order="3" weight="0.32889125" />
+      <window_info anchor="right" auto_hide="true" id="Maven Projects" order="3" weight="0.32867885" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" x="1037" y="71" width="632" height="907" id="Database" order="3" weight="0.3283582" />
+      <window_info anchor="right" x="1037" y="71" width="632" height="907" id="Database" order="3" weight="0.32814178" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -381,10 +409,17 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="2" weight="0.51227677" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32924107" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24413647" />
+=======
+      <window_info anchor="bottom" id="Run" order="2" weight="0.51080775" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3287827" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24489796" />
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
       <window_info anchor="right" id="Bean Validation" order="3" weight="0.32975295" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -459,13 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="54" column="63" selection-start-line="54" selection-start-column="63" selection-end-line="54" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/jwt/JwtAuthEntryPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -593,8 +621,15 @@
     <entry file="file://$PROJECT_DIR$/2xR-BAAAQBAJ.jpg" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="112" column="35" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+        <state relative-caret-position="695">
+          <caret line="128" column="10" lean-forward="true" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/stepan1983/config/jwt/JwtAuthEntryPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
