@@ -88,6 +88,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="16" selection-start-line="17" selection-end-line="17" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -223,7 +232,11 @@
               <item name="OnlineBookstore3" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
             </path>
             <path>
               <item name="OnlineBookstore3" type="b2602c69:ProjectViewProjectNode" />
@@ -231,14 +244,25 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="static" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
+=======
+<<<<<<< HEAD
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+=======
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -389,13 +413,28 @@
       <workItem from="1541486896942" duration="10511000" />
       <workItem from="1541529531428" duration="6222000" />
       <workItem from="1541570809356" duration="7651000" />
+<<<<<<< HEAD
+      <workItem from="1541678816735" duration="15000" />
+=======
       <workItem from="1541619093729" duration="2607000" />
+<<<<<<< HEAD
       <workItem from="1541703358674" duration="2191000" />
+=======
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="128449000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="123666000" />
+=======
+    <option name="totallyTimeSpent" value="126258000" />
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -418,10 +457,21 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Run" order="2" weight="0.51227677" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32924107" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24413647" />
+=======
       <window_info anchor="bottom" id="Run" order="2" weight="0.51080775" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3287827" />
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24865736" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24489796" />
+>>>>>>> bb267dba2d1b4bb4f147302a898a34051e5b2b2b
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
       <window_info anchor="right" id="Bean Validation" order="3" weight="0.32975295" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -568,6 +618,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -575,6 +626,9 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/AdminPage/3rdpartylicenses.txt" />
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/AdminPage/index2.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -624,10 +678,30 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/OnlineBookStore/3rdpartylicenses.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/OnlineBookStore/index.html">
+=======
+    <entry file="file://$PROJECT_DIR$/Zu1mDwAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/zim2DQAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/zaduDwAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/XVwOEeHTU4QC.jpg" />
+    <entry file="file://$PROJECT_DIR$/v_aHCwAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/TaKmCgAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/MsEcDQAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/Lry4SK8RmQgC.jpg" />
+    <entry file="file://$PROJECT_DIR$/ILE5DwAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/gYNcDgAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/GwI3Sj_pwsUC.jpg" />
+    <entry file="file://$PROJECT_DIR$/ElE8DQAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/dAATbxhq12wC.jpg" />
+    <entry file="file://$PROJECT_DIR$/covers.zip" />
+    <entry file="file://$PROJECT_DIR$/qaRODgAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/2xR-BAAAQBAJ.jpg" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+>>>>>>> eec432b2d0f8ec3cc7f2c4075c8a475e2ec24980
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
@@ -641,6 +715,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="16" selection-start-line="17" selection-end-line="17" selection-end-column="22" />
         </state>
       </provider>
     </entry>
