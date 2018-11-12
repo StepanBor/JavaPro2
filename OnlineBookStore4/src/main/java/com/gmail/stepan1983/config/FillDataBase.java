@@ -82,7 +82,7 @@ public class FillDataBase {
     public FillDataBase() {
     }
 
-    @PostConstruct
+//    @PostConstruct
 //    @Transactional
     public void fillData() {
 
