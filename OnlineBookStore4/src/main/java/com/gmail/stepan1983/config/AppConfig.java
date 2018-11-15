@@ -11,15 +11,12 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-//@EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("com.gmail.stepan1983")
 @EnableJpaRepositories("com.gmail.stepan1983")
@@ -53,6 +50,14 @@ public class AppConfig {
 //        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
         return adapter;
     }
+
+//    @Bean
+//    MultipartConfigElement multipartConfigElement() {
+//        MultipartConfigFactory factory = new MultipartConfigFactory();
+//        factory.setMaxFileSize("5120MB");
+//        factory.setMaxRequestSize("5120MB");
+//        return factory.createMultipartConfig();
+//    }
 
 
 

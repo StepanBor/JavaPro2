@@ -30,7 +30,7 @@ public class AppConfig {
             (DataSource dataSource, JpaVendorAdapter jpaVendeorAdapter)
     {
         Properties jpaProp = new Properties();
-        jpaProp.put("hibernate.hbm2ddl.auto", "create");
+        jpaProp.put("hibernate.hbm2ddl.auto", "validate");
 
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);

@@ -82,7 +82,7 @@ public class FillDataBase {
     public FillDataBase() {
     }
 
-    @PostConstruct
+//    @PostConstruct
 //    @Transactional
     public void fillData() {
         System.out.println(ConsoleColors.RED+"fill data"+ConsoleColors.RESET);
