@@ -21,7 +21,7 @@ import java.util.List;
 //import com.sun.java.util.jar.pack.Package;
 
 //@Component
-@Transactional
+//@Transactional
 public class TestDataBean {
     @Autowired
     private ClientService clientService;
